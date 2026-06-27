@@ -3,8 +3,10 @@ export type DirectoryEntry = {
   name: string;
   phone?: string;
   tel?: string; // formato tel: (internacional para que marque desde el exterior)
-  url?: string; // alternativa a teléfono (enlace web)
+  url?: string; // alternativa a teléfono (enlace web como acción principal)
   urlLabel?: string;
+  infoUrl?: string; // enlace secundario "Más info" debajo
+  infoLabel?: string;
   detail?: string;
   highlight?: "urgent" | "primary";
 };
@@ -13,6 +15,7 @@ export type DirectorySection = {
   title: string;
   entries: DirectoryEntry[];
 };
+
 
 export const DIRECTORY: DirectorySection[] = [
   {
