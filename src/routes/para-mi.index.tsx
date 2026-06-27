@@ -135,18 +135,3 @@ function WideCard({
   );
 }
 
-function PendingCard({ title }: { title: string }) {
-  return (
-    <div className="flex items-center gap-4 rounded-2xl border border-dashed border-border bg-card/60 p-5">
-      <IconBubble>
-        <Clock size={18} />
-      </IconBubble>
-      <div className="min-w-0 flex-1">
-        <p className="font-serif text-base text-foreground">{title}</p>
-        <p className="mt-0.5 text-sm text-muted-foreground">
-          Estamos preparando este espacio con cuidado.
-        </p>
-      </div>
-    </div>
-  );
-}
