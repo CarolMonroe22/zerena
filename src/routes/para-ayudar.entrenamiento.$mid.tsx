@@ -127,7 +127,7 @@ function ModuleStepper() {
           </Link>
         </p>
       )}
-          <BasedOn source="PAP (OMS/OPS), IFRC, NCTSN, Save the Children" />
+          <BasedOn source={m.source} />
     </PageShell>
   );
 }

@@ -12,11 +12,13 @@ export type TrainingModule = {
   title: string;
   intro?: string;
   steps: TrainingStep[];
+  source: string;
 };
 
 export const TRAINING: TrainingModule[] = [
   {
     id: "que-es-acompanar",
+    source: "PAP (OMS/OPS)",
     n: 1,
     title: "Qué es acompañar",
     steps: [
@@ -37,6 +39,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "observar",
+    source: "PAP (OMS/OPS)",
     n: 2,
     title: "Observar",
     steps: [
@@ -52,6 +55,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "escuchar",
+    source: "PAP (OMS/OPS)",
     n: 3,
     title: "Escuchar",
     steps: [
@@ -67,6 +71,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "conectar",
+    source: "PAP (OMS/OPS)",
     n: 4,
     title: "Conectar",
     steps: [
@@ -83,6 +88,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "que-decir",
+    source: "PAP (OMS/OPS)",
     n: 5,
     title: "Qué decir y qué no",
     steps: [
@@ -111,6 +117,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "panico-shock",
+    source: "PAP (OMS/OPS)",
     n: 6,
     title: "Si hay pánico o shock",
     steps: [
@@ -132,6 +139,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "quien-necesita-mas",
+    source: "PAP (OMS/OPS) e IFRC",
     n: 7,
     title: "Quién necesita más ayuda",
     steps: [
@@ -158,6 +166,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "cuidate-tu",
+    source: "PAP (OMS/OPS)",
     n: 8,
     title: "Cuídate tú también",
     steps: [
@@ -177,6 +186,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "perdio-todo",
+    source: "PAP y duelo en emergencias",
     n: 9,
     title: "Acompañar a quien lo perdió todo",
     steps: [
@@ -201,6 +211,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "perdida-ambigua",
+    source: "pérdida ambigua (Pauline Boss / Cruz Roja)",
     n: 10,
     title: "Cuando no han encontrado a alguien",
     steps: [
@@ -221,6 +232,7 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "replicas",
+    source: "PAP y seguridad sísmica",
     n: 11,
     title: "Cuando el miedo vuelve (réplicas)",
     steps: [
