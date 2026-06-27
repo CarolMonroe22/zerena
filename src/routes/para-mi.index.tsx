@@ -8,7 +8,11 @@ import {
   HeartCrack,
   Sparkles,
   BookOpen,
-  Clock,
+  Search,
+  CloudOff,
+  Newspaper,
+  MapPin,
+  Waves,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { LightOfTheDay } from "@/components/LightOfTheDay";
