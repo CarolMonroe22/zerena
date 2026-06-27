@@ -38,6 +38,7 @@ import { Route as ParaAyudarEntrenamientoRouteImport } from './routes/para-ayuda
 import { Route as ParaAyudarAhoraRouteImport } from './routes/para-ayudar.ahora'
 import { Route as ParaAyudarAdultoMayorRouteImport } from './routes/para-ayudar.adulto-mayor'
 import { Route as ParaAyudarADistanciaRouteImport } from './routes/para-ayudar.a-distancia'
+import { Route as ParaAyudarEntrenamientoIndexRouteImport } from './routes/para-ayudar.entrenamiento.index'
 import { Route as ParaAyudarEntrenamientoMidRouteImport } from './routes/para-ayudar.entrenamiento.$mid'
 
 const RedRoute = RedRouteImport.update({
@@ -185,6 +186,12 @@ const ParaAyudarADistanciaRoute = ParaAyudarADistanciaRouteImport.update({
   path: '/a-distancia',
   getParentRoute: () => ParaAyudarRoute,
 } as any)
+const ParaAyudarEntrenamientoIndexRoute =
+  ParaAyudarEntrenamientoIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ParaAyudarEntrenamientoRoute,
+  } as any)
 const ParaAyudarEntrenamientoMidRoute =
   ParaAyudarEntrenamientoMidRouteImport.update({
     id: '/$mid',
@@ -223,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
   '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
+  '/para-ayudar/entrenamiento/': typeof ParaAyudarEntrenamientoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -233,7 +241,6 @@ export interface FileRoutesByTo {
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
-  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
   '/para-ayudar/nino': typeof ParaAyudarNinoRoute
   '/para-ayudar/no-mejora': typeof ParaAyudarNoMejoraRoute
   '/para-ayudar/panico': typeof ParaAyudarPanicoRoute
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/para-ayudar': typeof ParaAyudarIndexRoute
   '/para-mi': typeof ParaMiIndexRoute
   '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -286,6 +294,7 @@ export interface FileRoutesById {
   '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
   '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
+  '/para-ayudar/entrenamiento/': typeof ParaAyudarEntrenamientoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -320,6 +329,7 @@ export interface FileRouteTypes {
     | '/para-ayudar/'
     | '/para-mi/'
     | '/para-ayudar/entrenamiento/$mid'
+    | '/para-ayudar/entrenamiento/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -330,7 +340,6 @@ export interface FileRouteTypes {
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
-    | '/para-ayudar/entrenamiento'
     | '/para-ayudar/nino'
     | '/para-ayudar/no-mejora'
     | '/para-ayudar/panico'
@@ -350,6 +359,7 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/para-ayudar/entrenamiento/$mid'
+    | '/para-ayudar/entrenamiento'
   id:
     | '__root__'
     | '/'
@@ -382,6 +392,7 @@ export interface FileRouteTypes {
     | '/para-ayudar/'
     | '/para-mi/'
     | '/para-ayudar/entrenamiento/$mid'
+    | '/para-ayudar/entrenamiento/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -599,6 +610,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaAyudarADistanciaRouteImport
       parentRoute: typeof ParaAyudarRoute
     }
+    '/para-ayudar/entrenamiento/': {
+      id: '/para-ayudar/entrenamiento/'
+      path: '/'
+      fullPath: '/para-ayudar/entrenamiento/'
+      preLoaderRoute: typeof ParaAyudarEntrenamientoIndexRouteImport
+      parentRoute: typeof ParaAyudarEntrenamientoRoute
+    }
     '/para-ayudar/entrenamiento/$mid': {
       id: '/para-ayudar/entrenamiento/$mid'
       path: '/$mid'
@@ -611,11 +629,13 @@ declare module '@tanstack/react-router' {
 
 interface ParaAyudarEntrenamientoRouteChildren {
   ParaAyudarEntrenamientoMidRoute: typeof ParaAyudarEntrenamientoMidRoute
+  ParaAyudarEntrenamientoIndexRoute: typeof ParaAyudarEntrenamientoIndexRoute
 }
 
 const ParaAyudarEntrenamientoRouteChildren: ParaAyudarEntrenamientoRouteChildren =
   {
     ParaAyudarEntrenamientoMidRoute: ParaAyudarEntrenamientoMidRoute,
+    ParaAyudarEntrenamientoIndexRoute: ParaAyudarEntrenamientoIndexRoute,
   }
 
 const ParaAyudarEntrenamientoRouteWithChildren =
