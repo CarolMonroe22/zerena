@@ -15,6 +15,7 @@ import { Route as ParaAyudarRouteImport } from './routes/para-ayudar'
 import { Route as AyudaRouteImport } from './routes/ayuda'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ParaMiIndexRouteImport } from './routes/para-mi.index'
+import { Route as ParaAyudarIndexRouteImport } from './routes/para-ayudar.index'
 import { Route as ParaMiRespiraRouteImport } from './routes/para-mi.respira'
 import { Route as ParaMiPresenteRouteImport } from './routes/para-mi.presente'
 import { Route as ParaMiNormalRouteImport } from './routes/para-mi.normal'
@@ -22,6 +23,15 @@ import { Route as ParaMiDueloRouteImport } from './routes/para-mi.duelo'
 import { Route as ParaMiDiarioRouteImport } from './routes/para-mi.diario'
 import { Route as ParaMiDescansarRouteImport } from './routes/para-mi.descansar'
 import { Route as ParaMiComoEstasRouteImport } from './routes/para-mi.como-estas'
+import { Route as ParaAyudarQueDecirRouteImport } from './routes/para-ayudar.que-decir'
+import { Route as ParaAyudarPanicoRouteImport } from './routes/para-ayudar.panico'
+import { Route as ParaAyudarNoMejoraRouteImport } from './routes/para-ayudar.no-mejora'
+import { Route as ParaAyudarNinoRouteImport } from './routes/para-ayudar.nino'
+import { Route as ParaAyudarEntrenamientoRouteImport } from './routes/para-ayudar.entrenamiento'
+import { Route as ParaAyudarAhoraRouteImport } from './routes/para-ayudar.ahora'
+import { Route as ParaAyudarAdultoMayorRouteImport } from './routes/para-ayudar.adulto-mayor'
+import { Route as ParaAyudarADistanciaRouteImport } from './routes/para-ayudar.a-distancia'
+import { Route as ParaAyudarEntrenamientoMidRouteImport } from './routes/para-ayudar.entrenamiento.$mid'
 
 const RedRoute = RedRouteImport.update({
   id: '/red',
@@ -52,6 +62,11 @@ const ParaMiIndexRoute = ParaMiIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaAyudarIndexRoute = ParaAyudarIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ParaAyudarRoute,
 } as any)
 const ParaMiRespiraRoute = ParaMiRespiraRouteImport.update({
   id: '/respira',
@@ -88,13 +103,67 @@ const ParaMiComoEstasRoute = ParaMiComoEstasRouteImport.update({
   path: '/como-estas',
   getParentRoute: () => ParaMiRoute,
 } as any)
+const ParaAyudarQueDecirRoute = ParaAyudarQueDecirRouteImport.update({
+  id: '/que-decir',
+  path: '/que-decir',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarPanicoRoute = ParaAyudarPanicoRouteImport.update({
+  id: '/panico',
+  path: '/panico',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarNoMejoraRoute = ParaAyudarNoMejoraRouteImport.update({
+  id: '/no-mejora',
+  path: '/no-mejora',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarNinoRoute = ParaAyudarNinoRouteImport.update({
+  id: '/nino',
+  path: '/nino',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarEntrenamientoRoute = ParaAyudarEntrenamientoRouteImport.update({
+  id: '/entrenamiento',
+  path: '/entrenamiento',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarAhoraRoute = ParaAyudarAhoraRouteImport.update({
+  id: '/ahora',
+  path: '/ahora',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarAdultoMayorRoute = ParaAyudarAdultoMayorRouteImport.update({
+  id: '/adulto-mayor',
+  path: '/adulto-mayor',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarADistanciaRoute = ParaAyudarADistanciaRouteImport.update({
+  id: '/a-distancia',
+  path: '/a-distancia',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarEntrenamientoMidRoute =
+  ParaAyudarEntrenamientoMidRouteImport.update({
+    id: '/$mid',
+    path: '/$mid',
+    getParentRoute: () => ParaAyudarEntrenamientoRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
-  '/para-ayudar': typeof ParaAyudarRoute
+  '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/red': typeof RedRoute
+  '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
+  '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
+  '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
+  '/para-ayudar/nino': typeof ParaAyudarNinoRoute
+  '/para-ayudar/no-mejora': typeof ParaAyudarNoMejoraRoute
+  '/para-ayudar/panico': typeof ParaAyudarPanicoRoute
+  '/para-ayudar/que-decir': typeof ParaAyudarQueDecirRoute
   '/para-mi/como-estas': typeof ParaMiComoEstasRoute
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
@@ -102,13 +171,22 @@ export interface FileRoutesByFullPath {
   '/para-mi/normal': typeof ParaMiNormalRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
+  '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
-  '/para-ayudar': typeof ParaAyudarRoute
   '/red': typeof RedRoute
+  '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
+  '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
+  '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
+  '/para-ayudar/nino': typeof ParaAyudarNinoRoute
+  '/para-ayudar/no-mejora': typeof ParaAyudarNoMejoraRoute
+  '/para-ayudar/panico': typeof ParaAyudarPanicoRoute
+  '/para-ayudar/que-decir': typeof ParaAyudarQueDecirRoute
   '/para-mi/como-estas': typeof ParaMiComoEstasRoute
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
@@ -116,15 +194,25 @@ export interface FileRoutesByTo {
   '/para-mi/normal': typeof ParaMiNormalRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-ayudar': typeof ParaAyudarIndexRoute
   '/para-mi': typeof ParaMiIndexRoute
+  '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
-  '/para-ayudar': typeof ParaAyudarRoute
+  '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/red': typeof RedRoute
+  '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
+  '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
+  '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
+  '/para-ayudar/nino': typeof ParaAyudarNinoRoute
+  '/para-ayudar/no-mejora': typeof ParaAyudarNoMejoraRoute
+  '/para-ayudar/panico': typeof ParaAyudarPanicoRoute
+  '/para-ayudar/que-decir': typeof ParaAyudarQueDecirRoute
   '/para-mi/como-estas': typeof ParaMiComoEstasRoute
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
@@ -132,7 +220,9 @@ export interface FileRoutesById {
   '/para-mi/normal': typeof ParaMiNormalRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
+  '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,6 +232,14 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/red'
+    | '/para-ayudar/a-distancia'
+    | '/para-ayudar/adulto-mayor'
+    | '/para-ayudar/ahora'
+    | '/para-ayudar/entrenamiento'
+    | '/para-ayudar/nino'
+    | '/para-ayudar/no-mejora'
+    | '/para-ayudar/panico'
+    | '/para-ayudar/que-decir'
     | '/para-mi/como-estas'
     | '/para-mi/descansar'
     | '/para-mi/diario'
@@ -149,13 +247,22 @@ export interface FileRouteTypes {
     | '/para-mi/normal'
     | '/para-mi/presente'
     | '/para-mi/respira'
+    | '/para-ayudar/'
     | '/para-mi/'
+    | '/para-ayudar/entrenamiento/$mid'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/ayuda'
-    | '/para-ayudar'
     | '/red'
+    | '/para-ayudar/a-distancia'
+    | '/para-ayudar/adulto-mayor'
+    | '/para-ayudar/ahora'
+    | '/para-ayudar/entrenamiento'
+    | '/para-ayudar/nino'
+    | '/para-ayudar/no-mejora'
+    | '/para-ayudar/panico'
+    | '/para-ayudar/que-decir'
     | '/para-mi/como-estas'
     | '/para-mi/descansar'
     | '/para-mi/diario'
@@ -163,7 +270,9 @@ export interface FileRouteTypes {
     | '/para-mi/normal'
     | '/para-mi/presente'
     | '/para-mi/respira'
+    | '/para-ayudar'
     | '/para-mi'
+    | '/para-ayudar/entrenamiento/$mid'
   id:
     | '__root__'
     | '/'
@@ -171,6 +280,14 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/red'
+    | '/para-ayudar/a-distancia'
+    | '/para-ayudar/adulto-mayor'
+    | '/para-ayudar/ahora'
+    | '/para-ayudar/entrenamiento'
+    | '/para-ayudar/nino'
+    | '/para-ayudar/no-mejora'
+    | '/para-ayudar/panico'
+    | '/para-ayudar/que-decir'
     | '/para-mi/como-estas'
     | '/para-mi/descansar'
     | '/para-mi/diario'
@@ -178,13 +295,15 @@ export interface FileRouteTypes {
     | '/para-mi/normal'
     | '/para-mi/presente'
     | '/para-mi/respira'
+    | '/para-ayudar/'
     | '/para-mi/'
+    | '/para-ayudar/entrenamiento/$mid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AyudaRoute: typeof AyudaRoute
-  ParaAyudarRoute: typeof ParaAyudarRoute
+  ParaAyudarRoute: typeof ParaAyudarRouteWithChildren
   ParaMiRoute: typeof ParaMiRouteWithChildren
   RedRoute: typeof RedRoute
 }
@@ -232,6 +351,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/para-mi/'
       preLoaderRoute: typeof ParaMiIndexRouteImport
       parentRoute: typeof ParaMiRoute
+    }
+    '/para-ayudar/': {
+      id: '/para-ayudar/'
+      path: '/'
+      fullPath: '/para-ayudar/'
+      preLoaderRoute: typeof ParaAyudarIndexRouteImport
+      parentRoute: typeof ParaAyudarRoute
     }
     '/para-mi/respira': {
       id: '/para-mi/respira'
@@ -282,8 +408,113 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaMiComoEstasRouteImport
       parentRoute: typeof ParaMiRoute
     }
+    '/para-ayudar/que-decir': {
+      id: '/para-ayudar/que-decir'
+      path: '/que-decir'
+      fullPath: '/para-ayudar/que-decir'
+      preLoaderRoute: typeof ParaAyudarQueDecirRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/panico': {
+      id: '/para-ayudar/panico'
+      path: '/panico'
+      fullPath: '/para-ayudar/panico'
+      preLoaderRoute: typeof ParaAyudarPanicoRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/no-mejora': {
+      id: '/para-ayudar/no-mejora'
+      path: '/no-mejora'
+      fullPath: '/para-ayudar/no-mejora'
+      preLoaderRoute: typeof ParaAyudarNoMejoraRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/nino': {
+      id: '/para-ayudar/nino'
+      path: '/nino'
+      fullPath: '/para-ayudar/nino'
+      preLoaderRoute: typeof ParaAyudarNinoRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/entrenamiento': {
+      id: '/para-ayudar/entrenamiento'
+      path: '/entrenamiento'
+      fullPath: '/para-ayudar/entrenamiento'
+      preLoaderRoute: typeof ParaAyudarEntrenamientoRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/ahora': {
+      id: '/para-ayudar/ahora'
+      path: '/ahora'
+      fullPath: '/para-ayudar/ahora'
+      preLoaderRoute: typeof ParaAyudarAhoraRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/adulto-mayor': {
+      id: '/para-ayudar/adulto-mayor'
+      path: '/adulto-mayor'
+      fullPath: '/para-ayudar/adulto-mayor'
+      preLoaderRoute: typeof ParaAyudarAdultoMayorRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/a-distancia': {
+      id: '/para-ayudar/a-distancia'
+      path: '/a-distancia'
+      fullPath: '/para-ayudar/a-distancia'
+      preLoaderRoute: typeof ParaAyudarADistanciaRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/entrenamiento/$mid': {
+      id: '/para-ayudar/entrenamiento/$mid'
+      path: '/$mid'
+      fullPath: '/para-ayudar/entrenamiento/$mid'
+      preLoaderRoute: typeof ParaAyudarEntrenamientoMidRouteImport
+      parentRoute: typeof ParaAyudarEntrenamientoRoute
+    }
   }
 }
+
+interface ParaAyudarEntrenamientoRouteChildren {
+  ParaAyudarEntrenamientoMidRoute: typeof ParaAyudarEntrenamientoMidRoute
+}
+
+const ParaAyudarEntrenamientoRouteChildren: ParaAyudarEntrenamientoRouteChildren =
+  {
+    ParaAyudarEntrenamientoMidRoute: ParaAyudarEntrenamientoMidRoute,
+  }
+
+const ParaAyudarEntrenamientoRouteWithChildren =
+  ParaAyudarEntrenamientoRoute._addFileChildren(
+    ParaAyudarEntrenamientoRouteChildren,
+  )
+
+interface ParaAyudarRouteChildren {
+  ParaAyudarADistanciaRoute: typeof ParaAyudarADistanciaRoute
+  ParaAyudarAdultoMayorRoute: typeof ParaAyudarAdultoMayorRoute
+  ParaAyudarAhoraRoute: typeof ParaAyudarAhoraRoute
+  ParaAyudarEntrenamientoRoute: typeof ParaAyudarEntrenamientoRouteWithChildren
+  ParaAyudarNinoRoute: typeof ParaAyudarNinoRoute
+  ParaAyudarNoMejoraRoute: typeof ParaAyudarNoMejoraRoute
+  ParaAyudarPanicoRoute: typeof ParaAyudarPanicoRoute
+  ParaAyudarQueDecirRoute: typeof ParaAyudarQueDecirRoute
+  ParaAyudarIndexRoute: typeof ParaAyudarIndexRoute
+}
+
+const ParaAyudarRouteChildren: ParaAyudarRouteChildren = {
+  ParaAyudarADistanciaRoute: ParaAyudarADistanciaRoute,
+  ParaAyudarAdultoMayorRoute: ParaAyudarAdultoMayorRoute,
+  ParaAyudarAhoraRoute: ParaAyudarAhoraRoute,
+  ParaAyudarEntrenamientoRoute: ParaAyudarEntrenamientoRouteWithChildren,
+  ParaAyudarNinoRoute: ParaAyudarNinoRoute,
+  ParaAyudarNoMejoraRoute: ParaAyudarNoMejoraRoute,
+  ParaAyudarPanicoRoute: ParaAyudarPanicoRoute,
+  ParaAyudarQueDecirRoute: ParaAyudarQueDecirRoute,
+  ParaAyudarIndexRoute: ParaAyudarIndexRoute,
+}
+
+const ParaAyudarRouteWithChildren = ParaAyudarRoute._addFileChildren(
+  ParaAyudarRouteChildren,
+)
 
 interface ParaMiRouteChildren {
   ParaMiComoEstasRoute: typeof ParaMiComoEstasRoute
@@ -313,7 +544,7 @@ const ParaMiRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AyudaRoute: AyudaRoute,
-  ParaAyudarRoute: ParaAyudarRoute,
+  ParaAyudarRoute: ParaAyudarRouteWithChildren,
   ParaMiRoute: ParaMiRouteWithChildren,
   RedRoute: RedRoute,
 }
