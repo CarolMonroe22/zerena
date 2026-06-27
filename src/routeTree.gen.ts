@@ -17,8 +17,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ParaMiIndexRouteImport } from './routes/para-mi.index'
 import { Route as ParaAyudarIndexRouteImport } from './routes/para-ayudar.index'
 import { Route as ParaMiRespiraRouteImport } from './routes/para-mi.respira'
+import { Route as ParaMiReplicasRouteImport } from './routes/para-mi.replicas'
 import { Route as ParaMiPresenteRouteImport } from './routes/para-mi.presente'
+import { Route as ParaMiPerdisteTodoRouteImport } from './routes/para-mi.perdiste-todo'
+import { Route as ParaMiNoticiasRouteImport } from './routes/para-mi.noticias'
 import { Route as ParaMiNormalRouteImport } from './routes/para-mi.normal'
+import { Route as ParaMiNoEncontradoRouteImport } from './routes/para-mi.no-encontrado'
+import { Route as ParaMiLejosRouteImport } from './routes/para-mi.lejos'
 import { Route as ParaMiDueloRouteImport } from './routes/para-mi.duelo'
 import { Route as ParaMiDiarioRouteImport } from './routes/para-mi.diario'
 import { Route as ParaMiDescansarRouteImport } from './routes/para-mi.descansar'
@@ -73,14 +78,39 @@ const ParaMiRespiraRoute = ParaMiRespiraRouteImport.update({
   path: '/respira',
   getParentRoute: () => ParaMiRoute,
 } as any)
+const ParaMiReplicasRoute = ParaMiReplicasRouteImport.update({
+  id: '/replicas',
+  path: '/replicas',
+  getParentRoute: () => ParaMiRoute,
+} as any)
 const ParaMiPresenteRoute = ParaMiPresenteRouteImport.update({
   id: '/presente',
   path: '/presente',
   getParentRoute: () => ParaMiRoute,
 } as any)
+const ParaMiPerdisteTodoRoute = ParaMiPerdisteTodoRouteImport.update({
+  id: '/perdiste-todo',
+  path: '/perdiste-todo',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiNoticiasRoute = ParaMiNoticiasRouteImport.update({
+  id: '/noticias',
+  path: '/noticias',
+  getParentRoute: () => ParaMiRoute,
+} as any)
 const ParaMiNormalRoute = ParaMiNormalRouteImport.update({
   id: '/normal',
   path: '/normal',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiNoEncontradoRoute = ParaMiNoEncontradoRouteImport.update({
+  id: '/no-encontrado',
+  path: '/no-encontrado',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiLejosRoute = ParaMiLejosRouteImport.update({
+  id: '/lejos',
+  path: '/lejos',
   getParentRoute: () => ParaMiRoute,
 } as any)
 const ParaMiDueloRoute = ParaMiDueloRouteImport.update({
@@ -168,8 +198,13 @@ export interface FileRoutesByFullPath {
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
   '/para-mi/duelo': typeof ParaMiDueloRoute
+  '/para-mi/lejos': typeof ParaMiLejosRoute
+  '/para-mi/no-encontrado': typeof ParaMiNoEncontradoRoute
   '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/noticias': typeof ParaMiNoticiasRoute
+  '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/replicas': typeof ParaMiReplicasRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
   '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
@@ -191,8 +226,13 @@ export interface FileRoutesByTo {
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
   '/para-mi/duelo': typeof ParaMiDueloRoute
+  '/para-mi/lejos': typeof ParaMiLejosRoute
+  '/para-mi/no-encontrado': typeof ParaMiNoEncontradoRoute
   '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/noticias': typeof ParaMiNoticiasRoute
+  '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/replicas': typeof ParaMiReplicasRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
   '/para-ayudar': typeof ParaAyudarIndexRoute
   '/para-mi': typeof ParaMiIndexRoute
@@ -217,8 +257,13 @@ export interface FileRoutesById {
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
   '/para-mi/duelo': typeof ParaMiDueloRoute
+  '/para-mi/lejos': typeof ParaMiLejosRoute
+  '/para-mi/no-encontrado': typeof ParaMiNoEncontradoRoute
   '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/noticias': typeof ParaMiNoticiasRoute
+  '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/replicas': typeof ParaMiReplicasRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
   '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
@@ -244,8 +289,13 @@ export interface FileRouteTypes {
     | '/para-mi/descansar'
     | '/para-mi/diario'
     | '/para-mi/duelo'
+    | '/para-mi/lejos'
+    | '/para-mi/no-encontrado'
     | '/para-mi/normal'
+    | '/para-mi/noticias'
+    | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
+    | '/para-mi/replicas'
     | '/para-mi/respira'
     | '/para-ayudar/'
     | '/para-mi/'
@@ -267,8 +317,13 @@ export interface FileRouteTypes {
     | '/para-mi/descansar'
     | '/para-mi/diario'
     | '/para-mi/duelo'
+    | '/para-mi/lejos'
+    | '/para-mi/no-encontrado'
     | '/para-mi/normal'
+    | '/para-mi/noticias'
+    | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
+    | '/para-mi/replicas'
     | '/para-mi/respira'
     | '/para-ayudar'
     | '/para-mi'
@@ -292,8 +347,13 @@ export interface FileRouteTypes {
     | '/para-mi/descansar'
     | '/para-mi/diario'
     | '/para-mi/duelo'
+    | '/para-mi/lejos'
+    | '/para-mi/no-encontrado'
     | '/para-mi/normal'
+    | '/para-mi/noticias'
+    | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
+    | '/para-mi/replicas'
     | '/para-mi/respira'
     | '/para-ayudar/'
     | '/para-mi/'
@@ -366,6 +426,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaMiRespiraRouteImport
       parentRoute: typeof ParaMiRoute
     }
+    '/para-mi/replicas': {
+      id: '/para-mi/replicas'
+      path: '/replicas'
+      fullPath: '/para-mi/replicas'
+      preLoaderRoute: typeof ParaMiReplicasRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
     '/para-mi/presente': {
       id: '/para-mi/presente'
       path: '/presente'
@@ -373,11 +440,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaMiPresenteRouteImport
       parentRoute: typeof ParaMiRoute
     }
+    '/para-mi/perdiste-todo': {
+      id: '/para-mi/perdiste-todo'
+      path: '/perdiste-todo'
+      fullPath: '/para-mi/perdiste-todo'
+      preLoaderRoute: typeof ParaMiPerdisteTodoRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/noticias': {
+      id: '/para-mi/noticias'
+      path: '/noticias'
+      fullPath: '/para-mi/noticias'
+      preLoaderRoute: typeof ParaMiNoticiasRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
     '/para-mi/normal': {
       id: '/para-mi/normal'
       path: '/normal'
       fullPath: '/para-mi/normal'
       preLoaderRoute: typeof ParaMiNormalRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/no-encontrado': {
+      id: '/para-mi/no-encontrado'
+      path: '/no-encontrado'
+      fullPath: '/para-mi/no-encontrado'
+      preLoaderRoute: typeof ParaMiNoEncontradoRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/lejos': {
+      id: '/para-mi/lejos'
+      path: '/lejos'
+      fullPath: '/para-mi/lejos'
+      preLoaderRoute: typeof ParaMiLejosRouteImport
       parentRoute: typeof ParaMiRoute
     }
     '/para-mi/duelo': {
@@ -521,8 +616,13 @@ interface ParaMiRouteChildren {
   ParaMiDescansarRoute: typeof ParaMiDescansarRoute
   ParaMiDiarioRoute: typeof ParaMiDiarioRoute
   ParaMiDueloRoute: typeof ParaMiDueloRoute
+  ParaMiLejosRoute: typeof ParaMiLejosRoute
+  ParaMiNoEncontradoRoute: typeof ParaMiNoEncontradoRoute
   ParaMiNormalRoute: typeof ParaMiNormalRoute
+  ParaMiNoticiasRoute: typeof ParaMiNoticiasRoute
+  ParaMiPerdisteTodoRoute: typeof ParaMiPerdisteTodoRoute
   ParaMiPresenteRoute: typeof ParaMiPresenteRoute
+  ParaMiReplicasRoute: typeof ParaMiReplicasRoute
   ParaMiRespiraRoute: typeof ParaMiRespiraRoute
   ParaMiIndexRoute: typeof ParaMiIndexRoute
 }
@@ -532,8 +632,13 @@ const ParaMiRouteChildren: ParaMiRouteChildren = {
   ParaMiDescansarRoute: ParaMiDescansarRoute,
   ParaMiDiarioRoute: ParaMiDiarioRoute,
   ParaMiDueloRoute: ParaMiDueloRoute,
+  ParaMiLejosRoute: ParaMiLejosRoute,
+  ParaMiNoEncontradoRoute: ParaMiNoEncontradoRoute,
   ParaMiNormalRoute: ParaMiNormalRoute,
+  ParaMiNoticiasRoute: ParaMiNoticiasRoute,
+  ParaMiPerdisteTodoRoute: ParaMiPerdisteTodoRoute,
   ParaMiPresenteRoute: ParaMiPresenteRoute,
+  ParaMiReplicasRoute: ParaMiReplicasRoute,
   ParaMiRespiraRoute: ParaMiRespiraRoute,
   ParaMiIndexRoute: ParaMiIndexRoute,
 }

@@ -8,7 +8,11 @@ import {
   HeartCrack,
   Sparkles,
   BookOpen,
-  Clock,
+  Search,
+  CloudOff,
+  Newspaper,
+  MapPin,
+  Waves,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { LightOfTheDay } from "@/components/LightOfTheDay";
@@ -52,10 +56,11 @@ function ParaMiHome() {
       <div className="space-y-3">
         <WideCard to="/para-mi/descansar" icon={<Moon size={18} />} title="Para descansar esta noche" desc="Cuando el cuerpo no quiere parar." />
         <WideCard to="/para-mi/duelo" icon={<HeartCrack size={18} />} title="Si perdiste a alguien" desc="Un espacio para el duelo, a tu ritmo." />
-        <PendingCard title="No he encontrado a alguien" />
-        <PendingCard title="Si lo perdiste todo" />
-        <PendingCard title="Si las noticias te hacen daño" />
-        <PendingCard title="Si estás lejos de los tuyos" />
+        <WideCard to="/para-mi/no-encontrado" icon={<Search size={18} />} title="No he encontrado a alguien" desc="Para esa espera que no termina." />
+        <WideCard to="/para-mi/perdiste-todo" icon={<CloudOff size={18} />} title="Si lo perdiste todo" desc="Cuando el dolor es demasiado grande." />
+        <WideCard to="/para-mi/noticias" icon={<Newspaper size={18} />} title="Si las noticias te hacen daño" desc="Cuidar lo que entra a tu mente." />
+        <WideCard to="/para-mi/lejos" icon={<MapPin size={18} />} title="Si estás lejos de los tuyos" desc="Acompañar desde la distancia." />
+        <WideCard to="/para-mi/replicas" icon={<Waves size={18} />} title="Cuando todo tiembla otra vez" desc="Réplicas: qué hacer y cómo calmarte." />
       </div>
 
       <SectionTitle>Cuando ya pasó lo peor</SectionTitle>
@@ -130,18 +135,3 @@ function WideCard({
   );
 }
 
-function PendingCard({ title }: { title: string }) {
-  return (
-    <div className="flex items-center gap-4 rounded-2xl border border-dashed border-border bg-card/60 p-5">
-      <IconBubble>
-        <Clock size={18} />
-      </IconBubble>
-      <div className="min-w-0 flex-1">
-        <p className="font-serif text-base text-foreground">{title}</p>
-        <p className="mt-0.5 text-sm text-muted-foreground">
-          Estamos preparando este espacio con cuidado.
-        </p>
-      </div>
-    </div>
-  );
-}
