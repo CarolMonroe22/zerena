@@ -175,6 +175,65 @@ export const TRAINING: TrainingModule[] = [
       },
     ],
   },
+  {
+    id: "perdio-todo",
+    n: 9,
+    title: "Acompañar a quien lo perdió todo",
+    steps: [
+      {
+        heading: "Solo estar",
+        body: "Cuando alguien perdió a su familia, tu trabajo no es consolar con palabras ni arreglar lo imposible. Es estar. Quédate; el silencio acompañado vale más que cualquier frase.",
+      },
+      {
+        heading: "Qué decir y qué no",
+        body: "No digas «fue la voluntad de Dios», «están en un lugar mejor», «tienes que ser fuerte». Sí puedes decir: «Estoy aquí contigo. No te voy a dejar solo.» / «No tienes que decir nada.»",
+      },
+      {
+        heading: "Vigila el riesgo",
+        body: "Si dice que no quiere seguir, o que quiere hacerse daño, no lo manejes solo. Conéctalo de inmediato con una línea o el 911, y quédate con esa persona mientras tanto.",
+        cta: "lineas",
+      },
+      {
+        heading: "Cuídate después",
+        body: "Esto también te pesa a ti.",
+      },
+    ],
+  },
+  {
+    id: "perdida-ambigua",
+    n: 10,
+    title: "Cuando no han encontrado a alguien",
+    steps: [
+      {
+        heading: "Una espera imposible",
+        body: "No saber si su ser querido vive o no es una de las cargas más duras. Tiene nombre: pérdida ambigua. La persona no puede despedirse ni descansar.",
+      },
+      {
+        heading: "Cómo acompañar",
+        body: "No fuerces ni la esperanza («ya va a aparecer») ni el cierre («tienes que aceptarlo»). Acompaña la espera tal como es.",
+      },
+      {
+        heading: "Lo práctico ayuda",
+        body: "Apóyala con dónde reportar y buscar (Cruz Roja, reunificación familiar) y en no esperar en soledad.",
+        cta: "lineas",
+      },
+    ],
+  },
+  {
+    id: "replicas",
+    n: 11,
+    title: "Cuando el miedo vuelve (réplicas)",
+    steps: [
+      {
+        heading: "El miedo tiene sentido",
+        body: "Tras un terremoto, cada réplica revive el susto. No minimices («ya pasó», «no es nada»). Valida: «tiene sentido que tu cuerpo se asuste.»",
+      },
+      {
+        heading: "Cómo ayudar",
+        body: "Si tiembla, recuérdale con calma lo básico de seguridad (agacharse, cubrirse la cabeza, agarrarse de algo firme). Después, respira con la persona, despacio, y quédate cerca.",
+      },
+    ],
+  },
 ];
 
 const KEY = "serena.training.v1";
