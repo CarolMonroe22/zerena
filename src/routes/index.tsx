@@ -3,6 +3,7 @@ import { Heart, HandHeart, Users } from "lucide-react";
 import { SerenaMark } from "@/components/SerenaMark";
 import { PageShell } from "@/components/PageShell";
 import { IconBubble } from "@/components/IconBubble";
+import { InstallButton } from "@/components/InstallButton";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,6 +50,8 @@ function Welcome() {
           desc="Sumarte como voluntario, profesional u organización."
         />
       </section>
+
+      <InstallButton />
 
       <section className="mt-10 rounded-2xl border border-border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
         <p>
