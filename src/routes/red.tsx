@@ -209,6 +209,14 @@ function RedPage() {
               </p>
             )}
 
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              Solo usamos tus datos para ponernos en contacto. No los compartimos con nadie.{" "}
+              <Link to="/privacidad" className="text-primary underline-offset-4 hover:underline">
+                Tu privacidad
+              </Link>
+              .
+            </p>
+
             <div className="flex justify-end">
               <button
                 type="submit"

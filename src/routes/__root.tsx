@@ -4,6 +4,7 @@ import {
   createRootRouteWithContext,
   useRouter,
   HeadContent,
+  Link,
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
@@ -147,7 +148,13 @@ function RootComponent() {
         <AppHeader />
         <Outlet />
         <footer className="mx-auto max-w-[640px] px-5 pb-10 pt-6 text-center text-xs text-muted-foreground">
-          Privado y anónimo · nada de lo que escribas se guarda en internet.
+          <p>Privado y anónimo · tu diario se queda en tu teléfono.</p>
+          <Link
+            to="/privacidad"
+            className="mt-1 inline-block text-primary underline-offset-4 hover:underline"
+          >
+            Cómo cuidamos tu privacidad
+          </Link>
         </footer>
         <FloatingHelpButton />
       </div>

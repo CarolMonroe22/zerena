@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { PageShell } from "@/components/PageShell";
@@ -155,6 +155,14 @@ function ContactoPage() {
             {error}
           </p>
         )}
+
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          Solo usamos esto para responderte. No lo compartimos con nadie.{" "}
+          <Link to="/privacidad" className="text-primary underline-offset-4 hover:underline">
+            Tu privacidad
+          </Link>
+          .
+        </p>
 
         <div className="flex justify-end">
           <button
