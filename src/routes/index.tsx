@@ -1,29 +1,95 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Heart, HandHeart, Users } from "lucide-react";
+import { SerenaMark } from "@/components/SerenaMark";
+import { PageShell } from "@/components/PageShell";
+import { IconBubble } from "@/components/IconBubble";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Serena — un espacio calmado" },
+      {
+        name: "description",
+        content: "Primeros Auxilios Psicológicos. Anónimo, privado y disponible sin conexión.",
+      },
     ],
   }),
-  component: Index,
+  component: Welcome,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Welcome() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+    <PageShell>
+      <section className="flex flex-col items-center pt-8 text-center sm:pt-14">
+        <SerenaMark size={88} />
+        <h1 className="mt-5 font-serif text-4xl text-foreground sm:text-5xl">Serena</h1>
+        <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
+          Un espacio calmado para los primeros momentos.<br />
+          Respira. No tienes que apurarte.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-3">
+        <PathCard
+          to="/para-mi"
+          icon={<Heart size={18} />}
+          title="Necesito calma para mí"
+          desc="Respirar, sentirte acompañado y encontrar ayuda."
+        />
+        <PathCard
+          to="/para-ayudar"
+          icon={<HandHeart size={18} />}
+          title="Quiero ayudar a alguien"
+          desc="Acompañar a otra persona con cuidado."
+        />
+        <PathCard
+          to="/red"
+          icon={<Users size={18} />}
+          title="Red de apoyo"
+          desc="Sumarte como voluntario, profesional u organización."
+        />
+      </section>
+
+      <section className="mt-10 rounded-2xl border border-border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
+        <p>
+          Serena es un espacio de apoyo de primera instancia basado en los Primeros Auxilios
+          Psicológicos (OMS/OPS). No es terapia, no diagnostica y no reemplaza la atención de un
+          profesional ni los servicios de emergencia.
+        </p>
+        <p className="mt-2">
+          Si tú o alguien corre peligro, llama al{" "}
+          <a href="tel:911" className="font-medium text-alert underline-offset-4 hover:underline">
+            911
+          </a>
+          .
+        </p>
+      </section>
+    </PageShell>
+  );
+}
+
+function PathCard({
+  to,
+  icon,
+  title,
+  desc,
+}: {
+  to: string;
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <Link
+      // @ts-expect-error rutas tipadas dinámicas
+      to={to}
+      className="serena-card flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+      <IconBubble>{icon}</IconBubble>
+      <div className="min-w-0 flex-1">
+        <p className="font-serif text-lg text-foreground">{title}</p>
+        <p className="mt-0.5 text-sm text-muted-foreground">{desc}</p>
+      </div>
+    </Link>
   );
 }
