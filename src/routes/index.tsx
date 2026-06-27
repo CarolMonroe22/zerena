@@ -81,7 +81,6 @@ function PathCard({
 }) {
   return (
     <Link
-      // @ts-expect-error rutas tipadas dinámicas
       to={to}
       className="serena-card flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
     >

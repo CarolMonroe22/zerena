@@ -4,7 +4,6 @@ import { ChevronLeft } from "lucide-react";
 export function BackLink({ to, label }: { to: string; label: string }) {
   return (
     <Link
-      // @ts-expect-error
       to={to}
       className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
     >

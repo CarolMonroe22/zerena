@@ -96,7 +96,6 @@ function SmallCard({
 }) {
   return (
     <Link
-      // @ts-expect-error
       to={to}
       className="serena-card flex flex-col items-start gap-3 p-5 transition-colors hover:bg-secondary"
     >
@@ -119,7 +118,6 @@ function WideCard({
 }) {
   return (
     <Link
-      // @ts-expect-error
       to={to}
       className="serena-card flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
     >
