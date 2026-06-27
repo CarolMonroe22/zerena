@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Wind, ShieldAlert } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-mi/replicas")({
@@ -55,6 +56,7 @@ function Replicas() {
         </Link>
         <LineasButton />
       </div>
+          <BasedOn source="PAP y seguridad sísmica" />
     </PageShell>
   );
 }

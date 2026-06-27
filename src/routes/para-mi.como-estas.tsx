@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/como-estas")({
   head: () => ({ meta: [{ title: "¿Cómo estás ahora? — Serena" }] }),
@@ -159,6 +160,7 @@ function ComoEstas() {
       <p className="mt-6 text-center text-xs text-muted-foreground">
         Responde solo lo que quieras. Puedes salir cuando necesites.
       </p>
+          <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-mi/duelo")({
@@ -46,6 +47,7 @@ function Duelo() {
       <div className="mt-6">
         <LineasButton />
       </div>
+          <BasedOn source="PAP y duelo en emergencias" />
     </PageShell>
   );
 }

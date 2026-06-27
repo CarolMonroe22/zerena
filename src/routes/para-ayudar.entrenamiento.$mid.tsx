@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 import { getModule, markCompleted, TRAINING } from "@/lib/training";
 
@@ -126,6 +127,7 @@ function ModuleStepper() {
           </Link>
         </p>
       )}
+          <BasedOn source="PAP (OMS/OPS), IFRC, NCTSN, Save the Children" />
     </PageShell>
   );
 }

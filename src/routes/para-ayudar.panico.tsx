@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-ayudar/panico")({
@@ -44,6 +45,7 @@ function Panico() {
       <div className="mt-8 flex justify-center">
         <LineasButton />
       </div>
+          <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }

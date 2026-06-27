@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Wind, Users, ExternalLink } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/lejos")({
   head: () => ({ meta: [{ title: "Si estás lejos — Serena" }] }),
@@ -68,6 +69,7 @@ function Lejos() {
         Si llamas a Venezuela desde el exterior, marca con <span className="tabular-nums">+58</span>.
         Algunas operadoras ofrecen llamadas gratis a Venezuela en estos días: revisa la tuya.
       </p>
+          <BasedOn source="salud mental de la diáspora" />
     </PageShell>
   );
 }

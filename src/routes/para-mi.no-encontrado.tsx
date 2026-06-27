@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Wind } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-mi/no-encontrado")({
@@ -44,6 +45,7 @@ function NoEncontrado() {
       <p className="mt-3 text-xs text-muted-foreground">
         Cruz Roja Venezolana atiende reunificación familiar.
       </p>
+          <BasedOn source="pérdida ambigua (Pauline Boss / Cruz Roja)" />
     </PageShell>
   );
 }

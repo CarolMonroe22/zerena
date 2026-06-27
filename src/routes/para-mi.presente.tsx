@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/presente")({
   head: () => ({ meta: [{ title: "Volver al presente — Serena" }] }),
@@ -51,6 +52,7 @@ function Presente() {
       <p className="mt-8 text-center text-sm text-muted-foreground">
         Si te cuesta, no es falla tuya. Vuelve cuando quieras.
       </p>
+          <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }

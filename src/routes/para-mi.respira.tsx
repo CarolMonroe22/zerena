@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BreathingCircle } from "@/components/BreathingCircle";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/respira")({
   head: () => ({
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/para-mi/respira")({
       <div className="mt-10">
         <BreathingCircle />
       </div>
+          <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   ),
 });

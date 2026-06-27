@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Wind } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/noticias")({
   head: () => ({ meta: [{ title: "Si las noticias te hacen daño — Serena" }] }),
@@ -40,6 +41,7 @@ function Noticias() {
           <Wind size={14} /> Respira conmigo
         </Link>
       </div>
+          <BasedOn source="investigación sobre trauma vicario" />
     </PageShell>
   );
 }

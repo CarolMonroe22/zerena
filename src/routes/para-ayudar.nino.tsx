@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-ayudar/nino")({
@@ -140,6 +141,7 @@ function Nino() {
       <div className="mt-8 flex justify-center">
         <LineasButton />
       </div>
+          <BasedOn source="Save the Children · IFRC · NCTSN" />
     </PageShell>
   );
 }
