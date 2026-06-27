@@ -17,7 +17,14 @@ export const Route = createFileRoute("/fuentes")({
   component: Fuentes,
 });
 
-const FUENTES = [
+type Fuente = {
+  title: string;
+  body: string;
+  href?: string;
+  source: string;
+};
+
+const FUENTES: Fuente[] = [
   {
     title: "Primeros Auxilios Psicológicos (PAP)",
     body: "Guía de la OMS y la OPS para trabajadores de campo, avalada por el IASC y el Proyecto Esfera.",
@@ -44,9 +51,8 @@ const FUENTES = [
   },
   {
     title: "Pauline Boss",
-    body: "Pérdida ambigua, para familiares de personas no encontradas.",
-    href: "https://www.ambiguousloss.com/",
-    source: "ambiguousloss.com",
+    body: "Concepto de pérdida ambigua, para familiares de personas no encontradas.",
+    source: "Trabajo de la investigadora Pauline Boss, Universidad de Minnesota.",
   },
 ];
 
@@ -57,27 +63,35 @@ function Fuentes() {
       <h1 className="mt-2 font-serif text-3xl text-foreground">¿En qué se basa Serena?</h1>
       <p className="mt-5 text-base leading-relaxed text-foreground/85">
         Todo el contenido de Serena se basa en protocolos reconocidos de apoyo psicológico en
-        emergencias. Cada fuente abre su documento oficial:
+        emergencias. Cuando hay un documento oficial en línea, la fuente abre directo:
       </p>
 
       <ul className="mt-6 space-y-3">
-        {FUENTES.map((f) => (
-          <li key={f.title}>
-            <a
-              href={f.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="serena-card flex items-start gap-3 p-5 transition-colors hover:bg-secondary"
-            >
-              <div className="min-w-0 flex-1">
-                <p className="font-serif text-base text-foreground">{f.title}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-                <p className="mt-2 text-xs text-primary">{f.source}</p>
-              </div>
-              <ExternalLink size={16} className="mt-1 shrink-0 text-muted-foreground" />
-            </a>
-          </li>
-        ))}
+        {FUENTES.map((f) =>
+          f.href ? (
+            <li key={f.title}>
+              <a
+                href={f.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="serena-card flex items-start gap-3 p-5 transition-colors hover:bg-secondary"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="font-serif text-base text-foreground">{f.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                  <p className="mt-2 text-xs text-primary">{f.source}</p>
+                </div>
+                <ExternalLink size={16} className="mt-1 shrink-0 text-muted-foreground" />
+              </a>
+            </li>
+          ) : (
+            <li key={f.title} className="serena-card p-5">
+              <p className="font-serif text-base text-foreground">{f.title}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              <p className="mt-2 text-xs text-muted-foreground">{f.source}</p>
+            </li>
+          ),
+        )}
       </ul>
 
       <p className="mt-8 text-sm leading-relaxed text-foreground/85">

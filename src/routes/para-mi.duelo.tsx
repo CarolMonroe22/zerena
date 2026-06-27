@@ -35,7 +35,7 @@ function Duelo() {
       <div className="mt-8 rounded-2xl border border-border bg-sage-soft p-5">
         <p className="text-sm font-medium text-sage-deep">Una línea de duelo en Venezuela</p>
         <a
-          href="tel:04242925604"
+          href="tel:+584242925604"
           className="mt-2 flex items-center justify-between rounded-xl bg-card px-4 py-3 text-foreground"
         >
           <span>Psicólogos sin Fronteras / Cesap</span>

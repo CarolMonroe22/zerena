@@ -15,14 +15,21 @@ export function SerenaMark({ size = 64, className }: Props) {
           <stop offset="0%" stopColor="#A8C2AE" />
           <stop offset="100%" stopColor="#7C9885" />
         </linearGradient>
+        <clipPath id="serena-horizon">
+          <rect x="0" y="0" width="64" height="40" />
+        </clipPath>
       </defs>
-      <circle cx="32" cy="30" r="13" fill="url(#serena-sun)" />
-      <path
-        d="M6 42 Q 32 32 58 42"
+      {/* Sol naciente, recortado por el horizonte */}
+      <circle cx="32" cy="34" r="12" fill="url(#serena-sun)" clipPath="url(#serena-horizon)" />
+      {/* Horizonte recto: línea calma, no una boca */}
+      <line
+        x1="9"
+        y1="40"
+        x2="55"
+        y2="40"
         stroke="#5E7A68"
-        strokeWidth="1.6"
+        strokeWidth="2"
         strokeLinecap="round"
-        fill="none"
       />
     </svg>
   );

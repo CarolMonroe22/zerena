@@ -26,7 +26,7 @@ export const TRAINING: TrainingModule[] = [
       {
         heading: "Tu presencia basta",
         body: "Lo más valioso que ofreces es estar, con calma. Esto no es terapia y no tienes que resolverlo todo.",
-        example: "No necesitas la frase perfecta. A veces basta con: «aquí estoy, no te voy a dejar solo.»",
+        example: "No necesitas la frase perfecta. A veces basta con: «aquí estoy, no te dejo solo.»",
       },
       {
         heading: "Qué NO es",
@@ -149,7 +149,7 @@ export const TRAINING: TrainingModule[] = [
       {
         heading: "No prometas de más",
         body: "Di lo que sabes; no inventes servicios que quizá no existen.",
-        example: "Mejor «voy a averiguar dónde dan agua» que «ya viene la ayuda».",
+        example: "Mejor «busco dónde dan agua» que «ya viene la ayuda».",
       },
     ],
   },
@@ -248,7 +248,7 @@ export const TRAINING: TrainingModule[] = [
       {
         heading: "Qué decir y qué no",
         body: "No digas «fue la voluntad de Dios», «están en un lugar mejor», «tienes que ser fuerte».",
-        example: "Sí: «Estoy aquí contigo. No te voy a dejar solo.» / «No tienes que decir nada.»",
+        example: "Sí: «Estoy aquí contigo. No te dejo solo.» / «No tienes que decir nada.»",
       },
       {
         heading: "Vigila el riesgo",

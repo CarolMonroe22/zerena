@@ -84,7 +84,7 @@ export function InstallButton() {
         <button
           type="button"
           onClick={onInstall}
-          className="shrink-0 rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
+          className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
         >
           Instalar
         </button>

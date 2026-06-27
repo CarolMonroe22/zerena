@@ -37,7 +37,7 @@ export function BreathingCircle() {
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <div className="relative grid h-72 w-72 place-items-center">
+      <div className="relative grid h-64 w-64 place-items-center sm:h-72 sm:w-72">
         <div
           className="absolute inset-0 rounded-full bg-sage-soft"
           style={{
@@ -64,6 +64,7 @@ export function BreathingCircle() {
 
       <button
         type="button"
+        aria-label={running ? "Detener la respiración guiada" : "Empezar la respiración guiada"}
         onClick={() => {
           if (running) {
             setRunning(false);

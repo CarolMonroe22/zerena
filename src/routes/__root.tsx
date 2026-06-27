@@ -94,9 +94,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Serena — apoyo emocional" },
-      { name: "description", content: "Serena: Tu Refugio Calmado es una PWA de apoyo emocional para momentos de crisis." },
-      { property: "og:description", content: "Serena: Tu Refugio Calmado es una PWA de apoyo emocional para momentos de crisis." },
-      { name: "twitter:description", content: "Serena: Tu Refugio Calmado es una PWA de apoyo emocional para momentos de crisis." },
+      {
+        name: "twitter:description",
+        content: "Un espacio calmado para los primeros momentos. Anónimo y privado.",
+      },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/73760977-34e1-486e-9ddb-98f852ee9f52/id-preview-0d93d85d--8ebf92b5-3374-4671-9b43-57dae87962f4.lovable.app-1782571978718.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/73760977-34e1-486e-9ddb-98f852ee9f52/id-preview-0d93d85d--8ebf92b5-3374-4671-9b43-57dae87962f4.lovable.app-1782571978718.png" },
     ],

@@ -74,7 +74,7 @@ function ContactoPage() {
         <section className="serena-card mt-8 p-8 text-center">
           <h1 className="font-serif text-2xl text-foreground">Gracias</h1>
           <p className="mt-4 text-base leading-relaxed text-foreground/85">
-            Recibimos tu mensaje y lo vamos a leer.
+            Recibimos tu mensaje y lo leemos.
           </p>
           <button
             type="button"

@@ -1,5 +1,5 @@
 // Serena service worker — offline-first calmado.
-const VERSION = "serena-v1";
+const VERSION = "serena-v2";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -34,6 +34,26 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+
+  // Fuentes de Google (cross-origin): CacheFirst para que el diseño se sostenga offline.
+  if (url.origin === "https://fonts.googleapis.com" || url.origin === "https://fonts.gstatic.com") {
+    event.respondWith(
+      (async () => {
+        const cached = await caches.match(req);
+        if (cached) return cached;
+        try {
+          const fresh = await fetch(req);
+          const cache = await caches.open(RUNTIME_CACHE);
+          cache.put(req, fresh.clone());
+          return fresh;
+        } catch {
+          return cached || Response.error();
+        }
+      })(),
+    );
+    return;
+  }
+
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/~oauth")) return;
 

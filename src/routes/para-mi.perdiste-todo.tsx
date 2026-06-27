@@ -43,7 +43,7 @@ function PerdisteTodo() {
             <span className="tabular-nums">911</span>
           </a>
           <a
-            href="tel:04140179925"
+            href="tel:+584140179925"
             className="flex items-center justify-between rounded-xl bg-card px-4 py-3 text-sm text-foreground ring-1 ring-border"
           >
             <span className="inline-flex items-center gap-2"><Phone size={14} /> Médicos Sin Fronteras · 24/7</span>

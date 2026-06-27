@@ -79,6 +79,11 @@ export function Directory() {
           </ul>
         </section>
       ))}
+      <p className="rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
+        Por ahora solo tenemos confirmada la Protección Civil de Yaracuy. Si estás en otro estado,
+        como La Guaira, marca el <span className="font-medium text-alert">911</span> o la Protección
+        Civil nacional <span className="tabular-nums">0800-7248451</span>.
+      </p>
       <p className="rounded-2xl border border-border bg-card p-4 text-center text-sm text-muted-foreground">
         Si tú o alguien corre peligro inmediato, llama al{" "}
         <span className="font-medium text-alert">911</span>.

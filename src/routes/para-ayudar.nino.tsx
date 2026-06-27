@@ -100,7 +100,7 @@ const EDADES: Edad[] = [
 ];
 
 const SI_DECIR = [
-  "«Hubo un temblor. Vamos a estar juntos.»",
+  "«Hubo un temblor. Estamos juntos.»",
   "«Está bien tener miedo. A mí también a veces.»",
   "«Yo estoy aquí contigo.»",
 ];

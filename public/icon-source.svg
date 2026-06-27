@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="serena-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A8C2AE"/>
+      <stop offset="100%" stop-color="#7C9885"/>
+    </linearGradient>
+    <clipPath id="serena-horizon">
+      <rect x="0" y="0" width="512" height="320"/>
+    </clipPath>
+  </defs>
+  <!-- fondo crema (la mascara del sistema redondea las esquinas) -->
+  <rect x="0" y="0" width="512" height="512" fill="#FAF6EF"/>
+  <!-- sol naciente recortado por el horizonte -->
+  <circle cx="256" cy="340" r="150" fill="url(#serena-sun)" clip-path="url(#serena-horizon)"/>
+  <!-- horizonte recto -->
+  <line x1="100" y1="320" x2="412" y2="320" stroke="#5E7A68" stroke-width="20" stroke-linecap="round"/>
+</svg>
