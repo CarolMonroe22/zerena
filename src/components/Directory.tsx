@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { Phone, ExternalLink } from "lucide-react";
 import { DIRECTORY } from "@/lib/directory";
 
 export function Directory() {
@@ -20,9 +20,16 @@ export function Directory() {
                 : primary
                   ? "border-[oklch(0.78_0.045_150)] bg-sage-soft hover:bg-[oklch(0.91_0.022_150)]"
                   : "border-border bg-card hover:bg-secondary";
+
+              const isUrl = !!e.url;
+              const href = isUrl ? e.url! : e.tel!;
+              const linkProps = isUrl
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {};
+
               return (
-                <li key={e.name + e.phone}>
-                  <a href={e.tel} className={`${base} ${tone}`}>
+                <li key={e.name + (e.phone ?? e.url ?? "")}>
+                  <a href={href} {...linkProps} className={`${base} ${tone}`}>
                     <div className="min-w-0">
                       <p
                         className={`truncate font-medium ${urgent ? "text-alert" : "text-foreground"}`}
@@ -30,7 +37,9 @@ export function Directory() {
                         {e.name}
                       </p>
                       {e.detail && (
-                        <p className="mt-0.5 truncate text-xs text-muted-foreground">{e.detail}</p>
+                        <p className="mt-0.5 text-xs leading-snug text-muted-foreground">
+                          {e.detail}
+                        </p>
                       )}
                     </div>
                     <span
@@ -40,8 +49,17 @@ export function Directory() {
                           : "bg-card text-foreground ring-1 ring-border"
                       }`}
                     >
-                      <Phone size={13} />
-                      {e.phone}
+                      {isUrl ? (
+                        <>
+                          <ExternalLink size={13} />
+                          <span className="not-tabular">{e.urlLabel ?? "Ingresar"}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Phone size={13} />
+                          {e.phone}
+                        </>
+                      )}
                     </span>
                   </a>
                 </li>
@@ -51,7 +69,12 @@ export function Directory() {
         </section>
       ))}
       <p className="rounded-2xl border border-border bg-card p-4 text-center text-sm text-muted-foreground">
-        Si tú o alguien corre peligro inmediato, llama al <span className="font-medium text-alert">911</span>.
+        Si tú o alguien corre peligro inmediato, llama al{" "}
+        <span className="font-medium text-alert">911</span>.
+      </p>
+      <p className="px-2 text-center text-xs leading-relaxed text-muted-foreground">
+        Si llamas desde el exterior, marca con <span className="tabular-nums">+58</span>. Algunas
+        operadoras ofrecen llamadas gratis a Venezuela en estos días: revisa la tuya.
       </p>
     </div>
   );
