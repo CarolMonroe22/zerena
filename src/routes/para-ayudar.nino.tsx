@@ -12,38 +12,90 @@ export const Route = createFileRoute("/para-ayudar/nino")({
 
 type Edad = {
   rango: string;
-  reacciona: string;
-  ayuda: string;
+  etiqueta: string;
+  reacciona: string[];
+  ayuda: string[];
+  hablar: string;
+  evitar: string;
+  alerta: string;
 };
 
 const EDADES: Edad[] = [
   {
     rango: "0–2",
-    reacciona:
-      "Llora más, se pega a ti, cambia el sueño o la comida, se sobresalta con ruidos. No entiende lo que pasó, pero siente tu tensión.",
-    ayuda:
-      "Cárgalo, voz suave, contacto piel a piel. Mantén la rutina de comida y sueño lo más posible. Tenlo contigo; evita ruidos fuertes y escenas duras. Tu calma es su calma.",
+    etiqueta: "Bebés",
+    reacciona: [
+      "Llora más, se irrita, se queda muy pegado a ti.",
+      "Cambia el sueño y la comida; se despierta más.",
+      "Se sobresalta con ruidos o movimientos.",
+      "No entiende lo que pasó, pero siente tu tensión y la del ambiente.",
+    ],
+    ayuda: [
+      "Cárgalo, mucho contacto piel a piel y voz suave.",
+      "Mantén las rutinas de comida y sueño lo más posible.",
+      "Tenlo contigo; un ambiente tranquilo y predecible lo calma.",
+      "Cuídate tú: tu calma es, literalmente, lo que lo regula.",
+    ],
+    hablar: "Todavía no con palabras: tono cálido, mecerlo, cantarle, repetir lo mismo una y otra vez.",
+    evitar: "Ruidos fuertes, gritos, escenas duras o noticias en pantalla. Separaciones largas si puedes evitarlas.",
+    alerta: "Si deja de comer, no se calma con nada por mucho tiempo, o se ve muy apagado.",
   },
   {
     rango: "3–6",
-    reacciona:
-      "Miedo, pesadillas, se pega a ti. Puede volver a mojar la cama o hablar como más pequeño. Repite el temblor en su juego. Puede creer que pasó por algo que él hizo.",
-    ayuda:
-      "Cercanía y abrazos. Respuestas simples, cortas y honestas. Recuérdale que no fue su culpa. Rutina; déjalo jugar y dibujar. No lo regañes por «retroceder».",
+    etiqueta: "Preescolar",
+    reacciona: [
+      "Miedo, pesadillas, miedo a la oscuridad o a separarse de ti.",
+      "Puede «retroceder»: mojar la cama, chuparse el dedo, hablar como bebé.",
+      "Repite el temblor en su juego o en sus dibujos.",
+      "Puede creer que pasó por algo que él hizo o pensó.",
+    ],
+    ayuda: [
+      "Cercanía y abrazos; dile que estás y que lo cuidas.",
+      "Respuestas simples, cortas y verdaderas.",
+      "Recuérdale claramente que NO fue su culpa.",
+      "Rutina; déjalo jugar y dibujar, así procesa.",
+    ],
+    hablar: "Frases cortas y concretas. Usa su juego o sus dibujos para que exprese. Deja que pregunte lo que quiera.",
+    evitar: "Regañarlo por «retroceder». Obligarlo a ser «grande». Detalles o imágenes que asusten.",
+    alerta: "Si las pesadillas o el miedo son intensos y no bajan en varias semanas, o deja de jugar.",
   },
   {
     rango: "7–12",
-    reacciona:
-      "Miedo a que vuelva. Dolores de cabeza o panza, distraído, irritable. Preguntas repetidas. Puede sentir culpa o rabia.",
-    ayuda:
-      "Explícale simple qué pasó y qué se está haciendo. Responde sus preguntas, aunque se repitan. Dale pequeñas tareas para sentir control. Límites con cariño. Dile que sus sentimientos están bien.",
+    etiqueta: "Escolar",
+    reacciona: [
+      "Miedo a que vuelva a pasar; pregunta mucho sobre el peligro.",
+      "Síntomas físicos: dolores de cabeza, de panza, cansancio.",
+      "Distraído, irritable, le baja el rendimiento.",
+      "Culpa («debí hacer algo»), rabia, o preocupación por los demás.",
+    ],
+    ayuda: [
+      "Explícale, simple y honesto, qué pasó y qué se está haciendo.",
+      "Responde sus preguntas, aunque se repitan; corrige rumores.",
+      "Dale tareas pequeñas y reales para que sienta control.",
+      "Mantén límites con cariño y tiempo juntos.",
+    ],
+    hablar: "Puedes darle un poco más de información real. Valida lo que siente: «tiene sentido que estés asustado».",
+    evitar: "Minimizar («no es para tanto»). Cargarlo con preocupaciones de adulto. Exceso de noticias.",
+    alerta: "Si la tristeza o ansiedad no ceden, se aísla, o los problemas en la escuela persisten.",
   },
   {
     rango: "13–18",
-    reacciona:
-      "Se aísla o se hace «el fuerte». Irritable, triste, puede buscar riesgos. Cuestiona lo que creía o su fe.",
-    ayuda:
-      "Trátalo como casi-adulto. Dale espacio, pero hazle saber que estás. Déjalo ayudar, le da sentido. Valida sin minimizar. Cuida que no cargue todo solo ni con alcohol o drogas.",
+    etiqueta: "Adolescente",
+    reacciona: [
+      "Se aísla o se hace «el fuerte»; quizá no quiera hablar con adultos.",
+      "Irritable, triste, o busca riesgos.",
+      "Cuestiona lo que creía, su fe, o el sentido de las cosas.",
+      "Puede asumir roles de adulto y cargarse de más.",
+    ],
+    ayuda: [
+      "Trátalo como casi-adulto; respeta su espacio, pero deja claro que estás.",
+      "Déjalo participar y ayudar: le da sentido y control.",
+      "Valida sin minimizar; escucha más de lo que aconsejas.",
+      "Cuida que no cargue todo solo ni use alcohol o drogas para aguantar.",
+    ],
+    hablar: "Conversaciones honestas, de igual a igual. Ofrécele que estás disponible, sin presionarlo a hablar.",
+    evitar: "Sermones. Minimizar. Forzar la conversación. Tratarlo como niño chiquito.",
+    alerta: "Aislamiento total, desesperanza, consumo de sustancias, o cualquier señal de querer hacerse daño → ayuda ya.",
   },
 ];
 
@@ -94,6 +146,23 @@ const DUELO = [
   "Mantén rutinas y cercanía: dan estabilidad cuando todo se rompió.",
 ];
 
+function Lista({ items, tono = "primary" }: { items: string[]; tono?: "primary" | "alert" }) {
+  return (
+    <ul className="mt-2 space-y-2 text-base leading-relaxed text-foreground/85">
+      {items.map((t) => (
+        <li key={t} className="flex gap-3">
+          <span
+            className={`mt-2.5 h-1 w-1 shrink-0 rounded-full ${
+              tono === "alert" ? "bg-alert/70" : "bg-primary"
+            }`}
+          />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function Nino() {
   const [tab, setTab] = useState(0);
   const e = EDADES[tab];
@@ -104,14 +173,11 @@ function Nino() {
       <h1 className="mt-2 font-serif text-3xl text-foreground">Acompañar a un niño</h1>
       <p className="mt-3 text-base leading-relaxed text-muted-foreground">
         Los niños sienten el miedo aunque no lo digan. Y tu calma los calma: empieza por cuidarte
-        tú.
+        tú. Cada edad lo vive distinto:
       </p>
 
-      {/* Por edad */}
-      <h2 className="mt-8 mb-3 px-1 text-sm font-medium uppercase tracking-wider text-muted-foreground">
-        Según su edad
-      </h2>
-      <div className="flex flex-wrap gap-2">
+      {/* Por edad — sección principal */}
+      <div className="mt-6 flex flex-wrap gap-2">
         {EDADES.map((x, i) => (
           <button
             key={x.rango}
@@ -128,38 +194,45 @@ function Nino() {
         ))}
       </div>
 
-      <section className="serena-card mt-5 p-6">
-        <h3 className="text-xs uppercase tracking-wider text-muted-foreground">Cómo puede reaccionar</h3>
-        <p className="mt-2 text-base leading-relaxed text-foreground/85">{e.reacciona}</p>
-      </section>
-      <section className="serena-card mt-3 p-6">
-        <h3 className="text-xs uppercase tracking-wider text-muted-foreground">Qué ayuda</h3>
-        <p className="mt-2 text-base leading-relaxed text-foreground/85">{e.ayuda}</p>
-      </section>
+      <div className="serena-card mt-5 p-6">
+        <p className="font-serif text-lg text-foreground">
+          {e.etiqueta} <span className="text-muted-foreground">· {e.rango} años</span>
+        </p>
+
+        <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">
+          Cómo puede reaccionar
+        </p>
+        <Lista items={e.reacciona} />
+
+        <p className="mt-5 text-xs uppercase tracking-wider text-primary">Qué ayuda</p>
+        <Lista items={e.ayuda} />
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl bg-sage-soft/50 p-4">
+            <p className="text-xs uppercase tracking-wider text-primary/80">Cómo hablarle</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground/85">{e.hablar}</p>
+          </div>
+          <div className="rounded-xl bg-secondary p-4">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">Evitar</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground/85">{e.evitar}</p>
+          </div>
+        </div>
+
+        <div className="mt-3 rounded-xl border-l-2 border-alert/40 bg-[oklch(0.97_0.025_28)] px-4 py-3">
+          <p className="text-xs uppercase tracking-wider text-alert/80">Cuándo buscar más ayuda</p>
+          <p className="mt-1 text-sm leading-relaxed text-foreground">{e.alerta}</p>
+        </div>
+      </div>
 
       {/* Qué decirle */}
       <h2 className="mt-10 mb-3 px-1 text-sm font-medium uppercase tracking-wider text-muted-foreground">
-        Qué decirle
+        Qué decirle (a cualquier edad)
       </h2>
       <section className="serena-card p-6">
         <p className="font-serif text-base text-primary">Sí</p>
-        <ul className="mt-2 space-y-2 text-base leading-relaxed text-foreground/85">
-          {SI_DECIR.map((t) => (
-            <li key={t} className="flex gap-3">
-              <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-primary" />
-              <span>{t}</span>
-            </li>
-          ))}
-        </ul>
+        <Lista items={SI_DECIR} />
         <p className="mt-5 font-serif text-base text-alert">No</p>
-        <ul className="mt-2 space-y-2 text-base leading-relaxed text-foreground/85">
-          {NO_DECIR.map((t) => (
-            <li key={t} className="flex gap-3">
-              <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-alert/70" />
-              <span>{t}</span>
-            </li>
-          ))}
-        </ul>
+        <Lista items={NO_DECIR} tono="alert" />
       </section>
 
       {/* Escenarios */}
@@ -184,14 +257,7 @@ function Nino() {
           Perder a un padre, una madre o un hermano es de lo más duro que un niño puede vivir.
           Acompañarlo se ve así:
         </p>
-        <ul className="mt-4 space-y-2.5 text-base leading-relaxed text-foreground/85">
-          {DUELO.map((t) => (
-            <li key={t} className="flex gap-3">
-              <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-primary" />
-              <span>{t}</span>
-            </li>
-          ))}
-        </ul>
+        <Lista items={DUELO} />
         <div className="mt-5 rounded-xl border-l-2 border-alert/40 bg-[oklch(0.97_0.025_28)] px-4 py-3">
           <p className="text-sm leading-relaxed text-foreground">
             Si el niño quedó solo, sin un adulto que lo cuide, es una emergencia de protección:
