@@ -204,14 +204,18 @@ export const TRAINING: TrainingModule[] = [
   },
   {
     id: "nino",
-    source: "Save the Children · IFRC · NCTSN",
+    source: "Save the Children · IFRC · NCTSN (duelo infantil)",
     n: 9,
     title: "Acompañar a un niño",
-    intro: "Hay una guía por edad en «Estoy con alguien ahora».",
+    intro: "Guía completa por edad y escenarios en «Estoy con alguien ahora» → «Es un niño».",
     steps: [
       {
         heading: "Tu calma lo calma",
-        body: "Habla simple, ponte a su altura, no le des detalles que asusten.",
+        body: "Habla simple, ponte a su altura, no le des detalles que asusten. Antes de cuidarlo a él, respira tú.",
+      },
+      {
+        heading: "Cambia con la edad",
+        body: "El bebé siente tu tensión. El pequeño puede creer que fue su culpa. El escolar pregunta y se culpa. El adolescente se hace «el fuerte». Ajusta tu tono a su edad.",
       },
       {
         heading: "Deja que juegue",
@@ -221,6 +225,13 @@ export const TRAINING: TrainingModule[] = [
       {
         heading: "Verdad sin promesas",
         body: "No prometas «no va a temblar más». Sí puedes decir: «yo estoy aquí contigo».",
+        example: "Si pregunta «¿nos vamos a morir?»: «ahora estamos a salvo y te estoy cuidando.»",
+      },
+      {
+        heading: "Si perdió a alguien",
+        body: "Dile la verdad simple: «murió», no «se durmió». No es su culpa. Dile quién lo cuidará ahora. Déjalo recordar.",
+        example: "Si quedó solo, sin un adulto que lo cuide, es una emergencia: conéctalo de inmediato.",
+        cta: "lineas",
       },
     ],
   },
