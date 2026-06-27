@@ -25,26 +25,11 @@ function ParaAyudar() {
         Acompañar a alguien
       </h1>
       <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-        Tu calma cuida. Aquí tienes dos caminos: aprender con tiempo, o tener a mano lo necesario
-        cuando ya estás con alguien.
+        Tu calma cuida. Aquí tienes dos caminos: tener a mano lo necesario cuando ya estás con
+        alguien, o aprender con tiempo.
       </p>
 
       <div className="mt-8 space-y-3">
-        <Link
-          to="/para-ayudar/entrenamiento"
-          className="serena-card flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
-        >
-          <IconBubble>
-            <GraduationCap size={18} />
-          </IconBubble>
-          <div className="min-w-0 flex-1">
-            <p className="font-serif text-lg text-foreground">Entrenamiento para voluntarios</p>
-            <p className="mt-0.5 text-sm text-muted-foreground">
-              Curso breve, a tu ritmo. Se guarda en tu teléfono.
-            </p>
-          </div>
-        </Link>
-
         <Link
           to="/para-ayudar/ahora"
           className="serena-card-peach flex items-center gap-4 p-5 transition-transform hover:-translate-y-px"
@@ -56,6 +41,21 @@ function ParaAyudar() {
             <p className="font-serif text-lg text-foreground">Estoy con alguien ahora</p>
             <p className="mt-0.5 text-sm text-muted-foreground">
               Panel rápido para este momento.
+            </p>
+          </div>
+        </Link>
+
+        <Link
+          to="/para-ayudar/entrenamiento"
+          className="serena-card flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
+        >
+          <IconBubble>
+            <GraduationCap size={18} />
+          </IconBubble>
+          <div className="min-w-0 flex-1">
+            <p className="font-serif text-lg text-foreground">Entrenamiento para voluntarios</p>
+            <p className="mt-0.5 text-sm text-muted-foreground">
+              Curso breve, a tu ritmo. Se guarda en tu teléfono.
             </p>
           </div>
         </Link>
