@@ -100,6 +100,16 @@ export const DIRECTORY: DirectorySection[] = [
           "Capítulo de Psicología de las Emergencias · escucha gratuita y confidencial para venezolanos en Argentina · te contactan profesionales",
         highlight: "primary",
       },
+      {
+        name: "Comunidad de Madrid · 012 «A Tu Lado»",
+        phone: "012",
+        tel: "tel:012",
+        detail:
+          "Ayuda psicológica gratuita, 24 horas, para venezolanos en Madrid · con el Colegio Oficial de Psicología de Madrid · marca 012 desde Madrid",
+        infoUrl: "https://c.madrid/al3op",
+        infoLabel: "Más info",
+        highlight: "primary",
+      },
     ],
   },
   {
