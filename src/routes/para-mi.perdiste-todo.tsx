@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Wind, Phone, AlertCircle } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-mi/perdiste-todo")({
@@ -68,6 +69,7 @@ function PerdisteTodo() {
           <Wind size={14} /> Respira conmigo
         </Link>
       </div>
+          <BasedOn source="PAP y duelo en emergencias" />
     </PageShell>
   );
 }

@@ -1,0 +1,90 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageShell } from "@/components/PageShell";
+import { BackLink } from "@/components/BackLink";
+
+export const Route = createFileRoute("/fuentes")({
+  head: () => ({
+    meta: [
+      { title: "¿En qué se basa Serena? — Fuentes y protocolos" },
+      {
+        name: "description",
+        content:
+          "Serena se basa en protocolos reconocidos de apoyo psicológico en emergencias: PAP de la OMS/OPS, IFRC, NCTSN, Save the Children y Pauline Boss.",
+      },
+    ],
+  }),
+  component: Fuentes,
+});
+
+const FUENTES = [
+  {
+    title: "Primeros Auxilios Psicológicos (PAP)",
+    body: "Guía de la OMS y la OPS para trabajadores de campo, avalada por el IASC y el Proyecto Esfera.",
+  },
+  {
+    title: "Cruz Roja / IFRC",
+    body: "Apoyo psicológico a distancia y a la niñez.",
+  },
+  {
+    title: "NCTSN · Red Nacional de Estrés Traumático Infantil",
+    body: "Guías para niños tras un terremoto.",
+  },
+  {
+    title: "Save the Children",
+    body: "Apoyo psicológico a niños según su edad.",
+  },
+  {
+    title: "Pauline Boss",
+    body: "Pérdida ambigua, para familiares de personas no encontradas.",
+  },
+];
+
+function Fuentes() {
+  return (
+    <PageShell>
+      <BackLink to="/" label="Inicio" />
+      <h1 className="mt-2 font-serif text-3xl text-foreground">¿En qué se basa Serena?</h1>
+      <p className="mt-5 text-base leading-relaxed text-foreground/85">
+        Todo el contenido de Serena se basa en protocolos reconocidos de apoyo psicológico en
+        emergencias:
+      </p>
+
+      <ul className="mt-6 space-y-3">
+        {FUENTES.map((f) => (
+          <li key={f.title} className="serena-card p-5">
+            <p className="font-serif text-base text-foreground">{f.title}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p className="mt-8 text-sm leading-relaxed text-foreground/85">
+        Los números del directorio están verificados con fuentes oficiales.
+      </p>
+
+      <div className="mt-6 rounded-2xl border border-border bg-sage-soft/60 p-5">
+        <p className="text-sm leading-relaxed text-foreground/85">
+          Serena no es terapia, no diagnostica y no reemplaza la atención de un profesional ni los
+          servicios de emergencia. Su contenido está en revisión por profesionales de salud mental.
+        </p>
+      </div>
+
+      <p className="mt-6 rounded-2xl border border-alert/30 bg-[oklch(0.97_0.025_28)] p-4 text-sm leading-relaxed text-foreground">
+        Si tú o alguien corre peligro, llama al{" "}
+        <a href="tel:911" className="font-medium text-alert underline-offset-4 hover:underline">
+          911
+        </a>
+        .
+      </p>
+
+      <div className="mt-8 flex justify-center">
+        <Link
+          to="/ayuda"
+          className="inline-flex items-center gap-2 rounded-full bg-sage-soft px-4 py-2 text-sm text-primary ring-1 ring-border hover:bg-secondary"
+        >
+          Ver líneas de apoyo
+        </Link>
+      </div>
+    </PageShell>
+  );
+}

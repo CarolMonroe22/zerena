@@ -3,8 +3,10 @@ export type DirectoryEntry = {
   name: string;
   phone?: string;
   tel?: string; // formato tel: (internacional para que marque desde el exterior)
-  url?: string; // alternativa a teléfono (enlace web)
+  url?: string; // alternativa a teléfono (enlace web como acción principal)
   urlLabel?: string;
+  infoUrl?: string; // enlace secundario "Más info" debajo
+  infoLabel?: string;
   detail?: string;
   highlight?: "urgent" | "primary";
 };
@@ -13,6 +15,7 @@ export type DirectorySection = {
   title: string;
   entries: DirectoryEntry[];
 };
+
 
 export const DIRECTORY: DirectorySection[] = [
   {
@@ -95,6 +98,16 @@ export const DIRECTORY: DirectorySection[] = [
         urlLabel: "aasm.org.ar",
         detail:
           "Capítulo de Psicología de las Emergencias · escucha gratuita y confidencial para venezolanos en Argentina · te contactan profesionales",
+        highlight: "primary",
+      },
+      {
+        name: "Comunidad de Madrid · 012 «A Tu Lado»",
+        phone: "012",
+        tel: "tel:012",
+        detail:
+          "Ayuda psicológica gratuita, 24 horas, para venezolanos en Madrid · con el Colegio Oficial de Psicología de Madrid · marca 012 desde Madrid",
+        infoUrl: "https://c.madrid/al3op",
+        infoLabel: "Más info",
         highlight: "primary",
       },
     ],

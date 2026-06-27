@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RedRouteImport } from './routes/red'
 import { Route as ParaMiRouteImport } from './routes/para-mi'
 import { Route as ParaAyudarRouteImport } from './routes/para-ayudar'
+import { Route as FuentesRouteImport } from './routes/fuentes'
 import { Route as AyudaRouteImport } from './routes/ayuda'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ParaMiIndexRouteImport } from './routes/para-mi.index'
@@ -51,6 +52,11 @@ const ParaMiRoute = ParaMiRouteImport.update({
 const ParaAyudarRoute = ParaAyudarRouteImport.update({
   id: '/para-ayudar',
   path: '/para-ayudar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FuentesRoute = FuentesRouteImport.update({
+  id: '/fuentes',
+  path: '/fuentes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AyudaRoute = AyudaRouteImport.update({
@@ -183,6 +189,7 @@ const ParaAyudarEntrenamientoMidRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
+  '/fuentes': typeof FuentesRoute
   '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/red': typeof RedRoute
@@ -213,6 +220,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
+  '/fuentes': typeof FuentesRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
@@ -242,6 +250,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
+  '/fuentes': typeof FuentesRoute
   '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/red': typeof RedRoute
@@ -274,6 +283,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ayuda'
+    | '/fuentes'
     | '/para-ayudar'
     | '/para-mi'
     | '/red'
@@ -304,6 +314,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/ayuda'
+    | '/fuentes'
     | '/red'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
@@ -332,6 +343,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/ayuda'
+    | '/fuentes'
     | '/para-ayudar'
     | '/para-mi'
     | '/red'
@@ -363,6 +375,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AyudaRoute: typeof AyudaRoute
+  FuentesRoute: typeof FuentesRoute
   ParaAyudarRoute: typeof ParaAyudarRouteWithChildren
   ParaMiRoute: typeof ParaMiRouteWithChildren
   RedRoute: typeof RedRoute
@@ -389,6 +402,13 @@ declare module '@tanstack/react-router' {
       path: '/para-ayudar'
       fullPath: '/para-ayudar'
       preLoaderRoute: typeof ParaAyudarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fuentes': {
+      id: '/fuentes'
+      path: '/fuentes'
+      fullPath: '/fuentes'
+      preLoaderRoute: typeof FuentesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ayuda': {
@@ -649,6 +669,7 @@ const ParaMiRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AyudaRoute: AyudaRoute,
+  FuentesRoute: FuentesRoute,
   ParaAyudarRoute: ParaAyudarRouteWithChildren,
   ParaMiRoute: ParaMiRouteWithChildren,
   RedRoute: RedRoute,
