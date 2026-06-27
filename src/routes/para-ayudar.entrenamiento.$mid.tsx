@@ -17,10 +17,10 @@ export const Route = createFileRoute("/para-ayudar/entrenamiento/$mid")({
 function ModuleStepper() {
   const { mid } = Route.useParams();
   const navigate = useNavigate();
-  const m = getModule(mid);
+  const mod = getModule(mid);
   const [i, setI] = useState(0);
 
-  if (!m) {
+  if (!mod) {
     return (
       <PageShell>
         <BackLink to="/para-ayudar/entrenamiento" label="Entrenamiento" />
@@ -29,15 +29,16 @@ function ModuleStepper() {
     );
   }
 
+  const m = mod;
   const step = m.steps[i];
   const isLast = i === m.steps.length - 1;
   const nextIdx = TRAINING.findIndex((x) => x.id === m.id) + 1;
   const nextModule = TRAINING[nextIdx];
 
-  function finish() {
+  const finish = () => {
     markCompleted(m.id);
     navigate({ to: "/para-ayudar/entrenamiento" });
-  }
+  };
 
   return (
     <PageShell>

@@ -15,6 +15,7 @@ import { Route as ParaAyudarRouteImport } from './routes/para-ayudar'
 import { Route as AyudaRouteImport } from './routes/ayuda'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ParaMiIndexRouteImport } from './routes/para-mi.index'
+import { Route as ParaAyudarIndexRouteImport } from './routes/para-ayudar.index'
 import { Route as ParaMiRespiraRouteImport } from './routes/para-mi.respira'
 import { Route as ParaMiPresenteRouteImport } from './routes/para-mi.presente'
 import { Route as ParaMiNormalRouteImport } from './routes/para-mi.normal'
@@ -22,6 +23,8 @@ import { Route as ParaMiDueloRouteImport } from './routes/para-mi.duelo'
 import { Route as ParaMiDiarioRouteImport } from './routes/para-mi.diario'
 import { Route as ParaMiDescansarRouteImport } from './routes/para-mi.descansar'
 import { Route as ParaMiComoEstasRouteImport } from './routes/para-mi.como-estas'
+import { Route as ParaAyudarEntrenamientoRouteImport } from './routes/para-ayudar.entrenamiento'
+import { Route as ParaAyudarEntrenamientoMidRouteImport } from './routes/para-ayudar.entrenamiento.$mid'
 
 const RedRoute = RedRouteImport.update({
   id: '/red',
@@ -52,6 +55,11 @@ const ParaMiIndexRoute = ParaMiIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaAyudarIndexRoute = ParaAyudarIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ParaAyudarRoute,
 } as any)
 const ParaMiRespiraRoute = ParaMiRespiraRouteImport.update({
   id: '/respira',
@@ -88,13 +96,25 @@ const ParaMiComoEstasRoute = ParaMiComoEstasRouteImport.update({
   path: '/como-estas',
   getParentRoute: () => ParaMiRoute,
 } as any)
+const ParaAyudarEntrenamientoRoute = ParaAyudarEntrenamientoRouteImport.update({
+  id: '/entrenamiento',
+  path: '/entrenamiento',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
+const ParaAyudarEntrenamientoMidRoute =
+  ParaAyudarEntrenamientoMidRouteImport.update({
+    id: '/$mid',
+    path: '/$mid',
+    getParentRoute: () => ParaAyudarEntrenamientoRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
-  '/para-ayudar': typeof ParaAyudarRoute
+  '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/red': typeof RedRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
   '/para-mi/como-estas': typeof ParaMiComoEstasRoute
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
@@ -102,13 +122,15 @@ export interface FileRoutesByFullPath {
   '/para-mi/normal': typeof ParaMiNormalRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
+  '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
-  '/para-ayudar': typeof ParaAyudarRoute
   '/red': typeof RedRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
   '/para-mi/como-estas': typeof ParaMiComoEstasRoute
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
@@ -116,15 +138,18 @@ export interface FileRoutesByTo {
   '/para-mi/normal': typeof ParaMiNormalRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-ayudar': typeof ParaAyudarIndexRoute
   '/para-mi': typeof ParaMiIndexRoute
+  '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
-  '/para-ayudar': typeof ParaAyudarRoute
+  '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/red': typeof RedRoute
+  '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
   '/para-mi/como-estas': typeof ParaMiComoEstasRoute
   '/para-mi/descansar': typeof ParaMiDescansarRoute
   '/para-mi/diario': typeof ParaMiDiarioRoute
@@ -132,7 +157,9 @@ export interface FileRoutesById {
   '/para-mi/normal': typeof ParaMiNormalRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
+  '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,6 +169,7 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/red'
+    | '/para-ayudar/entrenamiento'
     | '/para-mi/como-estas'
     | '/para-mi/descansar'
     | '/para-mi/diario'
@@ -149,13 +177,15 @@ export interface FileRouteTypes {
     | '/para-mi/normal'
     | '/para-mi/presente'
     | '/para-mi/respira'
+    | '/para-ayudar/'
     | '/para-mi/'
+    | '/para-ayudar/entrenamiento/$mid'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/ayuda'
-    | '/para-ayudar'
     | '/red'
+    | '/para-ayudar/entrenamiento'
     | '/para-mi/como-estas'
     | '/para-mi/descansar'
     | '/para-mi/diario'
@@ -163,7 +193,9 @@ export interface FileRouteTypes {
     | '/para-mi/normal'
     | '/para-mi/presente'
     | '/para-mi/respira'
+    | '/para-ayudar'
     | '/para-mi'
+    | '/para-ayudar/entrenamiento/$mid'
   id:
     | '__root__'
     | '/'
@@ -171,6 +203,7 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/red'
+    | '/para-ayudar/entrenamiento'
     | '/para-mi/como-estas'
     | '/para-mi/descansar'
     | '/para-mi/diario'
@@ -178,13 +211,15 @@ export interface FileRouteTypes {
     | '/para-mi/normal'
     | '/para-mi/presente'
     | '/para-mi/respira'
+    | '/para-ayudar/'
     | '/para-mi/'
+    | '/para-ayudar/entrenamiento/$mid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AyudaRoute: typeof AyudaRoute
-  ParaAyudarRoute: typeof ParaAyudarRoute
+  ParaAyudarRoute: typeof ParaAyudarRouteWithChildren
   ParaMiRoute: typeof ParaMiRouteWithChildren
   RedRoute: typeof RedRoute
 }
@@ -232,6 +267,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/para-mi/'
       preLoaderRoute: typeof ParaMiIndexRouteImport
       parentRoute: typeof ParaMiRoute
+    }
+    '/para-ayudar/': {
+      id: '/para-ayudar/'
+      path: '/'
+      fullPath: '/para-ayudar/'
+      preLoaderRoute: typeof ParaAyudarIndexRouteImport
+      parentRoute: typeof ParaAyudarRoute
     }
     '/para-mi/respira': {
       id: '/para-mi/respira'
@@ -282,8 +324,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaMiComoEstasRouteImport
       parentRoute: typeof ParaMiRoute
     }
+    '/para-ayudar/entrenamiento': {
+      id: '/para-ayudar/entrenamiento'
+      path: '/entrenamiento'
+      fullPath: '/para-ayudar/entrenamiento'
+      preLoaderRoute: typeof ParaAyudarEntrenamientoRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
+    '/para-ayudar/entrenamiento/$mid': {
+      id: '/para-ayudar/entrenamiento/$mid'
+      path: '/$mid'
+      fullPath: '/para-ayudar/entrenamiento/$mid'
+      preLoaderRoute: typeof ParaAyudarEntrenamientoMidRouteImport
+      parentRoute: typeof ParaAyudarEntrenamientoRoute
+    }
   }
 }
+
+interface ParaAyudarEntrenamientoRouteChildren {
+  ParaAyudarEntrenamientoMidRoute: typeof ParaAyudarEntrenamientoMidRoute
+}
+
+const ParaAyudarEntrenamientoRouteChildren: ParaAyudarEntrenamientoRouteChildren =
+  {
+    ParaAyudarEntrenamientoMidRoute: ParaAyudarEntrenamientoMidRoute,
+  }
+
+const ParaAyudarEntrenamientoRouteWithChildren =
+  ParaAyudarEntrenamientoRoute._addFileChildren(
+    ParaAyudarEntrenamientoRouteChildren,
+  )
+
+interface ParaAyudarRouteChildren {
+  ParaAyudarEntrenamientoRoute: typeof ParaAyudarEntrenamientoRouteWithChildren
+  ParaAyudarIndexRoute: typeof ParaAyudarIndexRoute
+}
+
+const ParaAyudarRouteChildren: ParaAyudarRouteChildren = {
+  ParaAyudarEntrenamientoRoute: ParaAyudarEntrenamientoRouteWithChildren,
+  ParaAyudarIndexRoute: ParaAyudarIndexRoute,
+}
+
+const ParaAyudarRouteWithChildren = ParaAyudarRoute._addFileChildren(
+  ParaAyudarRouteChildren,
+)
 
 interface ParaMiRouteChildren {
   ParaMiComoEstasRoute: typeof ParaMiComoEstasRoute
@@ -313,7 +397,7 @@ const ParaMiRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AyudaRoute: AyudaRoute,
-  ParaAyudarRoute: ParaAyudarRoute,
+  ParaAyudarRoute: ParaAyudarRouteWithChildren,
   ParaMiRoute: ParaMiRouteWithChildren,
   RedRoute: RedRoute,
 }
