@@ -46,6 +46,28 @@ function Lejos() {
           <Wind size={14} /> Respira conmigo
         </Link>
       </div>
+
+      <div className="mt-10 rounded-2xl border border-border bg-sage-soft/60 p-5">
+        <p className="text-sm font-medium text-sage-deep">Si estás en Argentina</p>
+        <p className="mt-2 text-sm leading-relaxed text-foreground/85">
+          La Asociación Argentina de Salud Mental (AASM) ofrece un espacio gratuito y
+          confidencial de escucha para venezolanos residentes en Argentina. Te contactan
+          profesionales.
+        </p>
+        <a
+          href="https://www.aasm.org.ar"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm text-foreground ring-1 ring-border hover:bg-secondary"
+        >
+          <ExternalLink size={14} /> Ingresar en aasm.org.ar
+        </a>
+      </div>
+
+      <p className="mt-6 px-2 text-center text-xs leading-relaxed text-muted-foreground">
+        Si llamas a Venezuela desde el exterior, marca con <span className="tabular-nums">+58</span>.
+        Algunas operadoras ofrecen llamadas gratis a Venezuela en estos días: revisa la tuya.
+      </p>
     </PageShell>
   );
 }
