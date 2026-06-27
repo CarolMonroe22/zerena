@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ParaMiIndexRouteImport } from './routes/para-mi.index'
 import { Route as ParaAyudarIndexRouteImport } from './routes/para-ayudar.index'
 import { Route as ParaMiRespiraRouteImport } from './routes/para-mi.respira'
+import { Route as ParaMiReplicasRouteImport } from './routes/para-mi.replicas'
 import { Route as ParaMiPresenteRouteImport } from './routes/para-mi.presente'
 import { Route as ParaMiPerdisteTodoRouteImport } from './routes/para-mi.perdiste-todo'
 import { Route as ParaMiNoticiasRouteImport } from './routes/para-mi.noticias'
@@ -75,6 +76,11 @@ const ParaAyudarIndexRoute = ParaAyudarIndexRouteImport.update({
 const ParaMiRespiraRoute = ParaMiRespiraRouteImport.update({
   id: '/respira',
   path: '/respira',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiReplicasRoute = ParaMiReplicasRouteImport.update({
+  id: '/replicas',
+  path: '/replicas',
   getParentRoute: () => ParaMiRoute,
 } as any)
 const ParaMiPresenteRoute = ParaMiPresenteRouteImport.update({
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/para-mi/noticias': typeof ParaMiNoticiasRoute
   '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/replicas': typeof ParaMiReplicasRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
   '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
@@ -225,6 +232,7 @@ export interface FileRoutesByTo {
   '/para-mi/noticias': typeof ParaMiNoticiasRoute
   '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/replicas': typeof ParaMiReplicasRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
   '/para-ayudar': typeof ParaAyudarIndexRoute
   '/para-mi': typeof ParaMiIndexRoute
@@ -255,6 +263,7 @@ export interface FileRoutesById {
   '/para-mi/noticias': typeof ParaMiNoticiasRoute
   '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/replicas': typeof ParaMiReplicasRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
   '/para-ayudar/': typeof ParaAyudarIndexRoute
   '/para-mi/': typeof ParaMiIndexRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/para-mi/noticias'
     | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
+    | '/para-mi/replicas'
     | '/para-mi/respira'
     | '/para-ayudar/'
     | '/para-mi/'
@@ -313,6 +323,7 @@ export interface FileRouteTypes {
     | '/para-mi/noticias'
     | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
+    | '/para-mi/replicas'
     | '/para-mi/respira'
     | '/para-ayudar'
     | '/para-mi'
@@ -342,6 +353,7 @@ export interface FileRouteTypes {
     | '/para-mi/noticias'
     | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
+    | '/para-mi/replicas'
     | '/para-mi/respira'
     | '/para-ayudar/'
     | '/para-mi/'
@@ -412,6 +424,13 @@ declare module '@tanstack/react-router' {
       path: '/respira'
       fullPath: '/para-mi/respira'
       preLoaderRoute: typeof ParaMiRespiraRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/replicas': {
+      id: '/para-mi/replicas'
+      path: '/replicas'
+      fullPath: '/para-mi/replicas'
+      preLoaderRoute: typeof ParaMiReplicasRouteImport
       parentRoute: typeof ParaMiRoute
     }
     '/para-mi/presente': {
@@ -603,6 +622,7 @@ interface ParaMiRouteChildren {
   ParaMiNoticiasRoute: typeof ParaMiNoticiasRoute
   ParaMiPerdisteTodoRoute: typeof ParaMiPerdisteTodoRoute
   ParaMiPresenteRoute: typeof ParaMiPresenteRoute
+  ParaMiReplicasRoute: typeof ParaMiReplicasRoute
   ParaMiRespiraRoute: typeof ParaMiRespiraRoute
   ParaMiIndexRoute: typeof ParaMiIndexRoute
 }
@@ -618,6 +638,7 @@ const ParaMiRouteChildren: ParaMiRouteChildren = {
   ParaMiNoticiasRoute: ParaMiNoticiasRoute,
   ParaMiPerdisteTodoRoute: ParaMiPerdisteTodoRoute,
   ParaMiPresenteRoute: ParaMiPresenteRoute,
+  ParaMiReplicasRoute: ParaMiReplicasRoute,
   ParaMiRespiraRoute: ParaMiRespiraRoute,
   ParaMiIndexRoute: ParaMiIndexRoute,
 }
