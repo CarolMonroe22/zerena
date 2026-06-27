@@ -9,38 +9,216 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RedRouteImport } from './routes/red'
+import { Route as ParaMiRouteImport } from './routes/para-mi'
+import { Route as ParaAyudarRouteImport } from './routes/para-ayudar'
+import { Route as AyudaRouteImport } from './routes/ayuda'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ParaMiIndexRouteImport } from './routes/para-mi.index'
+import { Route as ParaMiRespiraRouteImport } from './routes/para-mi.respira'
+import { Route as ParaMiPresenteRouteImport } from './routes/para-mi.presente'
+import { Route as ParaMiNormalRouteImport } from './routes/para-mi.normal'
+import { Route as ParaMiDueloRouteImport } from './routes/para-mi.duelo'
+import { Route as ParaMiDiarioRouteImport } from './routes/para-mi.diario'
+import { Route as ParaMiDescansarRouteImport } from './routes/para-mi.descansar'
+import { Route as ParaMiComoEstasRouteImport } from './routes/para-mi.como-estas'
 
+const RedRoute = RedRouteImport.update({
+  id: '/red',
+  path: '/red',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParaMiRoute = ParaMiRouteImport.update({
+  id: '/para-mi',
+  path: '/para-mi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParaAyudarRoute = ParaAyudarRouteImport.update({
+  id: '/para-ayudar',
+  path: '/para-ayudar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AyudaRoute = AyudaRouteImport.update({
+  id: '/ayuda',
+  path: '/ayuda',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParaMiIndexRoute = ParaMiIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiRespiraRoute = ParaMiRespiraRouteImport.update({
+  id: '/respira',
+  path: '/respira',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiPresenteRoute = ParaMiPresenteRouteImport.update({
+  id: '/presente',
+  path: '/presente',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiNormalRoute = ParaMiNormalRouteImport.update({
+  id: '/normal',
+  path: '/normal',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiDueloRoute = ParaMiDueloRouteImport.update({
+  id: '/duelo',
+  path: '/duelo',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiDiarioRoute = ParaMiDiarioRouteImport.update({
+  id: '/diario',
+  path: '/diario',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiDescansarRoute = ParaMiDescansarRouteImport.update({
+  id: '/descansar',
+  path: '/descansar',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiComoEstasRoute = ParaMiComoEstasRouteImport.update({
+  id: '/como-estas',
+  path: '/como-estas',
+  getParentRoute: () => ParaMiRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ayuda': typeof AyudaRoute
+  '/para-ayudar': typeof ParaAyudarRoute
+  '/para-mi': typeof ParaMiRouteWithChildren
+  '/red': typeof RedRoute
+  '/para-mi/como-estas': typeof ParaMiComoEstasRoute
+  '/para-mi/descansar': typeof ParaMiDescansarRoute
+  '/para-mi/diario': typeof ParaMiDiarioRoute
+  '/para-mi/duelo': typeof ParaMiDueloRoute
+  '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-mi/': typeof ParaMiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ayuda': typeof AyudaRoute
+  '/para-ayudar': typeof ParaAyudarRoute
+  '/red': typeof RedRoute
+  '/para-mi/como-estas': typeof ParaMiComoEstasRoute
+  '/para-mi/descansar': typeof ParaMiDescansarRoute
+  '/para-mi/diario': typeof ParaMiDiarioRoute
+  '/para-mi/duelo': typeof ParaMiDueloRoute
+  '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-mi': typeof ParaMiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ayuda': typeof AyudaRoute
+  '/para-ayudar': typeof ParaAyudarRoute
+  '/para-mi': typeof ParaMiRouteWithChildren
+  '/red': typeof RedRoute
+  '/para-mi/como-estas': typeof ParaMiComoEstasRoute
+  '/para-mi/descansar': typeof ParaMiDescansarRoute
+  '/para-mi/diario': typeof ParaMiDiarioRoute
+  '/para-mi/duelo': typeof ParaMiDueloRoute
+  '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/presente': typeof ParaMiPresenteRoute
+  '/para-mi/respira': typeof ParaMiRespiraRoute
+  '/para-mi/': typeof ParaMiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ayuda'
+    | '/para-ayudar'
+    | '/para-mi'
+    | '/red'
+    | '/para-mi/como-estas'
+    | '/para-mi/descansar'
+    | '/para-mi/diario'
+    | '/para-mi/duelo'
+    | '/para-mi/normal'
+    | '/para-mi/presente'
+    | '/para-mi/respira'
+    | '/para-mi/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ayuda'
+    | '/para-ayudar'
+    | '/red'
+    | '/para-mi/como-estas'
+    | '/para-mi/descansar'
+    | '/para-mi/diario'
+    | '/para-mi/duelo'
+    | '/para-mi/normal'
+    | '/para-mi/presente'
+    | '/para-mi/respira'
+    | '/para-mi'
+  id:
+    | '__root__'
+    | '/'
+    | '/ayuda'
+    | '/para-ayudar'
+    | '/para-mi'
+    | '/red'
+    | '/para-mi/como-estas'
+    | '/para-mi/descansar'
+    | '/para-mi/diario'
+    | '/para-mi/duelo'
+    | '/para-mi/normal'
+    | '/para-mi/presente'
+    | '/para-mi/respira'
+    | '/para-mi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AyudaRoute: typeof AyudaRoute
+  ParaAyudarRoute: typeof ParaAyudarRoute
+  ParaMiRoute: typeof ParaMiRouteWithChildren
+  RedRoute: typeof RedRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/red': {
+      id: '/red'
+      path: '/red'
+      fullPath: '/red'
+      preLoaderRoute: typeof RedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/para-mi': {
+      id: '/para-mi'
+      path: '/para-mi'
+      fullPath: '/para-mi'
+      preLoaderRoute: typeof ParaMiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/para-ayudar': {
+      id: '/para-ayudar'
+      path: '/para-ayudar'
+      fullPath: '/para-ayudar'
+      preLoaderRoute: typeof ParaAyudarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ayuda': {
+      id: '/ayuda'
+      path: '/ayuda'
+      fullPath: '/ayuda'
+      preLoaderRoute: typeof AyudaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +226,97 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/para-mi/': {
+      id: '/para-mi/'
+      path: '/'
+      fullPath: '/para-mi/'
+      preLoaderRoute: typeof ParaMiIndexRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/respira': {
+      id: '/para-mi/respira'
+      path: '/respira'
+      fullPath: '/para-mi/respira'
+      preLoaderRoute: typeof ParaMiRespiraRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/presente': {
+      id: '/para-mi/presente'
+      path: '/presente'
+      fullPath: '/para-mi/presente'
+      preLoaderRoute: typeof ParaMiPresenteRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/normal': {
+      id: '/para-mi/normal'
+      path: '/normal'
+      fullPath: '/para-mi/normal'
+      preLoaderRoute: typeof ParaMiNormalRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/duelo': {
+      id: '/para-mi/duelo'
+      path: '/duelo'
+      fullPath: '/para-mi/duelo'
+      preLoaderRoute: typeof ParaMiDueloRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/diario': {
+      id: '/para-mi/diario'
+      path: '/diario'
+      fullPath: '/para-mi/diario'
+      preLoaderRoute: typeof ParaMiDiarioRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/descansar': {
+      id: '/para-mi/descansar'
+      path: '/descansar'
+      fullPath: '/para-mi/descansar'
+      preLoaderRoute: typeof ParaMiDescansarRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/como-estas': {
+      id: '/para-mi/como-estas'
+      path: '/como-estas'
+      fullPath: '/para-mi/como-estas'
+      preLoaderRoute: typeof ParaMiComoEstasRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
   }
 }
 
+interface ParaMiRouteChildren {
+  ParaMiComoEstasRoute: typeof ParaMiComoEstasRoute
+  ParaMiDescansarRoute: typeof ParaMiDescansarRoute
+  ParaMiDiarioRoute: typeof ParaMiDiarioRoute
+  ParaMiDueloRoute: typeof ParaMiDueloRoute
+  ParaMiNormalRoute: typeof ParaMiNormalRoute
+  ParaMiPresenteRoute: typeof ParaMiPresenteRoute
+  ParaMiRespiraRoute: typeof ParaMiRespiraRoute
+  ParaMiIndexRoute: typeof ParaMiIndexRoute
+}
+
+const ParaMiRouteChildren: ParaMiRouteChildren = {
+  ParaMiComoEstasRoute: ParaMiComoEstasRoute,
+  ParaMiDescansarRoute: ParaMiDescansarRoute,
+  ParaMiDiarioRoute: ParaMiDiarioRoute,
+  ParaMiDueloRoute: ParaMiDueloRoute,
+  ParaMiNormalRoute: ParaMiNormalRoute,
+  ParaMiPresenteRoute: ParaMiPresenteRoute,
+  ParaMiRespiraRoute: ParaMiRespiraRoute,
+  ParaMiIndexRoute: ParaMiIndexRoute,
+}
+
+const ParaMiRouteWithChildren =
+  ParaMiRoute._addFileChildren(ParaMiRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AyudaRoute: AyudaRoute,
+  ParaAyudarRoute: ParaAyudarRoute,
+  ParaMiRoute: ParaMiRouteWithChildren,
+  RedRoute: RedRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
