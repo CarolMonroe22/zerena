@@ -62,6 +62,17 @@ export function Directory() {
                       )}
                     </span>
                   </a>
+                  {e.infoUrl && (
+                    <a
+                      href={e.infoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1.5 ml-4 inline-flex items-center gap-1.5 text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                    >
+                      <ExternalLink size={11} />
+                      {e.infoLabel ?? "Más info"}
+                    </a>
+                  )}
                 </li>
               );
             })}
