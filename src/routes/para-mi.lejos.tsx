@@ -33,6 +33,16 @@ function Lejos() {
         ))}
       </ul>
 
+      <div className="mt-8 rounded-2xl border border-border bg-card p-5">
+        <p className="text-sm font-medium text-sage-deep">Si perdiste a alguien y no pudiste estar allá</p>
+        <p className="mt-2 text-sm leading-relaxed text-foreground/85">
+          No poder ir al entierro ni despedirte rompe el cierre. Ese dolor a distancia es real.
+          Despídete a tu manera: una foto y una vela, unas palabras en voz alta, o conectarte al
+          funeral por videollamada si se puede. Y si alguien te dice «tú no estabas acá», no es
+          contra ti: es el dolor hablando. Tu cariño, aunque sea de lejos, cuenta.
+        </p>
+      </div>
+
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           to="/para-ayudar/a-distancia"
@@ -69,7 +79,7 @@ function Lejos() {
         Si llamas a Venezuela desde el exterior, marca con <span className="tabular-nums">+58</span>.
         Algunas operadoras ofrecen llamadas gratis a Venezuela en estos días: revisa la tuya.
       </p>
-          <BasedOn source="salud mental de la diáspora" />
+          <BasedOn source="salud mental de la diáspora · duelo a distancia (Doka)" />
     </PageShell>
   );
 }

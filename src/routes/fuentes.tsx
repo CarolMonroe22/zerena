@@ -33,7 +33,7 @@ const FUENTES: Fuente[] = [
   },
   {
     title: "Cruz Roja / IFRC",
-    body: "Apoyo psicológico a distancia y a la niñez.",
+    body: "Primeros Auxilios Psicológicos a distancia (PFA remota) y apoyo a la niñez.",
     href: "https://www.ifrc.org/our-work/health-and-care/community-health/mental-health-and-psychosocial-support",
     source: "ifrc.org",
   },
@@ -53,6 +53,16 @@ const FUENTES: Fuente[] = [
     title: "Pauline Boss",
     body: "Concepto de pérdida ambigua, para familiares de personas no encontradas.",
     source: "Trabajo de la investigadora Pauline Boss, Universidad de Minnesota.",
+  },
+  {
+    title: "Duelo a distancia (Kenneth Doka)",
+    body: "Duelo desautorizado: el dolor de quien no puede ir al entierro ni cumplir los ritos de despedida.",
+    source: "Concepto de Kenneth Doka.",
+  },
+  {
+    title: "Salud mental de la diáspora",
+    body: "Sobre la culpa del sobreviviente y el duelo a distancia de quienes acompañan desde el exterior.",
+    source: "Literatura sobre salud mental en comunidades de la diáspora.",
   },
 ];
 

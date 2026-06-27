@@ -301,9 +301,46 @@ export const TRAINING: TrainingModule[] = [
     ],
   },
   {
+    id: "desde-lejos",
+    source: "PAP remota (IFRC) · duelo desautorizado (Doka) · salud mental de la diáspora",
+    n: 13,
+    title: "Acompañar desde lejos",
+    steps: [
+      {
+        heading: "A distancia también se acompaña",
+        body: "Estar lejos no te deja afuera. Por teléfono o mensaje también se sostiene: tu voz, tu constancia y tu calma. La base es la misma: escuchar, validar, no presionar. No ves su entorno, así que pregunta con suavidad si está a salvo.",
+        example: "«No estoy allá, pero estoy aquí para ti. Cuéntame cómo estás, sin apuro.»",
+      },
+      {
+        heading: "Cuando te dicen «tú no estás acá»",
+        body: "Es probable que escuches «no entiendes, no estás aquí». No te defiendas ni lo tomes como rechazo: es el dolor hablando. No compares con lo tuyo ni lo minimices.",
+        example: "No «yo también la estoy pasando mal». Sí: «tienes razón, no estoy viviendo lo que tú. Y aun así, no te suelto.»",
+      },
+      {
+        heading: "Si está lejos y perdió a alguien",
+        body: "No poder ir al entierro ni despedirse rompe el cierre. Ese duelo a distancia duele de forma propia: no lo apures ni le pidas «ser fuerte».",
+        bullets: [
+          { text: "Acompáñalo a despedirse a su manera: una foto y una vela, unas palabras, o conectarse al funeral por videollamada si se puede." },
+          { text: "Nombra lo que vive: «no estar allá para despedirte es muy duro, y es válido»." },
+          { label: "Si aún no lo encuentran", text: "es una espera distinta (pérdida ambigua); no fuerces ni la esperanza ni el cierre." },
+        ],
+        example: "«No pudiste estar, y eso pesa. Si quieres, encendemos una vela por él, juntos, aunque sea por llamada.»",
+      },
+      {
+        heading: "Cuídate tú también",
+        body: "Sostener a alguien desde lejos, estando tú también afectado, cansa. La culpa de estar a salvo es común; no la cargues en silencio.",
+        bullets: [
+          { text: "Ponles pausas al teléfono y a las noticias." },
+          { text: "Apóyate en otros que viven lo mismo." },
+        ],
+        cta: "lineas",
+      },
+    ],
+  },
+  {
     id: "cuidate-cierre",
     source: "PAP (OMS/OPS)",
-    n: 13,
+    n: 14,
     title: "Cuídate y cómo cerrar",
     steps: [
       {
