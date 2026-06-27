@@ -22,8 +22,7 @@ function Entrenamiento() {
       <BackLink to="/para-ayudar" label="Acompañar" />
       <h1 className="mt-2 font-serif text-3xl text-foreground">Entrenamiento</h1>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        Ocho módulos breves. Puedes salir y volver cuando quieras; tu avance queda en este
-        teléfono.
+        Módulos breves. Puedes salir y volver cuando quieras; tu avance queda en este teléfono.
       </p>
 
       <div className="mt-6 rounded-2xl border border-border bg-card p-5">
