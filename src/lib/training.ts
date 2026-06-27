@@ -12,6 +12,7 @@ export type TrainingModule = {
   title: string;
   intro?: string;
   steps: TrainingStep[];
+  source: string;
 };
 
 export const TRAINING: TrainingModule[] = [
