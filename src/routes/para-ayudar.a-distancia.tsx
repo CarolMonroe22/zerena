@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { LineasButton } from "@/components/LineasButton";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-ayudar/a-distancia")({
   head: () => ({ meta: [{ title: "Acompañar a distancia — Serena" }] }),
@@ -40,6 +41,7 @@ function ADistancia() {
       <div className="mt-8 flex justify-center">
         <LineasButton />
       </div>
+      <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }

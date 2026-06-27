@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { LineasButton } from "@/components/LineasButton";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-ayudar/adulto-mayor")({
   head: () => ({ meta: [{ title: "Acompañar a un adulto mayor — Serena" }] }),
@@ -40,6 +41,7 @@ function AdultoMayor() {
       <div className="mt-8 flex justify-center">
         <LineasButton />
       </div>
+      <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }

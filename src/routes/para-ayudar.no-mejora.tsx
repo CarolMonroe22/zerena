@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { LineasButton } from "@/components/LineasButton";
+import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-ayudar/no-mejora")({
   head: () => ({ meta: [{ title: "Cuando no mejora — Serena" }] }),
@@ -72,6 +73,7 @@ function NoMejora() {
       <div className="mt-8 flex justify-center">
         <LineasButton />
       </div>
+      <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }
