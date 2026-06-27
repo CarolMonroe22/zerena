@@ -19,6 +19,7 @@ import { Route as ParaAyudarIndexRouteImport } from './routes/para-ayudar.index'
 import { Route as ParaMiRespiraRouteImport } from './routes/para-mi.respira'
 import { Route as ParaMiPresenteRouteImport } from './routes/para-mi.presente'
 import { Route as ParaMiPerdisteTodoRouteImport } from './routes/para-mi.perdiste-todo'
+import { Route as ParaMiNoticiasRouteImport } from './routes/para-mi.noticias'
 import { Route as ParaMiNormalRouteImport } from './routes/para-mi.normal'
 import { Route as ParaMiNoEncontradoRouteImport } from './routes/para-mi.no-encontrado'
 import { Route as ParaMiDueloRouteImport } from './routes/para-mi.duelo'
@@ -83,6 +84,11 @@ const ParaMiPresenteRoute = ParaMiPresenteRouteImport.update({
 const ParaMiPerdisteTodoRoute = ParaMiPerdisteTodoRouteImport.update({
   id: '/perdiste-todo',
   path: '/perdiste-todo',
+  getParentRoute: () => ParaMiRoute,
+} as any)
+const ParaMiNoticiasRoute = ParaMiNoticiasRouteImport.update({
+  id: '/noticias',
+  path: '/noticias',
   getParentRoute: () => ParaMiRoute,
 } as any)
 const ParaMiNormalRoute = ParaMiNormalRouteImport.update({
@@ -182,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/para-mi/duelo': typeof ParaMiDueloRoute
   '/para-mi/no-encontrado': typeof ParaMiNoEncontradoRoute
   '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/noticias': typeof ParaMiNoticiasRoute
   '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/para-mi/duelo': typeof ParaMiDueloRoute
   '/para-mi/no-encontrado': typeof ParaMiNoEncontradoRoute
   '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/noticias': typeof ParaMiNoticiasRoute
   '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
@@ -235,6 +243,7 @@ export interface FileRoutesById {
   '/para-mi/duelo': typeof ParaMiDueloRoute
   '/para-mi/no-encontrado': typeof ParaMiNoEncontradoRoute
   '/para-mi/normal': typeof ParaMiNormalRoute
+  '/para-mi/noticias': typeof ParaMiNoticiasRoute
   '/para-mi/perdiste-todo': typeof ParaMiPerdisteTodoRoute
   '/para-mi/presente': typeof ParaMiPresenteRoute
   '/para-mi/respira': typeof ParaMiRespiraRoute
@@ -264,6 +273,7 @@ export interface FileRouteTypes {
     | '/para-mi/duelo'
     | '/para-mi/no-encontrado'
     | '/para-mi/normal'
+    | '/para-mi/noticias'
     | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
     | '/para-mi/respira'
@@ -289,6 +299,7 @@ export interface FileRouteTypes {
     | '/para-mi/duelo'
     | '/para-mi/no-encontrado'
     | '/para-mi/normal'
+    | '/para-mi/noticias'
     | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
     | '/para-mi/respira'
@@ -316,6 +327,7 @@ export interface FileRouteTypes {
     | '/para-mi/duelo'
     | '/para-mi/no-encontrado'
     | '/para-mi/normal'
+    | '/para-mi/noticias'
     | '/para-mi/perdiste-todo'
     | '/para-mi/presente'
     | '/para-mi/respira'
@@ -402,6 +414,13 @@ declare module '@tanstack/react-router' {
       path: '/perdiste-todo'
       fullPath: '/para-mi/perdiste-todo'
       preLoaderRoute: typeof ParaMiPerdisteTodoRouteImport
+      parentRoute: typeof ParaMiRoute
+    }
+    '/para-mi/noticias': {
+      id: '/para-mi/noticias'
+      path: '/noticias'
+      fullPath: '/para-mi/noticias'
+      preLoaderRoute: typeof ParaMiNoticiasRouteImport
       parentRoute: typeof ParaMiRoute
     }
     '/para-mi/normal': {
@@ -561,6 +580,7 @@ interface ParaMiRouteChildren {
   ParaMiDueloRoute: typeof ParaMiDueloRoute
   ParaMiNoEncontradoRoute: typeof ParaMiNoEncontradoRoute
   ParaMiNormalRoute: typeof ParaMiNormalRoute
+  ParaMiNoticiasRoute: typeof ParaMiNoticiasRoute
   ParaMiPerdisteTodoRoute: typeof ParaMiPerdisteTodoRoute
   ParaMiPresenteRoute: typeof ParaMiPresenteRoute
   ParaMiRespiraRoute: typeof ParaMiRespiraRoute
@@ -574,6 +594,7 @@ const ParaMiRouteChildren: ParaMiRouteChildren = {
   ParaMiDueloRoute: ParaMiDueloRoute,
   ParaMiNoEncontradoRoute: ParaMiNoEncontradoRoute,
   ParaMiNormalRoute: ParaMiNormalRoute,
+  ParaMiNoticiasRoute: ParaMiNoticiasRoute,
   ParaMiPerdisteTodoRoute: ParaMiPerdisteTodoRoute,
   ParaMiPresenteRoute: ParaMiPresenteRoute,
   ParaMiRespiraRoute: ParaMiRespiraRoute,
