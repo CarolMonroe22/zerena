@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ExternalLink } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 
@@ -20,22 +21,32 @@ const FUENTES = [
   {
     title: "Primeros Auxilios Psicológicos (PAP)",
     body: "Guía de la OMS y la OPS para trabajadores de campo, avalada por el IASC y el Proyecto Esfera.",
+    href: "https://www.paho.org/en/documents/psychological-first-aid-guide-field-workers",
+    source: "paho.org",
   },
   {
     title: "Cruz Roja / IFRC",
     body: "Apoyo psicológico a distancia y a la niñez.",
+    href: "https://www.ifrc.org/our-work/health-and-care/community-health/mental-health-and-psychosocial-support",
+    source: "ifrc.org",
   },
   {
     title: "NCTSN · Red Nacional de Estrés Traumático Infantil",
     body: "Guías para niños tras un terremoto.",
+    href: "https://www.nctsn.org/what-is-child-trauma/trauma-types/disasters/earthquake-resources",
+    source: "nctsn.org",
   },
   {
     title: "Save the Children",
     body: "Apoyo psicológico a niños según su edad.",
+    href: "https://resourcecentre.savethechildren.net/document/save-children-psychological-first-aid-training-manual-child-practitioners/",
+    source: "savethechildren.net",
   },
   {
     title: "Pauline Boss",
     body: "Pérdida ambigua, para familiares de personas no encontradas.",
+    href: "https://www.ambiguousloss.com/",
+    source: "ambiguousloss.com",
   },
 ];
 
@@ -46,14 +57,25 @@ function Fuentes() {
       <h1 className="mt-2 font-serif text-3xl text-foreground">¿En qué se basa Serena?</h1>
       <p className="mt-5 text-base leading-relaxed text-foreground/85">
         Todo el contenido de Serena se basa en protocolos reconocidos de apoyo psicológico en
-        emergencias:
+        emergencias. Cada fuente abre su documento oficial:
       </p>
 
       <ul className="mt-6 space-y-3">
         {FUENTES.map((f) => (
-          <li key={f.title} className="serena-card p-5">
-            <p className="font-serif text-base text-foreground">{f.title}</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+          <li key={f.title}>
+            <a
+              href={f.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="serena-card flex items-start gap-3 p-5 transition-colors hover:bg-secondary"
+            >
+              <div className="min-w-0 flex-1">
+                <p className="font-serif text-base text-foreground">{f.title}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                <p className="mt-2 text-xs text-primary">{f.source}</p>
+              </div>
+              <ExternalLink size={16} className="mt-1 shrink-0 text-muted-foreground" />
+            </a>
           </li>
         ))}
       </ul>

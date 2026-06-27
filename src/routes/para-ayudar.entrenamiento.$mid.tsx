@@ -47,6 +47,9 @@ function ModuleStepper() {
       <p className="mt-2 text-xs uppercase tracking-wider text-muted-foreground">
         Módulo {m.n} · {m.title}
       </p>
+      {m.intro && i === 0 && (
+        <p className="mt-1.5 text-xs italic text-muted-foreground">{m.intro}</p>
+      )}
 
       <div className="mt-3 flex items-center gap-1.5">
         {m.steps.map((_, idx) => (
@@ -76,6 +79,12 @@ function ModuleStepper() {
               </li>
             ))}
           </ul>
+        )}
+        {step.example && (
+          <div className="mt-4 rounded-xl border-l-2 border-primary/40 bg-sage-soft/40 px-4 py-3">
+            <p className="text-sm uppercase tracking-wider text-primary/70">Por ejemplo</p>
+            <p className="mt-1 text-base italic leading-relaxed text-foreground/85">{step.example}</p>
+          </div>
         )}
         {step.cta === "lineas" && (
           <div className="mt-6">

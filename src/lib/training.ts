@@ -1,8 +1,9 @@
-// Contenido EXACTO del entrenamiento. No editar sin revisión.
+// Contenido del entrenamiento. En revisión clínica. Punzante + con ejemplos.
 export type TrainingStep = {
   heading: string;
   body?: string;
   bullets?: { label?: string; text: string }[];
+  example?: string; // frase/escena concreta, se muestra resaltada
   cta?: "lineas"; // botón "Ver líneas de apoyo"
 };
 
@@ -17,14 +18,15 @@ export type TrainingModule = {
 
 export const TRAINING: TrainingModule[] = [
   {
-    id: "que-es-acompanar",
+    id: "rol-limites",
     source: "PAP (OMS/OPS)",
     n: 1,
-    title: "Qué es acompañar",
+    title: "Tu rol y tus límites",
     steps: [
       {
         heading: "Tu presencia basta",
         body: "Lo más valioso que ofreces es estar, con calma. Esto no es terapia y no tienes que resolverlo todo.",
+        example: "No necesitas la frase perfecta. A veces basta con: «aquí estoy, no te voy a dejar solo.»",
       },
       {
         heading: "Qué NO es",
@@ -33,19 +35,43 @@ export const TRAINING: TrainingModule[] = [
       {
         heading: "Tus límites",
         body: "Si hay riesgo de vida o te supera, conecta con ayuda experta. Cuídate tú también.",
+        example: "Si alguien dice «ya no quiero seguir», no lo manejes solo: «lo que sientes es muy serio y mereces ayuda ahora», y llamas al 911 con la persona.",
         cta: "lineas",
+      },
+    ],
+  },
+  {
+    id: "preparate",
+    source: "PAP (OMS/OPS)",
+    n: 2,
+    title: "Prepárate",
+    steps: [
+      {
+        heading: "Infórmate antes",
+        body: "Si puedes, entérate de qué pasó, qué servicios hay cerca y qué zonas no son seguras.",
+        example: "Antes de entrar a un refugio: ¿dónde dan agua, dónde está el puesto médico, a quién derivar?",
+      },
+      {
+        heading: "No improvises riesgos",
+        body: "No vayas a un lugar que no es seguro. Tu seguridad también cuenta: si te pasa algo, no puedes ayudar.",
       },
     ],
   },
   {
     id: "observar",
     source: "PAP (OMS/OPS)",
-    n: 2,
+    n: 3,
     title: "Observar",
     steps: [
       {
         heading: "Seguridad primero",
         body: "No te acerques si el lugar no es seguro. Mira quién parece herido o muy alterado.",
+        example: "Mira el entorno: ¿cables sueltos, vidrios, estructura inestable? Si sí, no entres y pide ayuda.",
+      },
+      {
+        heading: "Acércate con cuidado",
+        body: "Despacio, preséntate, no invadas su espacio.",
+        example: "«Hola, me llamo Ana, estoy aquí ayudando. ¿Puedo acercarme?»",
       },
       {
         heading: "Si ayudas a distancia",
@@ -56,33 +82,21 @@ export const TRAINING: TrainingModule[] = [
   {
     id: "escuchar",
     source: "PAP (OMS/OPS)",
-    n: 3,
+    n: 4,
     title: "Escuchar",
     steps: [
       {
-        heading: "Preséntate y pregunta",
+        heading: "Pregunta y deja hablar",
         body: "Di tu nombre, pregunta si puedes ayudar, qué necesita y qué le preocupa.",
+        example: "Pregunta abierta: «¿qué es lo que más te preocupa ahora?» en vez de «¿estás bien?»",
       },
       {
         heading: "Escucha de verdad",
         body: "Con los ojos, los oídos y el corazón. No presiones. Deja silencios.",
       },
-    ],
-  },
-  {
-    id: "conectar",
-    source: "PAP (OMS/OPS)",
-    n: 4,
-    title: "Conectar",
-    steps: [
       {
-        heading: "Lo básico primero",
-        body: "Agua, refugio, información.",
-      },
-      {
-        heading: "Reconecta",
-        body: "Ayúdale a contactar a sus seres queridos y comparte los números de ayuda.",
-        cta: "lineas",
+        heading: "Tu cuerpo también habla",
+        body: "Ponte a su nivel, sin apuro, con contacto visual suave. No mires el reloj.",
       },
     ],
   },
@@ -99,8 +113,8 @@ export const TRAINING: TrainingModule[] = [
           { text: "Validar lo que siente." },
           { text: "Ser honesto: «no lo sé, pero intentaré averiguarlo»." },
           { text: "Reconocer su fortaleza." },
-          { text: "Dejar silencios." },
         ],
+        example: "Si llora: no la apures. «Está bien llorar. Me quedo aquí contigo.»",
       },
       {
         heading: "Mejor evitar",
@@ -108,17 +122,41 @@ export const TRAINING: TrainingModule[] = [
           { text: "«No deberías sentirte así» o «tuviste suerte de sobrevivir»." },
           { text: "Presionar para que cuente." },
           { text: "Falsas promesas." },
-          { text: "Tecnicismos." },
-          { text: "Juzgar." },
-          { text: "Contar su historia a otros." },
+          { text: "Tecnicismos. Juzgar. Contar su historia a otros." },
         ],
+      },
+      {
+        heading: "Respeta el silencio",
+        body: "No lo llenes con frases hechas. Estar callado a su lado también acompaña.",
+      },
+    ],
+  },
+  {
+    id: "conectar",
+    source: "PAP (OMS/OPS)",
+    n: 6,
+    title: "Conectar",
+    steps: [
+      {
+        heading: "Lo básico primero",
+        body: "Agua, refugio, información.",
+      },
+      {
+        heading: "Reconecta",
+        body: "Ayúdale a contactar a sus seres queridos y comparte los números de ayuda.",
+        cta: "lineas",
+      },
+      {
+        heading: "No prometas de más",
+        body: "Di lo que sabes; no inventes servicios que quizá no existen.",
+        example: "Mejor «voy a averiguar dónde dan agua» que «ya viene la ayuda».",
       },
     ],
   },
   {
     id: "panico-shock",
     source: "PAP (OMS/OPS)",
-    n: 6,
+    n: 7,
     title: "Si hay pánico o shock",
     steps: [
       {
@@ -134,13 +172,14 @@ export const TRAINING: TrainingModule[] = [
           { text: "Escuchar su propia respiración." },
           { text: "Respirar despacio y profundo." },
         ],
+        example: "«Vamos a respirar juntos. Pon los pies en el suelo, siéntelos. Inhala… y exhala despacio conmigo.»",
       },
     ],
   },
   {
     id: "quien-necesita-mas",
     source: "PAP (OMS/OPS) e IFRC",
-    n: 7,
+    n: 8,
     title: "Quién necesita más ayuda",
     steps: [
       {
@@ -158,17 +197,103 @@ export const TRAINING: TrainingModule[] = [
         body: "Niños solos, embarazadas, adultos mayores frágiles, personas con discapacidad, mujeres en riesgo de violencia.",
       },
       {
-        heading: "Si no mejora",
-        body: "Si tras varias semanas sigue igual o peor, derívalo a un profesional. Haz el puente, no desaparezcas de golpe.",
+        heading: "Tú no diagnosticas",
+        body: "Ante la duda, deriva. Mejor pedir ayuda de más que de menos.",
+      },
+    ],
+  },
+  {
+    id: "nino",
+    source: "Save the Children · IFRC · NCTSN",
+    n: 9,
+    title: "Acompañar a un niño",
+    intro: "Hay una guía por edad en «Estoy con alguien ahora».",
+    steps: [
+      {
+        heading: "Tu calma lo calma",
+        body: "Habla simple, ponte a su altura, no le des detalles que asusten.",
+      },
+      {
+        heading: "Deja que juegue",
+        body: "Jugar o dibujar es como los niños sueltan lo que sienten.",
+        example: "«¿Me dibujas cómo te sientes?» vale más que muchas preguntas.",
+      },
+      {
+        heading: "Verdad sin promesas",
+        body: "No prometas «no va a temblar más». Sí puedes decir: «yo estoy aquí contigo».",
+      },
+    ],
+  },
+  {
+    id: "perdio-todo",
+    source: "PAP y duelo en emergencias",
+    n: 10,
+    title: "Acompañar a quien lo perdió todo",
+    steps: [
+      {
+        heading: "Solo estar",
+        body: "Cuando alguien perdió a su familia, tu trabajo no es consolar con palabras ni arreglar lo imposible. Es estar. El silencio acompañado vale más que cualquier frase.",
+      },
+      {
+        heading: "Qué decir y qué no",
+        body: "No digas «fue la voluntad de Dios», «están en un lugar mejor», «tienes que ser fuerte».",
+        example: "Sí: «Estoy aquí contigo. No te voy a dejar solo.» / «No tienes que decir nada.»",
+      },
+      {
+        heading: "Vigila el riesgo",
+        body: "Si dice que no quiere seguir, o que quiere hacerse daño, no lo manejes solo. Conéctalo de inmediato con una línea o el 911, y quédate con esa persona.",
+        cta: "lineas",
+      },
+      {
+        heading: "Cuídate después",
+        body: "Esto también te pesa a ti.",
+      },
+    ],
+  },
+  {
+    id: "perdida-ambigua",
+    source: "pérdida ambigua (Pauline Boss / Cruz Roja)",
+    n: 11,
+    title: "Cuando no han encontrado a alguien",
+    steps: [
+      {
+        heading: "Una espera imposible",
+        body: "No saber si su ser querido vive o no es una de las cargas más duras. Tiene nombre: pérdida ambigua. La persona no puede despedirse ni descansar.",
+      },
+      {
+        heading: "Cómo acompañar",
+        body: "No fuerces ni la esperanza ni el cierre. Acompaña la espera tal como es.",
+        example: "No «ya va a aparecer» ni «tienes que aceptar que no está». Mejor: «esto es muy duro, no estás solo en la espera.»",
+      },
+      {
+        heading: "Lo práctico ayuda",
+        body: "Apóyala con dónde reportar y buscar (Cruz Roja, reunificación familiar) y en no esperar en soledad.",
         cta: "lineas",
       },
     ],
   },
   {
-    id: "cuidate-tu",
+    id: "replicas",
+    source: "PAP y seguridad sísmica",
+    n: 12,
+    title: "Cuando el miedo vuelve (réplicas)",
+    steps: [
+      {
+        heading: "El miedo tiene sentido",
+        body: "Tras un terremoto, cada réplica revive el susto. No minimices.",
+        example: "No «ya pasó, tranquilo». Sí: «tiene sentido que tu cuerpo se asuste, fue muy fuerte.»",
+      },
+      {
+        heading: "Cómo ayudar",
+        body: "Si tiembla, recuérdale con calma lo básico de seguridad (agacharse, cubrirse la cabeza, agarrarse de algo firme). Después, respira con la persona, despacio, y quédate cerca.",
+      },
+    ],
+  },
+  {
+    id: "cuidate-cierre",
     source: "PAP (OMS/OPS)",
-    n: 8,
-    title: "Cuídate tú también",
+    n: 13,
+    title: "Cuídate y cómo cerrar",
     steps: [
       {
         heading: "Tu bienestar importa",
@@ -182,67 +307,11 @@ export const TRAINING: TrainingModule[] = [
           { text: "Reconoce cuando TÚ necesitas apoyo y búscalo." },
         ],
       },
-    ],
-  },
-  {
-    id: "perdio-todo",
-    source: "PAP y duelo en emergencias",
-    n: 9,
-    title: "Acompañar a quien lo perdió todo",
-    steps: [
       {
-        heading: "Solo estar",
-        body: "Cuando alguien perdió a su familia, tu trabajo no es consolar con palabras ni arreglar lo imposible. Es estar. Quédate; el silencio acompañado vale más que cualquier frase.",
-      },
-      {
-        heading: "Qué decir y qué no",
-        body: "No digas «fue la voluntad de Dios», «están en un lugar mejor», «tienes que ser fuerte». Sí puedes decir: «Estoy aquí contigo. No te voy a dejar solo.» / «No tienes que decir nada.»",
-      },
-      {
-        heading: "Vigila el riesgo",
-        body: "Si dice que no quiere seguir, o que quiere hacerse daño, no lo manejes solo. Conéctalo de inmediato con una línea o el 911, y quédate con esa persona mientras tanto.",
+        heading: "Cómo cerrar",
+        body: "No desaparezcas de golpe. Avisa cuándo termina tu apoyo y deja una línea a la mano.",
+        example: "«Hoy me tengo que ir, pero te dejo este número por si lo necesitas. No estás solo.»",
         cta: "lineas",
-      },
-      {
-        heading: "Cuídate después",
-        body: "Esto también te pesa a ti.",
-      },
-    ],
-  },
-  {
-    id: "perdida-ambigua",
-    source: "pérdida ambigua (Pauline Boss / Cruz Roja)",
-    n: 10,
-    title: "Cuando no han encontrado a alguien",
-    steps: [
-      {
-        heading: "Una espera imposible",
-        body: "No saber si su ser querido vive o no es una de las cargas más duras. Tiene nombre: pérdida ambigua. La persona no puede despedirse ni descansar.",
-      },
-      {
-        heading: "Cómo acompañar",
-        body: "No fuerces ni la esperanza («ya va a aparecer») ni el cierre («tienes que aceptarlo»). Acompaña la espera tal como es.",
-      },
-      {
-        heading: "Lo práctico ayuda",
-        body: "Apóyala con dónde reportar y buscar (Cruz Roja, reunificación familiar) y en no esperar en soledad.",
-        cta: "lineas",
-      },
-    ],
-  },
-  {
-    id: "replicas",
-    source: "PAP y seguridad sísmica",
-    n: 11,
-    title: "Cuando el miedo vuelve (réplicas)",
-    steps: [
-      {
-        heading: "El miedo tiene sentido",
-        body: "Tras un terremoto, cada réplica revive el susto. No minimices («ya pasó», «no es nada»). Valida: «tiene sentido que tu cuerpo se asuste.»",
-      },
-      {
-        heading: "Cómo ayudar",
-        body: "Si tiembla, recuérdale con calma lo básico de seguridad (agacharse, cubrirse la cabeza, agarrarse de algo firme). Después, respira con la persona, despacio, y quédate cerca.",
       },
     ],
   },
