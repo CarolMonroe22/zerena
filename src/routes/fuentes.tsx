@@ -6,11 +6,11 @@ import { BackLink } from "@/components/BackLink";
 export const Route = createFileRoute("/fuentes")({
   head: () => ({
     meta: [
-      { title: "¿En qué se basa Serena? — Fuentes y protocolos" },
+      { title: "¿En qué se basa Zerena? — Fuentes y protocolos" },
       {
         name: "description",
         content:
-          "Serena se basa en protocolos reconocidos de apoyo psicológico en emergencias: PAP de la OMS/OPS, IFRC, NCTSN, Save the Children y Pauline Boss.",
+          "Zerena se basa en protocolos reconocidos de apoyo psicológico en emergencias: PAP de la OMS/OPS, IFRC, NCTSN, Save the Children y Pauline Boss.",
       },
     ],
   }),
@@ -60,9 +60,9 @@ function Fuentes() {
   return (
     <PageShell>
       <BackLink to="/" label="Inicio" />
-      <h1 className="mt-2 font-serif text-3xl text-foreground">¿En qué se basa Serena?</h1>
+      <h1 className="mt-2 font-serif text-3xl text-foreground">¿En qué se basa Zerena?</h1>
       <p className="mt-5 text-base leading-relaxed text-foreground/85">
-        Todo el contenido de Serena se basa en protocolos reconocidos de apoyo psicológico en
+        Todo el contenido de Zerena se basa en protocolos reconocidos de apoyo psicológico en
         emergencias. Cuando hay un documento oficial en línea, la fuente abre directo:
       </p>
 
@@ -100,7 +100,7 @@ function Fuentes() {
 
       <div className="mt-6 rounded-2xl border border-border bg-sage-soft/60 p-5">
         <p className="text-sm leading-relaxed text-foreground/85">
-          Serena no es terapia, no diagnostica y no reemplaza la atención de un profesional ni los
+          Zerena no es terapia, no diagnostica y no reemplaza la atención de un profesional ni los
           servicios de emergencia. Su contenido está en revisión por profesionales de salud mental.
         </p>
       </div>

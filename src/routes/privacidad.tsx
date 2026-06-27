@@ -7,11 +7,11 @@ import { IconBubble } from "@/components/IconBubble";
 export const Route = createFileRoute("/privacidad")({
   head: () => ({
     meta: [
-      { title: "Tu privacidad — Serena" },
+      { title: "Tu privacidad — Zerena" },
       {
         name: "description",
         content:
-          "Serena es anónima. Tu diario se queda en tu teléfono. No rastreamos, no hay publicidad y no compartimos tus datos.",
+          "Zerena es anónima. Tu diario se queda en tu teléfono. No rastreamos, no hay publicidad y no compartimos tus datos.",
       },
     ],
   }),
@@ -51,7 +51,7 @@ function Privacidad() {
         </IconBubble>
         <h1 className="mt-4 font-serif text-3xl text-foreground">Tu privacidad</h1>
         <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-          Serena está pensada para que estés tranquilo. Esto es lo que cuidamos:
+          Zerena está pensada para que estés tranquilo. Esto es lo que cuidamos:
         </p>
       </header>
 

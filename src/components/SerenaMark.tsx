@@ -7,7 +7,7 @@ export function SerenaMark({ size = 64, className }: Props) {
       height={size}
       viewBox="0 0 64 64"
       role="img"
-      aria-label="Serena"
+      aria-label="Zerena"
       className={className}
     >
       <defs>

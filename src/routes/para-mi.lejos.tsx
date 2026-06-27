@@ -5,7 +5,7 @@ import { BackLink } from "@/components/BackLink";
 import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/lejos")({
-  head: () => ({ meta: [{ title: "Si estás lejos — Serena" }] }),
+  head: () => ({ meta: [{ title: "Si estás lejos — Zerena" }] }),
   component: Lejos,
 });
 

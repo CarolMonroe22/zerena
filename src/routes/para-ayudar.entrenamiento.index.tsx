@@ -6,7 +6,7 @@ import { BackLink } from "@/components/BackLink";
 import { TRAINING, readCompleted } from "@/lib/training";
 
 export const Route = createFileRoute("/para-ayudar/entrenamiento/")({
-  head: () => ({ meta: [{ title: "Entrenamiento — Serena" }] }),
+  head: () => ({ meta: [{ title: "Entrenamiento — Zerena" }] }),
   component: Entrenamiento,
 });
 

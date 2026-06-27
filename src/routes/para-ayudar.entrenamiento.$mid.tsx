@@ -10,7 +10,7 @@ import { getModule, markCompleted, TRAINING } from "@/lib/training";
 export const Route = createFileRoute("/para-ayudar/entrenamiento/$mid")({
   head: ({ params }) => {
     const m = getModule(params.mid);
-    return { meta: [{ title: m ? `${m.title} — Serena` : "Módulo — Serena" }] };
+    return { meta: [{ title: m ? `${m.title} — Zerena` : "Módulo — Zerena" }] };
   },
   component: ModuleStepper,
 });

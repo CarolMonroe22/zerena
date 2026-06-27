@@ -10,7 +10,7 @@ export function PageShell({ children }: { children: ReactNode }) {
           to="/fuentes"
           className="text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
         >
-          ¿En qué se basa Serena?
+          ¿En qué se basa Zerena?
         </Link>
         <span className="text-xs text-muted-foreground/50" aria-hidden>·</span>
         <Link

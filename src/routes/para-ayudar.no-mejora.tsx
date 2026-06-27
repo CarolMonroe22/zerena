@@ -5,7 +5,7 @@ import { LineasButton } from "@/components/LineasButton";
 import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-ayudar/no-mejora")({
-  head: () => ({ meta: [{ title: "Cuando no mejora — Serena" }] }),
+  head: () => ({ meta: [{ title: "Cuando no mejora — Zerena" }] }),
   component: NoMejora,
 });
 

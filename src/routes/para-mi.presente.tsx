@@ -4,7 +4,7 @@ import { BackLink } from "@/components/BackLink";
 import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/presente")({
-  head: () => ({ meta: [{ title: "Volver al presente — Serena" }] }),
+  head: () => ({ meta: [{ title: "Volver al presente — Zerena" }] }),
   component: Presente,
 });
 

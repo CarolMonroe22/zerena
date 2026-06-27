@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Serena — apoyo emocional" },
+      { title: "Zerena — apoyo emocional" },
       {
         name: "description",
         content:
@@ -85,16 +85,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "theme-color", content: "#FAF6EF" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
-      { name: "apple-mobile-web-app-title", content: "Serena" },
+      { name: "apple-mobile-web-app-title", content: "Zerena" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { property: "og:title", content: "Serena — apoyo emocional" },
+      { property: "og:title", content: "Zerena — apoyo emocional" },
       {
         property: "og:description",
         content: "Un espacio calmado para los primeros momentos. Anónimo y privado.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Serena — apoyo emocional" },
+      { name: "twitter:title", content: "Zerena — apoyo emocional" },
       {
         name: "twitter:description",
         content: "Un espacio calmado para los primeros momentos. Anónimo y privado.",

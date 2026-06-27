@@ -13,7 +13,7 @@ import { BackLink } from "@/components/BackLink";
 import { IconBubble } from "@/components/IconBubble";
 
 export const Route = createFileRoute("/para-ayudar/ahora")({
-  head: () => ({ meta: [{ title: "Estoy con alguien — Serena" }] }),
+  head: () => ({ meta: [{ title: "Estoy con alguien — Zerena" }] }),
   component: Ahora,
 });
 

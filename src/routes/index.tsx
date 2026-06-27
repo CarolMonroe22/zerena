@@ -8,7 +8,7 @@ import { InstallButton } from "@/components/InstallButton";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Serena — un espacio calmado" },
+      { title: "Zerena — un espacio calmado" },
       {
         name: "description",
         content: "Primeros Auxilios Psicológicos. Anónimo, privado y disponible sin conexión.",
@@ -23,7 +23,7 @@ function Welcome() {
     <PageShell>
       <section className="flex flex-col items-center pt-8 text-center sm:pt-14">
         <SerenaMark size={88} />
-        <h1 className="mt-5 font-serif text-4xl text-foreground sm:text-5xl">Serena</h1>
+        <h1 className="mt-5 font-serif text-4xl text-foreground sm:text-5xl">Zerena</h1>
         <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
           Un espacio calmado para los primeros momentos.<br />
           Respira. No tienes que apurarte.
@@ -55,7 +55,7 @@ function Welcome() {
 
       <section className="mt-10 rounded-2xl border border-border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
         <p>
-          Serena es un espacio de apoyo de primera instancia basado en los Primeros Auxilios
+          Zerena es un espacio de apoyo de primera instancia basado en los Primeros Auxilios
           Psicológicos (OMS/OPS). No es terapia, no diagnostica y no reemplaza la atención de un
           profesional ni los servicios de emergencia.
         </p>

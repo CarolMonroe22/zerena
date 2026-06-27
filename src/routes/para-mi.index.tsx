@@ -21,7 +21,7 @@ import { IconBubble } from "@/components/IconBubble";
 export const Route = createFileRoute("/para-mi/")({
   head: () => ({
     meta: [
-      { title: "Para mí — Serena" },
+      { title: "Para mí — Zerena" },
       { name: "description", content: "Respira, vuelve al presente y encuentra ayuda." },
     ],
   }),

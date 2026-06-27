@@ -3,7 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 
 export const Route = createFileRoute("/para-mi/normal")({
-  head: () => ({ meta: [{ title: "Esto que sientes es normal — Serena" }] }),
+  head: () => ({ meta: [{ title: "Esto que sientes es normal — Zerena" }] }),
   component: Normal,
 });
 

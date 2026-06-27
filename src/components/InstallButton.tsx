@@ -68,7 +68,7 @@ export function InstallButton() {
         <Download size={18} />
       </IconBubble>
       <div className="min-w-0 flex-1">
-        <p className="font-serif text-base text-foreground">Ten Serena a mano</p>
+        <p className="font-serif text-base text-foreground">Ten Zerena a mano</p>
         {iosHint ? (
           <p className="mt-0.5 inline-flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
             Toca <Share size={14} className="inline" aria-hidden /> Compartir y luego «Agregar a

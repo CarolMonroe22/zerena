@@ -6,7 +6,7 @@ import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/respira")({
   head: () => ({
-    meta: [{ title: "Respira conmigo — Serena" }],
+    meta: [{ title: "Respira conmigo — Zerena" }],
   }),
   component: () => (
     <PageShell>

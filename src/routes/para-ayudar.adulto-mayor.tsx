@@ -5,7 +5,7 @@ import { LineasButton } from "@/components/LineasButton";
 import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-ayudar/adulto-mayor")({
-  head: () => ({ meta: [{ title: "Acompañar a un adulto mayor — Serena" }] }),
+  head: () => ({ meta: [{ title: "Acompañar a un adulto mayor — Zerena" }] }),
   component: AdultoMayor,
 });
 

@@ -6,7 +6,7 @@ import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-ayudar/nino")({
-  head: () => ({ meta: [{ title: "Acompañar a un niño — Serena" }] }),
+  head: () => ({ meta: [{ title: "Acompañar a un niño — Zerena" }] }),
   component: Nino,
 });
 

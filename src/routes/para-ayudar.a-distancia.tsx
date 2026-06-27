@@ -5,7 +5,7 @@ import { LineasButton } from "@/components/LineasButton";
 import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-ayudar/a-distancia")({
-  head: () => ({ meta: [{ title: "Acompañar a distancia — Serena" }] }),
+  head: () => ({ meta: [{ title: "Acompañar a distancia — Zerena" }] }),
   component: ADistancia,
 });
 

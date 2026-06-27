@@ -8,11 +8,11 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/contacto")({
   head: () => ({
     meta: [
-      { title: "Contáctanos — Serena" },
+      { title: "Contáctanos — Zerena" },
       {
         name: "description",
         content:
-          "¿Tienes sugerencias, ideas o quieres colaborar con Serena? Escríbenos. Leemos todo, con calma.",
+          "¿Tienes sugerencias, ideas o quieres colaborar con Zerena? Escríbenos. Leemos todo, con calma.",
       },
     ],
   }),

@@ -6,7 +6,7 @@ import { Directory } from "@/components/Directory";
 export const Route = createFileRoute("/ayuda")({
   head: () => ({
     meta: [
-      { title: "Pedir ayuda — Serena" },
+      { title: "Pedir ayuda — Zerena" },
       {
         name: "description",
         content: "Directorio verificado de líneas de emergencia y salud mental en Venezuela.",

@@ -10,11 +10,11 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/red")({
   head: () => ({
     meta: [
-      { title: "Red de apoyo — Serena" },
+      { title: "Red de apoyo — Zerena" },
       {
         name: "description",
         content:
-          "Súmate a la red de Serena como voluntario, profesional de la salud mental u organización.",
+          "Súmate a la red de Zerena como voluntario, profesional de la salud mental u organización.",
       },
     ],
   }),

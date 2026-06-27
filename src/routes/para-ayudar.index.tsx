@@ -7,7 +7,7 @@ import { IconBubble } from "@/components/IconBubble";
 export const Route = createFileRoute("/para-ayudar/")({
   head: () => ({
     meta: [
-      { title: "Acompañar a alguien — Serena" },
+      { title: "Acompañar a alguien — Zerena" },
       {
         name: "description",
         content: "Guía calmada para acompañar a otra persona tras un evento difícil.",

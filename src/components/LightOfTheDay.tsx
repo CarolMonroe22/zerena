@@ -12,7 +12,7 @@ export function LightOfTheDay() {
   }, []);
 
   async function share() {
-    const text = `${message}\n\n— Serena`;
+    const text = `${message}\n\n— Zerena`;
     if (typeof navigator !== "undefined" && "share" in navigator) {
       try {
         await navigator.share({ text });

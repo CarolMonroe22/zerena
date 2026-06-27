@@ -6,7 +6,7 @@ import { BackLink } from "@/components/BackLink";
 import { addEntry, deleteEntry, readDiary, type DiaryEntry } from "@/lib/diary";
 
 export const Route = createFileRoute("/para-mi/diario")({
-  head: () => ({ meta: [{ title: "Diario privado — Serena" }] }),
+  head: () => ({ meta: [{ title: "Diario privado — Zerena" }] }),
   component: Diario,
 });
 

@@ -6,7 +6,7 @@ import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-mi/replicas")({
-  head: () => ({ meta: [{ title: "Cuando todo tiembla otra vez — Serena" }] }),
+  head: () => ({ meta: [{ title: "Cuando todo tiembla otra vez — Zerena" }] }),
   component: Replicas,
 });
 

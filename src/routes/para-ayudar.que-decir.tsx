@@ -4,7 +4,7 @@ import { BackLink } from "@/components/BackLink";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-ayudar/que-decir")({
-  head: () => ({ meta: [{ title: "Qué decir — Serena" }] }),
+  head: () => ({ meta: [{ title: "Qué decir — Zerena" }] }),
   component: QueDecir,
 });
 

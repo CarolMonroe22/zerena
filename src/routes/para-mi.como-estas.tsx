@@ -5,7 +5,7 @@ import { BackLink } from "@/components/BackLink";
 import { BasedOn } from "@/components/BasedOn";
 
 export const Route = createFileRoute("/para-mi/como-estas")({
-  head: () => ({ meta: [{ title: "¿Cómo estás ahora? — Serena" }] }),
+  head: () => ({ meta: [{ title: "¿Cómo estás ahora? — Zerena" }] }),
   component: ComoEstas,
 });
 

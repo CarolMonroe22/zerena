@@ -5,7 +5,7 @@ import { BasedOn } from "@/components/BasedOn";
 import { LineasButton } from "@/components/LineasButton";
 
 export const Route = createFileRoute("/para-mi/duelo")({
-  head: () => ({ meta: [{ title: "Si perdiste a alguien — Serena" }] }),
+  head: () => ({ meta: [{ title: "Si perdiste a alguien — Zerena" }] }),
   component: Duelo,
 });
 
