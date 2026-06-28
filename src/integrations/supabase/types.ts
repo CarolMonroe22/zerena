@@ -38,6 +38,33 @@ export type Database = {
         }
         Relationships: []
       }
+      network_signups: {
+        Row: {
+          contact: string
+          created_at: string
+          details: string | null
+          id: string
+          name: string | null
+          role: string
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          details?: string | null
+          id?: string
+          name?: string | null
+          role: string
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          details?: string | null
+          id?: string
+          name?: string | null
+          role?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
