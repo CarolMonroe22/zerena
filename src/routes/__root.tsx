@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Un espacio calmado de Primeros Auxilios Psicológicos para los primeros momentos. Anónimo y privado.",
+          "Primeros Auxilios Psicológicos, para ti y para quien ayuda. Herramientas para calmarte y para acompañar, más un directorio verificado de a quién acudir. Anónimo y sin cuenta.",
       },
       { name: "theme-color", content: "#FAF6EF" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
@@ -90,17 +90,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Zerena — apoyo emocional" },
       {
         property: "og:description",
-        content: "Un espacio calmado para los primeros momentos. Anónimo y privado.",
+        content: "Para ti y para quien ayuda: herramientas para calmarte, acompañar y un directorio de a quién acudir. Anónimo y sin cuenta.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Zerena — apoyo emocional" },
       {
         name: "twitter:description",
-        content: "Un espacio calmado para los primeros momentos. Anónimo y privado.",
+        content: "Para ti y para quien ayuda: herramientas para calmarte, acompañar y un directorio de a quién acudir. Anónimo y sin cuenta.",
       },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/73760977-34e1-486e-9ddb-98f852ee9f52/id-preview-0d93d85d--8ebf92b5-3374-4671-9b43-57dae87962f4.lovable.app-1782571978718.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/73760977-34e1-486e-9ddb-98f852ee9f52/id-preview-0d93d85d--8ebf92b5-3374-4671-9b43-57dae87962f4.lovable.app-1782571978718.png" },
+      { property: "og:image", content: "/og-image.jpg" },
+      { name: "twitter:image", content: "/og-image.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
