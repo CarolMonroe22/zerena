@@ -1,87 +1,47 @@
+# Plan: OG más fiel a la app Zerena
 
-# Serena — Fase 1 (Bienvenida + "Para mí" + Directorio)
+## Problema
+El OG que te gustó (thumbnail con mockup de teléfono + marca grande) transmite bien la idea de app, pero contiene elementos que no existen en Zerena:
+- Logo con hojas en vez del sello de sol/horizonte.
+- Bottom nav de "Inicio / Explorar / Favoritos / Perfil" (la app no tiene esas secciones).
+- Tarjetas "Cuidar mi corazón / Manejar el estrés / No estás solo" (no son los caminos de la app).
+- Tagline "Tu bienestar importa" y frase "Escucha. Comprende. Acompaña." que no aparecen.
+- Footer "Profesional / Hecho en Venezuela" que tampoco está.
 
-App de Primeros Auxilios Psicológicos para los terremotos de Venezuela de junio 2026. 100% frontend, anónima, instalable y offline. Español de Venezuela, tono cálido y digno.
+La app real se abre con:
+1. **Header:** sello + "Zerena" + chip "Anónimo".
+2. **Bienvenida:** "Un espacio calmado para los primeros momentos. Respira. No tienes que apurarte."
+3. **Tres caminos:** "Necesito calma para mí", "Quiero ayudar a alguien", "Red de apoyo".
+4. **Aviso legal:** PAP (OMS/OPS) y línea 911.
+5. **Footer:** "Privado y anónimo · tu diario se queda en tu teléfono" + "¿En qué se basa Zerena?" + "Contáctanos".
 
-## Sistema de diseño (src/styles.css)
+## Propuesta
+Mantener el **formato thumbnail de YouTube** (llamativo, legible a primera vista) pero reemplazar todo el contenido por la identidad y caminos reales de la app. Incluir un mockup del teléfono mostrando la pantalla de bienvenida real que ya capturé del preview.
 
-Tokens en oklch que reproducen tu paleta:
-- `--background` crema #FAF6EF, `--card` #FFFDF9, `--foreground` #3A3631, `--muted-foreground` #6B645B, `--border` #E7DFD2.
-- `--sage` #7C9885, `--sage-deep` #5E7A68, `--sage-soft-bg` #EAF0EA (para íconos circulares).
-- `--peach` #E9C5A8, `--peach-bg` #FBEFE3 (tarjeta "Pedir ayuda").
-- `--alert` #C25B4E (urgencias).
-- Tipografías: Lora (serif, títulos) e Inter (sans, cuerpo) cargadas vía `<link>` en `__root.tsx` (no `@import` URL).
-- Radios 16px, sombras casi imperceptibles, animaciones suaves con `prefers-reduced-motion` respetado.
+## Pasos
 
-## Rutas (TanStack file-based)
+1. **Generar 3 propuestas de OG (1200×630)**
+   - v1: Mockup de teléfono con la bienvenida real a la izquierda, marca + "Zerena" + subtítulo real + los 3 caminos como píldoras a la derecha.
+   - v2: Título grande centrado "Apoyo emocional para ti y para quien ayuda" + las 3 tarjetas reales de la bienvenida abajo + sello + chip "Anónimo".
+   - v3: Enfoque en los 3 caminos como bloques visuales grandes (calma, ayudar, red) con iconos + marca Zerena + tono thumbnail.
+   - Paleta fiel: crema #FAF6EF, salvia #7C9885 / #5E7A68, durazno #E9C5A8, tinta gris-cálida #3A3631.
+   - Sin personas, sin imágenes traumáticas, sin inventar secciones.
 
-- `/` — Bienvenida (sello + nombre + chip Anónimo + 3 caminos + aviso legal).
-- `/para-mi` — Home "Para mí": Luz del día, "Para este momento", "Para momentos difíciles", "Cuando ya pasó lo peor".
-- `/para-mi/respira` — Respiración guiada 4-2-6 con círculo animado.
-- `/para-mi/presente` — Grounding suave (anclas neutras, sin "mira a tu alrededor").
-- `/para-mi/como-estas` — Triaje breve (3–4 preguntas) que escala a directorio si hay banderas rojas.
-- `/para-mi/descansar` — Para descansar esta noche.
-- `/para-mi/duelo` — Si perdiste a alguien.
-- `/para-mi/normal` — Esto que sientes es normal.
-- `/para-mi/diario` — Diario privado (localStorage).
-- `/para-mi/[varias]` — Placeholders [PENDIENTE]: no-encontre, perdi-todo, noticias, lejos.
-- `/ayuda` — Directorio completo.
-- `/para-ayudar` y `/red` — placeholders mínimos con "próximamente" (se construyen en mensajes siguientes).
+2. **Mostrar las 3 propuestas** para que elijas cuál ajustar o mezclar.
 
-Layout raíz con botón flotante "Pedir ayuda" siempre visible (link a `/ayuda`), y footer "Privado y anónimo · nada de lo que escribas se guarda".
+3. **Implementar el OG elegido**
+   - Guardar la imagen final en `public/og-image.jpg`.
+   - Actualizar las meta tags `og:image` y `twitter:image` en `src/routes/__root.tsx` si la ruta de la imagen cambia.
+   - Verificar que `og:title`, `og:description` y `twitter:card` estén correctos.
 
-## Componentes
+4. **Validar**
+   - Correr build/check de TypeScript.
+   - Confirmar que la imagen existe en `public/` y que las meta tags apuntan a ella.
 
-`src/components/`:
-- `SerenaMark.tsx` — SVG sol sobre horizonte, en salvia.
-- `AppHeader.tsx` — sello + "Serena" + chip "Anónimo" (escudo).
-- `PageShell.tsx` — contenedor centrado máx 600px, paddings calmados.
-- `Card.tsx`, `IconBubble.tsx` — tarjeta con ícono circular salvia (variante `peach`).
-- `FloatingHelpButton.tsx`.
-- `BreathingCircle.tsx` — animación inhala/sostén/exhala con texto que cambia.
-- `LightOfTheDay.tsx` — selecciona uno de los 6 mensajes por `dayOfYear % 6`, botón Compartir (Web Share API + fallback copiar).
-- `DirectoryList.tsx` + `DirectoryItem.tsx` — enlaces `tel:`, resalta 911 y MSF, pie con aviso.
+## Qué NO haremos
+- No cambiamos la navegación, la estructura de rutas ni el contenido de la app.
+- No agregamos secciones que no existen (Favoritos, Perfil, Explorar, etc.) solo para que "queden bien" en la imagen.
+- No generamos un nuevo texto/tagline; usamos los reales de la app.
 
-`src/lib/`:
-- `directory.ts` — datos exactos verificados (los que diste).
-- `light-messages.ts` — los 6 mensajes EXACTOS.
-- `diary.ts` — helpers localStorage (`serena.diary.v1`).
-- `coordinator-contact.ts` — placeholder vacío configurable; si vacío, formularios mostrarán "esta red se está activando…".
-
-## PWA / Offline
-
-- `public/manifest.webmanifest` con nombre Serena, colores crema/salvia, `display: standalone`, ícono = sello.
-- Íconos PWA generados (192, 512) con `imagegen` usando el sello sobre fondo crema.
-- Service worker manual (cumpliendo skill PWA — no usar `vite-plugin-pwa` para evitar romper preview):
-  - Registro vía wrapper guardado que solo registra en producción y fuera de iframes/hosts de Lovable/preview, con kill-switch `?sw=off`.
-  - `public/sw.js` con `NetworkFirst` para navegaciones, `CacheFirst` para assets hasheados. Precachea shell mínimo. Excluye `/~oauth`.
-- Meta tags PWA (`theme-color`, `apple-touch-icon`, link manifest) en `__root.tsx`.
-
-Nota: el preview en Lovable no mostrará el SW activo (es lo correcto y documentado).
-
-## Contenido (literal, sin inventar)
-
-- 6 mensajes "Una luz para hoy" copiados textualmente.
-- Directorio con los teléfonos exactos que diste (911 destacado urgente, MSF destacado). La Guaira/Carabobo/Zulia se omiten.
-- Aviso legal OMS/OPS textual en bienvenida.
-- Secciones sin contenido aprobado renderizan tarjeta `[PENDIENTE]` con explicación calmada ("Estamos preparando este espacio con cuidado.") — no se inventa texto clínico.
-
-## Accesibilidad y responsive
-
-- Mobile-first, columna única máx 600px, grid 3-col en `sm:` para "Para este momento".
-- Headings semánticos, `aria-label` en botones de ícono, focus visible.
-- Animaciones suaves con `motion-safe:` o queries `prefers-reduced-motion`.
-
-## Fuera de alcance en esta fase (vienen después)
-
-- Sección B "Para ayudar" detallada (módulos del curso).
-- Sección C "Red" con formularios reales.
-- Contenidos finos de duelo / pérdida total / noticias / estar lejos.
-
-Estos quedarán como tarjetas accesibles con [PENDIENTE] para no inventar.
-
-## Entregable final
-
-Bienvenida pulida + flujo "Para mí" funcional (respiración, grounding, triaje, diario, luz del día, normalización, descansar, duelo placeholder cuidado) + directorio completo + PWA instalable y offline + diseño calmado consistente.
-
-¿Apruebas para implementar?
+## Entregable
+Un OG final de 1200×630 que sea reconocible a primera vista como Zerena y que refleje fielmente los tres caminos de la app.
