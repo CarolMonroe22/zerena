@@ -40,28 +40,61 @@ export type Database = {
       }
       network_signups: {
         Row: {
+          availability: string | null
           contact: string
           created_at: string
+          credential: string | null
           details: string | null
+          help_areas: string | null
           id: string
+          institution: string | null
+          location: string | null
           name: string | null
+          org_type: string | null
+          professional_status: string | null
           role: string
+          specialty: string | null
+          study_year: string | null
+          training_done: string | null
+          website: string | null
         }
         Insert: {
+          availability?: string | null
           contact: string
           created_at?: string
+          credential?: string | null
           details?: string | null
+          help_areas?: string | null
           id?: string
+          institution?: string | null
+          location?: string | null
           name?: string | null
+          org_type?: string | null
+          professional_status?: string | null
           role: string
+          specialty?: string | null
+          study_year?: string | null
+          training_done?: string | null
+          website?: string | null
         }
         Update: {
+          availability?: string | null
           contact?: string
           created_at?: string
+          credential?: string | null
           details?: string | null
+          help_areas?: string | null
           id?: string
+          institution?: string | null
+          location?: string | null
           name?: string | null
+          org_type?: string | null
+          professional_status?: string | null
           role?: string
+          specialty?: string | null
+          study_year?: string | null
+          training_done?: string | null
+          website?: string | null
         }
         Relationships: []
       }
