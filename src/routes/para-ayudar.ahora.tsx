@@ -6,6 +6,7 @@ import {
   Baby,
   UserRound,
   Phone,
+  Globe,
   Clock,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
@@ -44,7 +45,8 @@ function Ahora() {
       <div className="space-y-3">
         <WideCard to="/para-ayudar/nino" icon={<Baby size={18} />} title="Es un niño" desc="Por edad, qué ayuda y qué decirle." />
         <WideCard to="/para-ayudar/adulto-mayor" icon={<UserRound size={18} />} title="Es un adulto mayor" desc="Frágil o reservado. Necesita apoyo igual." />
-        <WideCard to="/para-ayudar/a-distancia" icon={<Phone size={18} />} title="Lo acompaño a distancia" desc="Cuando no estás en el mismo lugar." />
+        <WideCard to="/para-ayudar/a-distancia" icon={<Phone size={18} />} title="Lo acompaño a distancia" desc="Por teléfono o mensaje, sin ver la escena." />
+        <WideCard to="/para-ayudar/exterior" icon={<Globe size={18} />} title="Estás en el exterior" desc="Desde otro país, con la distancia a cuestas." />
         <WideCard to="/para-ayudar/no-mejora" icon={<Clock size={18} />} title="No mejora con el tiempo" desc="Cuándo y cómo derivar." />
       </div>
 

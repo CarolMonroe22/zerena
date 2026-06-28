@@ -39,6 +39,7 @@ import { Route as ParaAyudarEntrenamientoRouteImport } from './routes/para-ayuda
 import { Route as ParaAyudarAhoraRouteImport } from './routes/para-ayudar.ahora'
 import { Route as ParaAyudarAdultoMayorRouteImport } from './routes/para-ayudar.adulto-mayor'
 import { Route as ParaAyudarADistanciaRouteImport } from './routes/para-ayudar.a-distancia'
+import { Route as ParaAyudarExteriorRouteImport } from './routes/para-ayudar.exterior'
 import { Route as ParaAyudarEntrenamientoIndexRouteImport } from './routes/para-ayudar.entrenamiento.index'
 import { Route as ParaAyudarEntrenamientoMidRouteImport } from './routes/para-ayudar.entrenamiento.$mid'
 
@@ -192,6 +193,11 @@ const ParaAyudarADistanciaRoute = ParaAyudarADistanciaRouteImport.update({
   path: '/a-distancia',
   getParentRoute: () => ParaAyudarRoute,
 } as any)
+const ParaAyudarExteriorRoute = ParaAyudarExteriorRouteImport.update({
+  id: '/exterior',
+  path: '/exterior',
+  getParentRoute: () => ParaAyudarRoute,
+} as any)
 const ParaAyudarEntrenamientoIndexRoute =
   ParaAyudarEntrenamientoIndexRouteImport.update({
     id: '/',
@@ -215,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/privacidad': typeof PrivacidadRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
+  '/para-ayudar/exterior': typeof ParaAyudarExteriorRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
   '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
@@ -247,6 +254,7 @@ export interface FileRoutesByTo {
   '/privacidad': typeof PrivacidadRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
+  '/para-ayudar/exterior': typeof ParaAyudarExteriorRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
   '/para-ayudar/nino': typeof ParaAyudarNinoRoute
@@ -281,6 +289,7 @@ export interface FileRoutesById {
   '/privacidad': typeof PrivacidadRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
+  '/para-ayudar/exterior': typeof ParaAyudarExteriorRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
   '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoRouteWithChildren
@@ -317,6 +326,7 @@ export interface FileRouteTypes {
     | '/privacidad'
     | '/red'
     | '/para-ayudar/a-distancia'
+    | '/para-ayudar/exterior'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
     | '/para-ayudar/entrenamiento'
@@ -349,6 +359,7 @@ export interface FileRouteTypes {
     | '/privacidad'
     | '/red'
     | '/para-ayudar/a-distancia'
+    | '/para-ayudar/exterior'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
     | '/para-ayudar/nino'
@@ -382,6 +393,7 @@ export interface FileRouteTypes {
     | '/privacidad'
     | '/red'
     | '/para-ayudar/a-distancia'
+    | '/para-ayudar/exterior'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
     | '/para-ayudar/entrenamiento'
@@ -630,6 +642,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaAyudarADistanciaRouteImport
       parentRoute: typeof ParaAyudarRoute
     }
+    '/para-ayudar/exterior': {
+      id: '/para-ayudar/exterior'
+      path: '/exterior'
+      fullPath: '/para-ayudar/exterior'
+      preLoaderRoute: typeof ParaAyudarExteriorRouteImport
+      parentRoute: typeof ParaAyudarRoute
+    }
     '/para-ayudar/entrenamiento/': {
       id: '/para-ayudar/entrenamiento/'
       path: '/'
@@ -665,6 +684,7 @@ const ParaAyudarEntrenamientoRouteWithChildren =
 
 interface ParaAyudarRouteChildren {
   ParaAyudarADistanciaRoute: typeof ParaAyudarADistanciaRoute
+  ParaAyudarExteriorRoute: typeof ParaAyudarExteriorRoute
   ParaAyudarAdultoMayorRoute: typeof ParaAyudarAdultoMayorRoute
   ParaAyudarAhoraRoute: typeof ParaAyudarAhoraRoute
   ParaAyudarEntrenamientoRoute: typeof ParaAyudarEntrenamientoRouteWithChildren
@@ -677,6 +697,7 @@ interface ParaAyudarRouteChildren {
 
 const ParaAyudarRouteChildren: ParaAyudarRouteChildren = {
   ParaAyudarADistanciaRoute: ParaAyudarADistanciaRoute,
+  ParaAyudarExteriorRoute: ParaAyudarExteriorRoute,
   ParaAyudarAdultoMayorRoute: ParaAyudarAdultoMayorRoute,
   ParaAyudarAhoraRoute: ParaAyudarAhoraRoute,
   ParaAyudarEntrenamientoRoute: ParaAyudarEntrenamientoRouteWithChildren,
