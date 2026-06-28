@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
+import { ShareZerena } from "./ShareZerena";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
@@ -19,6 +20,8 @@ export function PageShell({ children }: { children: ReactNode }) {
         >
           Contáctanos
         </Link>
+        <span className="text-xs text-muted-foreground/50" aria-hidden>·</span>
+        <ShareZerena />
       </footer>
     </main>
   );
