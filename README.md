@@ -30,6 +30,20 @@ Un espacio para que voluntarios, profesionales de salud mental y organizaciones 
 
 Zerena es **offline-first**: se instala como app y un service worker guarda la ruta crítica, para que las herramientas de calma sigan disponibles aunque la señal se caiga, justo cuando más hacen falta.
 
+## Fundamentos: en qué nos basamos
+
+El contenido de Zerena se desarrolló revisando protocolos y documentación reconocidos de apoyo psicológico en emergencias:
+
+- **Primeros Auxilios Psicológicos (PAP)** — Guía de la **OMS / OPS** para trabajadores de campo, avalada por el IASC y el Proyecto Esfera. → [paho.org](https://www.paho.org/en/documents/psychological-first-aid-guide-field-workers)
+- **Cruz Roja / IFRC** — Apoyo en salud mental y psicosocial en comunidades. → [ifrc.org](https://www.ifrc.org/our-work/health-and-care/community-health/mental-health-and-psychosocial-support)
+- **NCTSN** — Red Nacional de Estrés Traumático Infantil, recursos de niñez ante terremotos. → [nctsn.org](https://www.nctsn.org/what-is-child-trauma/trauma-types/disasters/earthquake-resources)
+- **Save the Children** — Manual de PAP para quienes acompañan a niñas y niños. → [resourcecentre.savethechildren.net](https://resourcecentre.savethechildren.net/document/save-children-psychological-first-aid-training-manual-child-practitioners/)
+- **Pauline Boss** (Universidad de Minnesota) — concepto de *pérdida ambigua*, para familiares de personas no encontradas.
+- **Kenneth Doka** — *duelo desautorizado*: el dolor de quien no puede ir al entierro ni despedirse.
+- **Literatura sobre salud mental de la diáspora** — culpa del sobreviviente y duelo a distancia de quienes acompañan desde el exterior.
+
+Estos marcos **guían** el contenido. Zerena está **basada en** ellos, sin contar con su aval ni certificación.
+
 ## Privacidad y protección de datos
 
 La salud mental es un dato sensible y lo tratamos como tal. Por diseño:
@@ -81,7 +95,7 @@ npm run build    # build de producción
 
 Zerena **no es terapia ni un sustituto de la atención profesional**. Es un apoyo de primer momento. Si tú o alguien cercano está en peligro inmediato, busca ayuda de emergencia (en Venezuela, **911**).
 
-El contenido está **basado en** marcos de Primeros Auxilios Psicológicos de referencia (PAHO/OPS, IFRC, NCTSN, Save the Children), pero **no cuenta con aval ni certificación** de esas organizaciones.
+El contenido está **basado en** protocolos reconocidos de PAP (ver la sección [Fundamentos](#fundamentos-en-qué-nos-basamos)), pero **no cuenta con aval ni certificación** de esas organizaciones.
 
 ---
 
