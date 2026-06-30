@@ -43,25 +43,31 @@ export type Database = {
           case_details: string
           contact: string
           created_at: string
+          disability_type: string | null
           for_whom: string
           id: string
           name: string | null
+          profile: string | null
         }
         Insert: {
           case_details: string
           contact: string
           created_at?: string
+          disability_type?: string | null
           for_whom: string
           id?: string
           name?: string | null
+          profile?: string | null
         }
         Update: {
           case_details?: string
           contact?: string
           created_at?: string
+          disability_type?: string | null
           for_whom?: string
           id?: string
           name?: string | null
+          profile?: string | null
         }
         Relationships: []
       }

@@ -34,10 +34,35 @@ const CASE_PLACEHOLDER: Record<ForWhom, string> = {
   albergue: "¿Quién es la persona y en qué albergue está? Edad, situación y qué le pasa.",
 };
 
+type Profile = "general" | "nino" | "cuidador" | "mayor" | "discapacidad";
+type Disability = "visual" | "auditiva" | "motora" | "cognitiva" | "otra";
+
+const PROFILE_OPTIONS: { value: Profile; label: string }[] = [
+  { value: "general", label: "Adulto" },
+  { value: "nino", label: "Niño / adolescente" },
+  { value: "cuidador", label: "Madre/padre cuidador/a" },
+  { value: "mayor", label: "Adulto mayor" },
+  { value: "discapacidad", label: "Persona con discapacidad" },
+];
+
+const DISABILITY_OPTIONS: { value: Disability; label: string }[] = [
+  { value: "visual", label: "Visual" },
+  { value: "auditiva", label: "Auditiva" },
+  { value: "motora", label: "Motora" },
+  { value: "cognitiva", label: "Cognitiva" },
+  { value: "otra", label: "Otra" },
+];
+
 const schema = z.object({
   for_whom: z.enum(["mi", "otra", "albergue"], {
     errorMap: () => ({ message: "Elige para quién es el apoyo." }),
   }),
+  profile: z
+    .enum(["general", "nino", "cuidador", "mayor", "discapacidad"])
+    .nullable(),
+  disability_type: z
+    .enum(["visual", "auditiva", "motora", "cognitiva", "otra"])
+    .nullable(),
   case_details: z
     .string()
     .trim()
@@ -53,6 +78,8 @@ const schema = z.object({
 
 function Ayuda() {
   const [forWhom, setForWhom] = useState<ForWhom | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [disability, setDisability] = useState<Disability | null>(null);
   const [caseDetails, setCaseDetails] = useState("");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
@@ -66,6 +93,8 @@ function Ayuda() {
     setError(null);
     const parsed = schema.safeParse({
       for_whom: forWhom ?? undefined,
+      profile,
+      disability_type: profile === "discapacidad" ? disability : null,
       case_details: caseDetails,
       name,
       contact,
@@ -77,6 +106,8 @@ function Ayuda() {
     setStatus("sending");
     const { error: dbError } = await supabase.from("support_requests").insert({
       for_whom: parsed.data.for_whom,
+      profile: parsed.data.profile,
+      disability_type: parsed.data.disability_type,
       case_details: parsed.data.case_details,
       name: parsed.data.name?.length ? parsed.data.name : null,
       contact: parsed.data.contact,
@@ -90,6 +121,8 @@ function Ayuda() {
     }
     setStatus("sent");
     setForWhom(null);
+    setProfile(null);
+    setDisability(null);
     setCaseDetails("");
     setName("");
     setContact("");
@@ -159,6 +192,67 @@ function Ayuda() {
               );
             })}
           </div>
+        </fieldset>
+
+        <fieldset>
+          <legend className="text-sm font-medium text-foreground">
+            ¿Quién es la persona?{" "}
+            <span className="text-muted-foreground">(opcional)</span>
+          </legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {PROFILE_OPTIONS.map((opt) => {
+              const selected = profile === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => {
+                    setProfile(selected ? null : opt.value);
+                    if (opt.value !== "discapacidad") setDisability(null);
+                  }}
+                  aria-pressed={selected}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    selected
+                      ? "border-primary bg-primary/10 text-foreground"
+                      : "border-border bg-card text-muted-foreground hover:border-primary/60"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {profile === "discapacidad" && (
+            <div className="mt-4">
+              <p className="text-sm font-medium text-foreground">
+                Tipo de apoyo que necesita
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Para adaptar cómo y por qué canal la contactamos.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {DISABILITY_OPTIONS.map((opt) => {
+                  const selected = disability === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => setDisability(selected ? null : opt.value)}
+                      aria-pressed={selected}
+                      className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                        selected
+                          ? "border-primary bg-primary/10 text-foreground"
+                          : "border-border bg-card text-muted-foreground hover:border-primary/60"
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </fieldset>
 
         <div>
