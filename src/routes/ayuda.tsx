@@ -194,7 +194,7 @@ function Ayuda() {
             ¿Para quién es el apoyo?
           </legend>
           <div className="mt-3 grid gap-2 sm:grid-cols-3">
-            {OPTIONS.map((opt) => {
+            {FOR_WHOM_OPTIONS.map((opt) => {
               const selected = forWhom === opt.value;
               return (
                 <button
@@ -214,6 +214,64 @@ function Ayuda() {
             })}
           </div>
         </fieldset>
+
+        <fieldset>
+          <legend className="text-sm font-medium text-foreground">
+            Perfil de la persona <span className="text-muted-foreground font-normal">(opcional)</span>
+          </legend>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {PROFILE_OPTIONS.map((opt) => {
+              const selected = profile === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => {
+                    const next = selected ? null : opt.value;
+                    setProfile(next);
+                    if (next !== "discapacidad") setDisabilityType(null);
+                  }}
+                  aria-pressed={selected}
+                  className={`rounded-xl border px-3.5 py-2.5 text-sm font-medium transition-colors text-left ${
+                    selected
+                      ? "border-primary bg-primary/10 text-foreground"
+                      : "border-border bg-card text-muted-foreground hover:border-primary/60"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        {profile === "discapacidad" && (
+          <fieldset className="rounded-2xl border border-border bg-secondary/20 p-4 sm:p-5 transition-all">
+            <legend className="text-sm font-medium text-foreground px-1">
+              ¿Qué tipo de discapacidad? <span className="text-muted-foreground font-normal">(para adaptar el canal)</span>
+            </legend>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              {DISABILITY_OPTIONS.map((opt) => {
+                const selected = disabilityType === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setDisabilityType(selected ? null : opt.value)}
+                    aria-pressed={selected}
+                    className={`rounded-xl border px-3 py-2 text-xs sm:text-sm font-medium transition-colors ${
+                      selected
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border bg-card text-muted-foreground hover:border-primary/60"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
+        )}
 
         {forWhom === "albergue" && (
           <div className="space-y-4 rounded-2xl border border-border bg-secondary/30 p-4 sm:p-5">
