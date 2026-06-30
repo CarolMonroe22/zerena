@@ -21,11 +21,29 @@ export const Route = createFileRoute("/ayuda")({
 });
 
 type ForWhom = "mi" | "otra" | "albergue";
+type ProfileType = "adulto" | "nino_adolescente" | "cuidador" | "adulto_mayor" | "discapacidad";
+type DisabilityType = "visual" | "auditiva" | "motora" | "cognitiva" | "otra";
 
-const OPTIONS: { value: ForWhom; label: string }[] = [
+const FOR_WHOM_OPTIONS: { value: ForWhom; label: string }[] = [
   { value: "mi", label: "Para mí" },
   { value: "otra", label: "Para otra persona" },
   { value: "albergue", label: "Para alguien de un albergue" },
+];
+
+const PROFILE_OPTIONS: { value: ProfileType; label: string }[] = [
+  { value: "adulto", label: "Adulto" },
+  { value: "nino_adolescente", label: "Niño o adolescente" },
+  { value: "cuidador", label: "Cuidador / a cargo de otros" },
+  { value: "adulto_mayor", label: "Adulto mayor" },
+  { value: "discapacidad", label: "Persona con discapacidad" },
+];
+
+const DISABILITY_OPTIONS: { value: DisabilityType; label: string }[] = [
+  { value: "visual", label: "Visual" },
+  { value: "auditiva", label: "Auditiva" },
+  { value: "motora", label: "Motora / física" },
+  { value: "cognitiva", label: "Cognitiva" },
+  { value: "otra", label: "Otra" },
 ];
 
 const CASE_PLACEHOLDER: Record<ForWhom, string> = {
@@ -38,6 +56,8 @@ const schema = z.object({
   for_whom: z.enum(["mi", "otra", "albergue"], {
     errorMap: () => ({ message: "Elige para quién es el apoyo." }),
   }),
+  profile: z.enum(["adulto", "nino_adolescente", "cuidador", "adulto_mayor", "discapacidad"]).optional(),
+  disability_type: z.enum(["visual", "auditiva", "motora", "cognitiva", "otra"]).optional(),
   shelter_name: z.string().trim().max(300).optional(),
   shelter_location: z.string().trim().max(300).optional(),
   shelter_people_count: z.string().trim().max(100).optional(),
