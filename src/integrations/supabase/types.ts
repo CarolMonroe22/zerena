@@ -129,7 +129,15 @@ export type Database = {
           salio_a_flote?: string | null
           temas_tratados?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "session_notes_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "support_requests"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       support_requests: {
         Row: {
