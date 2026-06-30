@@ -153,10 +153,9 @@ function Ayuda() {
           Apoyo psicológico profesional
         </h1>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          Estamos trabajando para conectarte con un profesional de la salud mental.
-          Según el caso, puede ser en charlas grupales por Zoom o de forma
-          individual. Déjanos tus datos y cuéntanos el caso, y nos contactaremos
-          contigo.
+          Déjanos tus datos y te asignaremos un profesional. Según el caso será
+          una charla grupal por videollamada o atención individual. Nos pondremos
+          en contacto contigo.
         </p>
       </header>
 
@@ -187,66 +186,68 @@ function Ayuda() {
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend className="text-sm font-medium text-foreground">
-            ¿Quién es la persona?{" "}
-            <span className="text-muted-foreground">(opcional)</span>
-          </legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {PROFILE_OPTIONS.map((opt) => {
-              const selected = profile === opt.value;
-              return (
-                <button
-                  key={opt.value}
-                  type="button"
-                  onClick={() => {
-                    setProfile(selected ? null : opt.value);
-                    if (opt.value !== "discapacidad") setDisability(null);
-                  }}
-                  aria-pressed={selected}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                    selected
-                      ? "border-primary bg-primary/10 text-foreground"
-                      : "border-border bg-card text-muted-foreground hover:border-primary/60"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {profile === "discapacidad" && (
-            <div className="mt-4">
-              <p className="text-sm font-medium text-foreground">
-                Tipo de apoyo que necesita
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Para adaptar cómo y por qué canal la contactamos.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {DISABILITY_OPTIONS.map((opt) => {
-                  const selected = disability === opt.value;
-                  return (
-                    <button
-                      key={opt.value}
-                      type="button"
-                      onClick={() => setDisability(selected ? null : opt.value)}
-                      aria-pressed={selected}
-                      className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                        selected
-                          ? "border-primary bg-primary/10 text-foreground"
-                          : "border-border bg-card text-muted-foreground hover:border-primary/60"
-                      }`}
-                    >
-                      {opt.label}
-                    </button>
-                  );
-                })}
-              </div>
+        {forWhom === "albergue" && (
+          <div className="space-y-4 rounded-2xl border border-border bg-secondary/30 p-4 sm:p-5">
+            <p className="font-serif text-base text-foreground">Datos del albergue</p>
+            <div>
+              <label htmlFor="shelterName" className="block text-sm font-medium text-foreground">
+                Nombre del albergue
+              </label>
+              <input
+                id="shelterName"
+                type="text"
+                required
+                value={shelterName}
+                onChange={(e) => setShelterName(e.target.value)}
+                maxLength={300}
+                className="mt-1.5 w-full rounded-xl border border-border bg-card px-4 py-2.5 text-base text-foreground outline-none focus:border-primary"
+              />
             </div>
-          )}
-        </fieldset>
+            <div>
+              <label htmlFor="shelterLocation" className="block text-sm font-medium text-foreground">
+                Ubicación / zona (ciudad, sector)
+              </label>
+              <input
+                id="shelterLocation"
+                type="text"
+                required
+                value={shelterLocation}
+                onChange={(e) => setShelterLocation(e.target.value)}
+                maxLength={300}
+                className="mt-1.5 w-full rounded-xl border border-border bg-card px-4 py-2.5 text-base text-foreground outline-none focus:border-primary"
+              />
+            </div>
+            <div>
+              <label htmlFor="shelterPeople" className="block text-sm font-medium text-foreground">
+                Aproximadamente cuántas personas hay
+              </label>
+              <input
+                id="shelterPeople"
+                type="text"
+                required
+                value={shelterPeopleCount}
+                onChange={(e) => setShelterPeopleCount(e.target.value)}
+                maxLength={100}
+                placeholder="Ej. 45 personas"
+                className="mt-1.5 w-full rounded-xl border border-border bg-card px-4 py-2.5 text-base text-foreground outline-none focus:border-primary"
+              />
+            </div>
+            <div>
+              <label htmlFor="shelterContact" className="block text-sm font-medium text-foreground">
+                Contacto del albergue <span className="text-muted-foreground">(opcional)</span>
+              </label>
+              <input
+                id="shelterContact"
+                type="text"
+                value={shelterContact}
+                onChange={(e) => setShelterContact(e.target.value)}
+                maxLength={300}
+                placeholder="Teléfono o encargado del albergue"
+                className="mt-1.5 w-full rounded-xl border border-border bg-card px-4 py-2.5 text-base text-foreground outline-none focus:border-primary"
+              />
+            </div>
+          </div>
+        )}
 
         <div>
           <label
@@ -298,24 +299,38 @@ function Ayuda() {
           />
         </div>
 
+        <div>
+          <label className="flex items-start gap-3 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              required
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-border accent-primary cursor-pointer"
+            />
+            <span className="text-sm leading-relaxed text-foreground/90">
+              He leído y acepto la{" "}
+              <Link
+                to="/privacidad"
+                className="text-primary underline-offset-4 hover:underline font-medium"
+              >
+                política de privacidad
+              </Link>
+              .
+            </span>
+          </label>
+        </div>
+
         {error && (
           <p className="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive">
             {error}
           </p>
         )}
 
-        <p className="text-xs leading-relaxed text-muted-foreground">
-          Solo usamos esto para contactarte. No lo compartimos con nadie.{" "}
-          <Link to="/privacidad" className="text-primary underline-offset-4 hover:underline">
-            Tu privacidad
-          </Link>
-          .
-        </p>
-
         <div className="flex justify-end">
           <button
             type="submit"
-            disabled={status === "sending"}
+            disabled={status === "sending" || !consent}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px disabled:opacity-60"
           >
             {status === "sending" ? "Enviando…" : "Enviar solicitud"}
