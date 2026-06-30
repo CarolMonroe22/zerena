@@ -38,6 +38,33 @@ export type Database = {
         }
         Relationships: []
       }
+      support_requests: {
+        Row: {
+          case_details: string
+          contact: string
+          created_at: string
+          for_whom: string
+          id: string
+          name: string | null
+        }
+        Insert: {
+          case_details: string
+          contact: string
+          created_at?: string
+          for_whom: string
+          id?: string
+          name?: string | null
+        }
+        Update: {
+          case_details?: string
+          contact?: string
+          created_at?: string
+          for_whom?: string
+          id?: string
+          name?: string | null
+        }
+        Relationships: []
+      }
       network_signups: {
         Row: {
           availability: string | null
