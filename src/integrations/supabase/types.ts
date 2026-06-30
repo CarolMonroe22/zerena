@@ -38,39 +38,6 @@ export type Database = {
         }
         Relationships: []
       }
-      support_requests: {
-        Row: {
-          case_details: string
-          contact: string
-          created_at: string
-          disability_type: string | null
-          for_whom: string
-          id: string
-          name: string | null
-          profile: string | null
-        }
-        Insert: {
-          case_details: string
-          contact: string
-          created_at?: string
-          disability_type?: string | null
-          for_whom: string
-          id?: string
-          name?: string | null
-          profile?: string | null
-        }
-        Update: {
-          case_details?: string
-          contact?: string
-          created_at?: string
-          disability_type?: string | null
-          for_whom?: string
-          id?: string
-          name?: string | null
-          profile?: string | null
-        }
-        Relationships: []
-      }
       network_signups: {
         Row: {
           availability: string | null
@@ -128,6 +95,54 @@ export type Database = {
           study_year?: string | null
           training_done?: string | null
           website?: string | null
+        }
+        Relationships: []
+      }
+      support_requests: {
+        Row: {
+          consent: boolean
+          contact: string
+          contact_is: string
+          created_at: string
+          for_whom: string
+          id: string
+          shelter: string | null
+          shelter_contact: string | null
+          shelter_location: string | null
+          shelter_name: string | null
+          shelter_people_count: string | null
+          signs: string | null
+          urgency: string
+        }
+        Insert: {
+          consent?: boolean
+          contact: string
+          contact_is: string
+          created_at?: string
+          for_whom: string
+          id?: string
+          shelter?: string | null
+          shelter_contact?: string | null
+          shelter_location?: string | null
+          shelter_name?: string | null
+          shelter_people_count?: string | null
+          signs?: string | null
+          urgency: string
+        }
+        Update: {
+          consent?: boolean
+          contact?: string
+          contact_is?: string
+          created_at?: string
+          for_whom?: string
+          id?: string
+          shelter?: string | null
+          shelter_contact?: string | null
+          shelter_location?: string | null
+          shelter_name?: string | null
+          shelter_people_count?: string | null
+          signs?: string | null
+          urgency?: string
         }
         Relationships: []
       }
