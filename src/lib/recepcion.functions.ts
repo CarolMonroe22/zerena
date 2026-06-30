@@ -163,3 +163,66 @@ export const assignSupportRequest = createServerFn({ method: "POST" })
     if (error) throw error;
     return { ok: true };
   });
+
+// 7. Hoja de seguimiento: notas de sesión por caso
+export type SessionNote = {
+  id: string;
+  case_id: string;
+  author_id: string;
+  created_at: string;
+  temas_tratados: string | null;
+  salio_a_flote: string | null;
+  indicaciones: string | null;
+  evolucion: "mas_tranquila" | "igual" | "agitada" | null;
+};
+
+export const getSessionNotes = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) =>
+    z.object({ caseId: z.string().uuid() }).parse(data)
+  )
+  .handler(async ({ context, data }) => {
+    const { data: notes, error } = await context.supabase
+      .from("session_notes")
+      .select("*")
+      .eq("case_id", data.caseId)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching session notes:", error);
+      throw error;
+    }
+    return (notes || []) as SessionNote[];
+  });
+
+export const addSessionNote = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) =>
+    z
+      .object({
+        case_id: z.string().uuid(),
+        temas_tratados: z.string().max(5000).optional(),
+        salio_a_flote: z.string().max(5000).optional(),
+        indicaciones: z.string().max(5000).optional(),
+        evolucion: z.enum(["mas_tranquila", "igual", "agitada"]).optional(),
+      })
+      .refine(
+        (d) =>
+          !!(d.temas_tratados || d.salio_a_flote || d.indicaciones || d.evolucion),
+        { message: "La nota no puede estar vacía." }
+      )
+      .parse(data)
+  )
+  .handler(async ({ context, data }) => {
+    const { error } = await context.supabase.from("session_notes").insert({
+      case_id: data.case_id,
+      author_id: context.userId,
+      temas_tratados: data.temas_tratados || null,
+      salio_a_flote: data.salio_a_flote || null,
+      indicaciones: data.indicaciones || null,
+      evolucion: data.evolucion || null,
+    });
+
+    if (error) throw error;
+    return { ok: true };
+  });

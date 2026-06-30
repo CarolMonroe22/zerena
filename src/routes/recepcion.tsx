@@ -17,6 +17,8 @@ import {
   LogOut,
   RefreshCw,
   MessageSquare,
+  NotebookPen,
+  Plus,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SerenaMark } from "@/components/SerenaMark";
@@ -27,9 +29,12 @@ import {
   updateRequestUrgency,
   updateRequestStatus,
   assignSupportRequest,
+  getSessionNotes,
+  addSessionNote,
   type SupportRequestItem,
   type StaffMember,
   type StaffRole,
+  type SessionNote,
 } from "@/lib/recepcion.functions";
 
 export const Route = createFileRoute("/recepcion")({
@@ -550,6 +555,12 @@ function InboxView({
                   </span>
                 </div>
 
+                {/* HOJA DE SEGUIMIENTO */}
+                <CaseNotes
+                  caseId={req.id}
+                  canWrite={isCoordinator || req.assigned_to === user.id}
+                />
+
                 {/* ZONA DE ACCIONES GRANDES Y CLARAS */}
                 <div className="mt-6 pt-5 border-t border-border flex flex-wrap items-center justify-between gap-4 bg-secondary/30 -mx-5 -mb-5 p-5 sm:-mx-6 sm:-mb-6 sm:p-6">
                   {/* Grupo 1: Estado y Urgencia */}
@@ -665,6 +676,215 @@ function InboxView({
           })
         )}
       </section>
+    </div>
+  );
+}
+
+// ==========================================
+// HOJA DE SEGUIMIENTO (notas de sesión por caso)
+// ==========================================
+
+function CaseNotes({ caseId, canWrite }: { caseId: string; canWrite: boolean }) {
+  const queryClient = useQueryClient();
+  const [open, setOpen] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [temas, setTemas] = useState("");
+  const [salio, setSalio] = useState("");
+  const [indicaciones, setIndicaciones] = useState("");
+  const [evolucion, setEvolucion] = useState<"mas_tranquila" | "igual" | "agitada" | null>(null);
+
+  const fetchNotes = useServerFn(getSessionNotes);
+  const addNote = useServerFn(addSessionNote);
+
+  const { data: notes = [], isLoading } = useQuery({
+    queryKey: ["session_notes", caseId],
+    queryFn: () => fetchNotes({ data: { caseId } }),
+    enabled: open,
+  });
+
+  const addMut = useMutation({
+    mutationFn: () =>
+      addNote({
+        data: {
+          case_id: caseId,
+          temas_tratados: temas || undefined,
+          salio_a_flote: salio || undefined,
+          indicaciones: indicaciones || undefined,
+          evolucion: evolucion || undefined,
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["session_notes", caseId] });
+      setTemas("");
+      setSalio("");
+      setIndicaciones("");
+      setEvolucion(null);
+      setShowForm(false);
+    },
+  });
+
+  const evoLabel = (e: string | null) =>
+    e === "mas_tranquila"
+      ? "🌤️ Más tranquila"
+      : e === "igual"
+      ? "➖ Igual"
+      : e === "agitada"
+      ? "⚡ Agitada"
+      : "";
+
+  const empty = !temas && !salio && !indicaciones && !evolucion;
+
+  return (
+    <div className="mt-5 border-t border-border pt-4">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sage-deep"
+      >
+        <NotebookPen size={15} /> Hoja de seguimiento
+        {notes.length > 0 ? ` (${notes.length})` : ""}
+        <ChevronDown size={14} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <div className="mt-3 space-y-3">
+          {canWrite && !showForm && (
+            <button
+              type="button"
+              onClick={() => setShowForm(true)}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sage-deep px-4 py-2.5 text-xs font-bold text-primary-foreground shadow-sm hover:opacity-90"
+            >
+              <Plus size={16} /> Nueva nota de sesión
+            </button>
+          )}
+
+          {canWrite && showForm && (
+            <div className="space-y-3 rounded-2xl border border-border bg-background p-4">
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-foreground">Temas tratados</label>
+                <textarea
+                  value={temas}
+                  onChange={(e) => setTemas(e.target.value)}
+                  rows={2}
+                  className="w-full rounded-xl border border-border bg-card p-3 text-sm outline-none focus:ring-2 focus:ring-sage"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-foreground">Lo que salió a flote</label>
+                <textarea
+                  value={salio}
+                  onChange={(e) => setSalio(e.target.value)}
+                  rows={2}
+                  className="w-full rounded-xl border border-border bg-card p-3 text-sm outline-none focus:ring-2 focus:ring-sage"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-foreground">Indicaciones dadas</label>
+                <textarea
+                  value={indicaciones}
+                  onChange={(e) => setIndicaciones(e.target.value)}
+                  rows={2}
+                  className="w-full rounded-xl border border-border bg-card p-3 text-sm outline-none focus:ring-2 focus:ring-sage"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-xs font-semibold text-foreground">¿Cómo se le vio?</label>
+                <div className="flex flex-wrap gap-2">
+                  {(
+                    [
+                      ["mas_tranquila", "🌤️ Más tranquila"],
+                      ["igual", "➖ Igual"],
+                      ["agitada", "⚡ Agitada"],
+                    ] as const
+                  ).map(([val, label]) => (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => setEvolucion(evolucion === val ? null : val)}
+                      className={`rounded-xl border px-3 py-2 text-xs font-semibold transition-colors ${
+                        evolucion === val
+                          ? "border-sage-deep bg-sage-deep/10 text-sage-deep"
+                          : "border-border bg-card text-foreground hover:bg-secondary"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {addMut.isError && (
+                <p className="text-xs text-destructive">
+                  No se pudo guardar la nota. Verifica que el caso esté asignado a ti.
+                </p>
+              )}
+              <div className="flex items-center gap-2 pt-1">
+                <button
+                  type="button"
+                  disabled={addMut.isPending || empty}
+                  onClick={() => addMut.mutate()}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-sage-deep px-4 py-2.5 text-xs font-bold text-primary-foreground disabled:opacity-50"
+                >
+                  {addMut.isPending ? "Guardando…" : "Guardar nota"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                  className="rounded-xl border border-border px-4 py-2.5 text-xs font-medium text-muted-foreground hover:bg-secondary"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          )}
+
+          {isLoading ? (
+            <p className="py-2 text-xs text-muted-foreground">Cargando notas…</p>
+          ) : notes.length === 0 ? (
+            <p className="py-2 text-xs text-muted-foreground">
+              Aún no hay notas de seguimiento para este caso.
+            </p>
+          ) : (
+            <div className="space-y-2.5">
+              {notes.map((n: SessionNote) => {
+                const d = new Date(n.created_at).toLocaleString("es-VE", {
+                  day: "numeric",
+                  month: "short",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+                return (
+                  <div key={n.id} className="rounded-xl border border-border/60 bg-card p-3.5 text-sm">
+                    <div className="flex items-center justify-between gap-2 text-xs text-muted-foreground">
+                      <span>{d}</span>
+                      {n.evolucion && (
+                        <span className="font-semibold text-foreground">{evoLabel(n.evolucion)}</span>
+                      )}
+                    </div>
+                    {n.temas_tratados && (
+                      <p className="mt-2">
+                        <b className="text-xs text-muted-foreground">Temas: </b>
+                        {n.temas_tratados}
+                      </p>
+                    )}
+                    {n.salio_a_flote && (
+                      <p className="mt-1">
+                        <b className="text-xs text-muted-foreground">Salió a flote: </b>
+                        {n.salio_a_flote}
+                      </p>
+                    )}
+                    {n.indicaciones && (
+                      <p className="mt-1">
+                        <b className="text-xs text-muted-foreground">Indicaciones: </b>
+                        {n.indicaciones}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

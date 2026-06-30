@@ -98,6 +98,39 @@ export type Database = {
         }
         Relationships: []
       }
+      session_notes: {
+        Row: {
+          author_id: string
+          case_id: string
+          created_at: string
+          evolucion: string | null
+          id: string
+          indicaciones: string | null
+          salio_a_flote: string | null
+          temas_tratados: string | null
+        }
+        Insert: {
+          author_id: string
+          case_id: string
+          created_at?: string
+          evolucion?: string | null
+          id?: string
+          indicaciones?: string | null
+          salio_a_flote?: string | null
+          temas_tratados?: string | null
+        }
+        Update: {
+          author_id?: string
+          case_id?: string
+          created_at?: string
+          evolucion?: string | null
+          id?: string
+          indicaciones?: string | null
+          salio_a_flote?: string | null
+          temas_tratados?: string | null
+        }
+        Relationships: []
+      }
       support_requests: {
         Row: {
           assigned_to: string | null
