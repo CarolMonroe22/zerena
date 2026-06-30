@@ -239,19 +239,23 @@ function InboxView({
     queryFn: () => fetchStaff(),
   });
 
+  const urgencyFn = useServerFn(updateRequestUrgency);
+  const statusFn = useServerFn(updateRequestStatus);
+  const assignFn = useServerFn(assignSupportRequest);
+
   // Mutaciones
   const urgencyMut = useMutation({
-    mutationFn: useServerFn(updateRequestUrgency),
+    mutationFn: (args: { id: string; urgency: "alta" | "media" | "baja" }) => urgencyFn({ data: args }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["inbox_requests"] }),
   });
 
   const statusMut = useMutation({
-    mutationFn: useServerFn(updateRequestStatus),
+    mutationFn: (args: { id: string; status: "nuevo" | "en_seguimiento" | "cerrado" }) => statusFn({ data: args }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["inbox_requests"] }),
   });
 
   const assignMut = useMutation({
-    mutationFn: useServerFn(assignSupportRequest),
+    mutationFn: (args: { id: string; assigned_to: string | null }) => assignFn({ data: args }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["inbox_requests"] }),
   });
 
