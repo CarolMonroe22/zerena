@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, HandHeart, Users } from "lucide-react";
+import { Heart, HandHeart, Users, LifeBuoy } from "lucide-react";
 import { SerenaMark } from "@/components/SerenaMark";
 import { PageShell } from "@/components/PageShell";
 import { IconBubble } from "@/components/IconBubble";
@@ -42,6 +42,12 @@ function Welcome() {
           icon={<HandHeart size={18} />}
           title="Quiero ayudar a alguien"
           desc="Acompañar a otra persona con cuidado."
+        />
+        <PathCard
+          to="/ayuda"
+          icon={<LifeBuoy size={18} />}
+          title="Necesito apoyo profesional"
+          desc="Déjanos tus datos y te conectamos con un profesional que te acompañe."
         />
         <PathCard
           to="/red"

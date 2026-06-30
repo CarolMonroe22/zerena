@@ -34,35 +34,14 @@ const CASE_PLACEHOLDER: Record<ForWhom, string> = {
   albergue: "¿Quién es la persona y en qué albergue está? Edad, situación y qué le pasa.",
 };
 
-type Profile = "general" | "nino" | "cuidador" | "mayor" | "discapacidad";
-type Disability = "visual" | "auditiva" | "motora" | "cognitiva" | "otra";
-
-const PROFILE_OPTIONS: { value: Profile; label: string }[] = [
-  { value: "general", label: "Adulto" },
-  { value: "nino", label: "Niño / adolescente" },
-  { value: "cuidador", label: "Madre/padre cuidador/a" },
-  { value: "mayor", label: "Adulto mayor" },
-  { value: "discapacidad", label: "Persona con discapacidad" },
-];
-
-const DISABILITY_OPTIONS: { value: Disability; label: string }[] = [
-  { value: "visual", label: "Visual" },
-  { value: "auditiva", label: "Auditiva" },
-  { value: "motora", label: "Motora" },
-  { value: "cognitiva", label: "Cognitiva" },
-  { value: "otra", label: "Otra" },
-];
-
 const schema = z.object({
   for_whom: z.enum(["mi", "otra", "albergue"], {
     errorMap: () => ({ message: "Elige para quién es el apoyo." }),
   }),
-  profile: z
-    .enum(["general", "nino", "cuidador", "mayor", "discapacidad"])
-    .nullable(),
-  disability_type: z
-    .enum(["visual", "auditiva", "motora", "cognitiva", "otra"])
-    .nullable(),
+  shelter_name: z.string().trim().max(300).optional(),
+  shelter_location: z.string().trim().max(300).optional(),
+  shelter_people_count: z.string().trim().max(100).optional(),
+  shelter_contact: z.string().trim().max(300).optional(),
   case_details: z
     .string()
     .trim()
@@ -74,15 +53,21 @@ const schema = z.object({
     .trim()
     .min(1, "Déjanos un correo o WhatsApp para contactarte.")
     .max(300),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "Debes aceptar la política de privacidad para enviar tu solicitud." }),
+  }),
 });
 
 function Ayuda() {
   const [forWhom, setForWhom] = useState<ForWhom | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [disability, setDisability] = useState<Disability | null>(null);
+  const [shelterName, setShelterName] = useState("");
+  const [shelterLocation, setShelterLocation] = useState("");
+  const [shelterPeopleCount, setShelterPeopleCount] = useState("");
+  const [shelterContact, setShelterContact] = useState("");
   const [caseDetails, setCaseDetails] = useState("");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -93,11 +78,14 @@ function Ayuda() {
     setError(null);
     const parsed = schema.safeParse({
       for_whom: forWhom ?? undefined,
-      profile,
-      disability_type: profile === "discapacidad" ? disability : null,
+      shelter_name: forWhom === "albergue" ? shelterName : undefined,
+      shelter_location: forWhom === "albergue" ? shelterLocation : undefined,
+      shelter_people_count: forWhom === "albergue" ? shelterPeopleCount : undefined,
+      shelter_contact: forWhom === "albergue" ? shelterContact : undefined,
       case_details: caseDetails,
       name,
       contact,
+      consent: consent ? true : undefined,
     });
     if (!parsed.success) {
       setError(parsed.error.issues[0]?.message ?? "Revisa los datos, por favor.");
@@ -106,11 +94,13 @@ function Ayuda() {
     setStatus("sending");
     const { error: dbError } = await supabase.from("support_requests").insert({
       for_whom: parsed.data.for_whom,
-      profile: parsed.data.profile,
-      disability_type: parsed.data.disability_type,
       case_details: parsed.data.case_details,
       name: parsed.data.name?.length ? parsed.data.name : null,
       contact: parsed.data.contact,
+      shelter_name: parsed.data.for_whom === "albergue" && parsed.data.shelter_name?.length ? parsed.data.shelter_name : null,
+      shelter_location: parsed.data.for_whom === "albergue" && parsed.data.shelter_location?.length ? parsed.data.shelter_location : null,
+      shelter_people_count: parsed.data.for_whom === "albergue" && parsed.data.shelter_people_count?.length ? parsed.data.shelter_people_count : null,
+      shelter_contact: parsed.data.for_whom === "albergue" && parsed.data.shelter_contact?.length ? parsed.data.shelter_contact : null,
     });
     if (dbError) {
       setStatus("error");
@@ -121,11 +111,14 @@ function Ayuda() {
     }
     setStatus("sent");
     setForWhom(null);
-    setProfile(null);
-    setDisability(null);
+    setShelterName("");
+    setShelterLocation("");
+    setShelterPeopleCount("");
+    setShelterContact("");
     setCaseDetails("");
     setName("");
     setContact("");
+    setConsent(false);
   }
 
   if (status === "sent") {
