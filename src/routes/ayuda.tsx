@@ -80,6 +80,8 @@ const schema = z.object({
 
 function Ayuda() {
   const [forWhom, setForWhom] = useState<ForWhom | null>(null);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
+  const [disabilityType, setDisabilityType] = useState<DisabilityType | null>(null);
   const [shelterName, setShelterName] = useState("");
   const [shelterLocation, setShelterLocation] = useState("");
   const [shelterPeopleCount, setShelterPeopleCount] = useState("");
@@ -98,6 +100,8 @@ function Ayuda() {
     setError(null);
     const parsed = schema.safeParse({
       for_whom: forWhom ?? undefined,
+      profile: profile ?? undefined,
+      disability_type: profile === "discapacidad" ? (disabilityType ?? undefined) : undefined,
       shelter_name: forWhom === "albergue" ? shelterName : undefined,
       shelter_location: forWhom === "albergue" ? shelterLocation : undefined,
       shelter_people_count: forWhom === "albergue" ? shelterPeopleCount : undefined,
@@ -114,11 +118,12 @@ function Ayuda() {
     setStatus("sending");
     const { error: dbError } = await supabase.from("support_requests").insert({
       for_whom: parsed.data.for_whom,
-      signs: parsed.data.case_details,
-      urgency: "pronto",
-      contact_is: "persona",
-      consent: true,
+      case_details: parsed.data.case_details,
+      name: parsed.data.name?.length ? parsed.data.name : null,
       contact: parsed.data.contact,
+      profile: parsed.data.profile ?? null,
+      disability_type: parsed.data.profile === "discapacidad" ? (parsed.data.disability_type ?? null) : null,
+      consent: true,
       shelter_name: parsed.data.for_whom === "albergue" && parsed.data.shelter_name?.length ? parsed.data.shelter_name : null,
       shelter_location: parsed.data.for_whom === "albergue" && parsed.data.shelter_location?.length ? parsed.data.shelter_location : null,
       shelter_people_count: parsed.data.for_whom === "albergue" && parsed.data.shelter_people_count?.length ? parsed.data.shelter_people_count : null,
@@ -133,6 +138,8 @@ function Ayuda() {
     }
     setStatus("sent");
     setForWhom(null);
+    setProfile(null);
+    setDisabilityType(null);
     setShelterName("");
     setShelterLocation("");
     setShelterPeopleCount("");
