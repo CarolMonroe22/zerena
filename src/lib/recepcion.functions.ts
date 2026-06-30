@@ -16,6 +16,7 @@ export type SupportRequestItem = {
   shelter_name: string | null;
   shelter_location: string | null;
   shelter_people_count: string | null;
+  shelter_contact: string | null;
   status: "nuevo" | "en_seguimiento" | "cerrado";
   urgency: "alta" | "media" | "baja";
   assigned_to: string | null;
