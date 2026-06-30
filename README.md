@@ -48,7 +48,7 @@ El navegador **solo puede enviar** (un formulario de la red, un mensaje de conta
 - Tailwind CSS
 - PostgreSQL (nube) con Row Level Security
 - PWA con Service Worker (offline-first)
-- Construida y desplegada con [Lovable](https://lovable.dev)
+- Construida con **Claude Code** (y varias herramientas más); desplegada en Lovable
 
 ## Desarrollo local
 
