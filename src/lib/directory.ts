@@ -48,7 +48,7 @@ export const DIRECTORY: DirectorySection[] = [
         name: "Médicos Sin Fronteras",
         phone: "0414-0179925",
         tel: "tel:+584140179925",
-        detail: "Trauma · 24/7 · gratuito",
+        detail: "Violencia sexual y trauma · 24/7 · gratuito (Caracas y Miranda)",
         highlight: "primary",
       },
       {
@@ -58,21 +58,39 @@ export const DIRECTORY: DirectorySection[] = [
         detail: "Primeros Auxilios Psicológicos · viernes a domingo",
       },
       {
+        name: "Federación de Psicólogos (LAPSI · línea actual)",
+        phone: "0424-2907338",
+        tel: "tel:+584242907338",
+        detail: "Primeros auxilios psicológicos e intervención en crisis · diaria 8am-2am",
+      },
+      {
+        name: "Federación de Psicólogos (SEAPSI)",
+        phone: "0424-2041281",
+        tel: "tel:+584242041281",
+        detail: "Atención psicológica integral · presencial y online · gratuita",
+      },
+      {
         name: "Federación de Psicólogos · «SolidariaMente»",
         phone: "0424-1630117",
         tel: "tel:+584241630117",
-        detail: "Apoyo grupal gratuito, online por Zoom",
+        detail: "Comunidad virtual de apoyo emocional · gratuito",
       },
       {
         name: "Psicólogos sin Fronteras / Cesap",
         phone: "0424-2925604",
         tel: "tel:+584242925604",
-        detail: "Duelo · WhatsApp",
+        detail: "Duelo · WhatsApp lun-vie 8am-4pm · finde por Telegram @Psi_AcompDolor",
       },
       {
         name: "UCAB PsicoLínea",
         phone: "0414-1217882",
         tel: "tel:+584141217882",
+        detail: "Jueves de 8 a.m. a 5 p.m.",
+      },
+      {
+        name: "UCAB PsicoLínea (alterno)",
+        phone: "0424-1723981",
+        tel: "tel:+584241723981",
         detail: "Jueves de 8 a.m. a 5 p.m.",
       },
       {
@@ -82,10 +100,16 @@ export const DIRECTORY: DirectorySection[] = [
         detail: "Niños y adolescentes",
       },
       {
+        name: "Cecodap (WhatsApp)",
+        phone: "0424-2842359",
+        tel: "tel:+584242842359",
+        detail: "Niños y adolescentes · canal virtual activo",
+      },
+      {
         name: "AVESA «Por Nosotras»",
         phone: "0424-1659742",
         tel: "tel:+584241659742",
-        detail: "Mujeres · martes a sábado de 8 a.m. a 8 p.m.",
+        detail: "Mujeres en situación de violencia · martes a sábado 8am-8pm",
       },
     ],
   },
@@ -116,14 +140,30 @@ export const DIRECTORY: DirectorySection[] = [
     title: "Protección Civil regional",
     entries: [
       {
+        name: "La Guaira",
+        phone: "0424-2075335",
+        tel: "tel:+584242075335",
+        detail: "Protección Civil regional",
+      },
+      {
+        name: "Carabobo",
+        phone: "0241-8592171",
+        tel: "tel:+582418592171",
+      },
+      {
+        name: "Zulia",
+        phone: "0261-7576761",
+        tel: "tel:+582617576761",
+      },
+      {
         name: "Yaracuy",
         phone: "0254-8038742",
         tel: "tel:+582548038742",
       },
       {
         name: "Yaracuy (alterno)",
-        phone: "0254-8037629",
-        tel: "tel:+582548037629",
+        phone: "0254-7992628",
+        tel: "tel:+582547992628",
       },
     ],
   },
