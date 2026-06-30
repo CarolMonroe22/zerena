@@ -107,6 +107,10 @@ export type Database = {
           for_whom: string
           id: string
           shelter: string | null
+          shelter_contact: string | null
+          shelter_location: string | null
+          shelter_name: string | null
+          shelter_people_count: string | null
           signs: string | null
           urgency: string
         }
@@ -118,6 +122,10 @@ export type Database = {
           for_whom: string
           id?: string
           shelter?: string | null
+          shelter_contact?: string | null
+          shelter_location?: string | null
+          shelter_name?: string | null
+          shelter_people_count?: string | null
           signs?: string | null
           urgency: string
         }
@@ -129,6 +137,10 @@ export type Database = {
           for_whom?: string
           id?: string
           shelter?: string | null
+          shelter_contact?: string | null
+          shelter_location?: string | null
+          shelter_name?: string | null
+          shelter_people_count?: string | null
           signs?: string | null
           urgency?: string
         }
