@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RedRouteImport } from './routes/red'
+import { Route as RecepcionRouteImport } from './routes/recepcion'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as ParaMiRouteImport } from './routes/para-mi'
 import { Route as ParaAyudarRouteImport } from './routes/para-ayudar'
@@ -46,6 +47,11 @@ import { Route as ParaAyudarEntrenamientoMidRouteImport } from './routes/para-ay
 const RedRoute = RedRouteImport.update({
   id: '/red',
   path: '/red',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecepcionRoute = RecepcionRouteImport.update({
+  id: '/recepcion',
+  path: '/recepcion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacidadRoute = PrivacidadRouteImport.update({
@@ -219,6 +225,7 @@ export interface FileRoutesByFullPath {
   '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/privacidad': typeof PrivacidadRoute
+  '/recepcion': typeof RecepcionRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
@@ -252,6 +259,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/fuentes': typeof FuentesRoute
   '/privacidad': typeof PrivacidadRoute
+  '/recepcion': typeof RecepcionRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
@@ -287,6 +295,7 @@ export interface FileRoutesById {
   '/para-ayudar': typeof ParaAyudarRouteWithChildren
   '/para-mi': typeof ParaMiRouteWithChildren
   '/privacidad': typeof PrivacidadRoute
+  '/recepcion': typeof RecepcionRoute
   '/red': typeof RedRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
@@ -324,6 +333,7 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/privacidad'
+    | '/recepcion'
     | '/red'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
@@ -357,6 +367,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/fuentes'
     | '/privacidad'
+    | '/recepcion'
     | '/red'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
@@ -391,6 +402,7 @@ export interface FileRouteTypes {
     | '/para-ayudar'
     | '/para-mi'
     | '/privacidad'
+    | '/recepcion'
     | '/red'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
@@ -427,6 +439,7 @@ export interface RootRouteChildren {
   ParaAyudarRoute: typeof ParaAyudarRouteWithChildren
   ParaMiRoute: typeof ParaMiRouteWithChildren
   PrivacidadRoute: typeof PrivacidadRoute
+  RecepcionRoute: typeof RecepcionRoute
   RedRoute: typeof RedRoute
 }
 
@@ -437,6 +450,13 @@ declare module '@tanstack/react-router' {
       path: '/red'
       fullPath: '/red'
       preLoaderRoute: typeof RedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recepcion': {
+      id: '/recepcion'
+      path: '/recepcion'
+      fullPath: '/recepcion'
+      preLoaderRoute: typeof RecepcionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacidad': {
@@ -755,6 +775,7 @@ const rootRouteChildren: RootRouteChildren = {
   ParaAyudarRoute: ParaAyudarRouteWithChildren,
   ParaMiRoute: ParaMiRouteWithChildren,
   PrivacidadRoute: PrivacidadRoute,
+  RecepcionRoute: RecepcionRoute,
   RedRoute: RedRoute,
 }
 export const routeTree = rootRouteImport

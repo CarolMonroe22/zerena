@@ -149,12 +149,21 @@ function RootComponent() {
         <Outlet />
         <footer className="mx-auto max-w-[640px] px-5 pb-10 pt-6 text-center text-xs text-muted-foreground">
           <p>Privado y anónimo · tu diario se queda en tu teléfono.</p>
-          <Link
-            to="/privacidad"
-            className="mt-1 inline-block text-primary underline-offset-4 hover:underline"
-          >
-            Cómo cuidamos tu privacidad
-          </Link>
+          <div className="mt-1.5 flex justify-center items-center gap-3">
+            <Link
+              to="/privacidad"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              Cómo cuidamos tu privacidad
+            </Link>
+            <span>·</span>
+            <Link
+              to="/recepcion"
+              className="text-muted-foreground/70 hover:text-foreground transition-colors"
+            >
+              Área de equipo
+            </Link>
+          </div>
         </footer>
         <FloatingHelpButton />
       </div>
