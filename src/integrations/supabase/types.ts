@@ -100,48 +100,57 @@ export type Database = {
       }
       support_requests: {
         Row: {
+          assigned_to: string | null
+          case_details: string | null
           consent: boolean
           contact: string
-          contact_is: string
           created_at: string
+          disability_type: string | null
           for_whom: string
           id: string
-          shelter: string | null
+          name: string | null
+          profile: string | null
           shelter_contact: string | null
           shelter_location: string | null
           shelter_name: string | null
           shelter_people_count: string | null
-          signs: string | null
+          status: string
           urgency: string
         }
         Insert: {
+          assigned_to?: string | null
+          case_details?: string | null
           consent?: boolean
           contact: string
-          contact_is: string
           created_at?: string
+          disability_type?: string | null
           for_whom: string
           id?: string
-          shelter?: string | null
+          name?: string | null
+          profile?: string | null
           shelter_contact?: string | null
           shelter_location?: string | null
           shelter_name?: string | null
           shelter_people_count?: string | null
-          signs?: string | null
-          urgency: string
+          status?: string
+          urgency?: string
         }
         Update: {
+          assigned_to?: string | null
+          case_details?: string | null
           consent?: boolean
           contact?: string
-          contact_is?: string
           created_at?: string
+          disability_type?: string | null
           for_whom?: string
           id?: string
-          shelter?: string | null
+          name?: string | null
+          profile?: string | null
           shelter_contact?: string | null
           shelter_location?: string | null
           shelter_name?: string | null
           shelter_people_count?: string | null
-          signs?: string | null
+          status?: string
           urgency?: string
         }
         Relationships: []

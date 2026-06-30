@@ -21,11 +21,29 @@ export const Route = createFileRoute("/ayuda")({
 });
 
 type ForWhom = "mi" | "otra" | "albergue";
+type ProfileType = "adulto" | "nino_adolescente" | "cuidador" | "adulto_mayor" | "discapacidad";
+type DisabilityType = "visual" | "auditiva" | "motora" | "cognitiva" | "otra";
 
-const OPTIONS: { value: ForWhom; label: string }[] = [
+const FOR_WHOM_OPTIONS: { value: ForWhom; label: string }[] = [
   { value: "mi", label: "Para mí" },
   { value: "otra", label: "Para otra persona" },
   { value: "albergue", label: "Para alguien de un albergue" },
+];
+
+const PROFILE_OPTIONS: { value: ProfileType; label: string }[] = [
+  { value: "adulto", label: "Adulto" },
+  { value: "nino_adolescente", label: "Niño o adolescente" },
+  { value: "cuidador", label: "Cuidador / a cargo de otros" },
+  { value: "adulto_mayor", label: "Adulto mayor" },
+  { value: "discapacidad", label: "Persona con discapacidad" },
+];
+
+const DISABILITY_OPTIONS: { value: DisabilityType; label: string }[] = [
+  { value: "visual", label: "Visual" },
+  { value: "auditiva", label: "Auditiva" },
+  { value: "motora", label: "Motora / física" },
+  { value: "cognitiva", label: "Cognitiva" },
+  { value: "otra", label: "Otra" },
 ];
 
 const CASE_PLACEHOLDER: Record<ForWhom, string> = {
@@ -38,6 +56,8 @@ const schema = z.object({
   for_whom: z.enum(["mi", "otra", "albergue"], {
     errorMap: () => ({ message: "Elige para quién es el apoyo." }),
   }),
+  profile: z.enum(["adulto", "nino_adolescente", "cuidador", "adulto_mayor", "discapacidad"]).optional(),
+  disability_type: z.enum(["visual", "auditiva", "motora", "cognitiva", "otra"]).optional(),
   shelter_name: z.string().trim().max(300).optional(),
   shelter_location: z.string().trim().max(300).optional(),
   shelter_people_count: z.string().trim().max(100).optional(),
@@ -60,6 +80,8 @@ const schema = z.object({
 
 function Ayuda() {
   const [forWhom, setForWhom] = useState<ForWhom | null>(null);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
+  const [disabilityType, setDisabilityType] = useState<DisabilityType | null>(null);
   const [shelterName, setShelterName] = useState("");
   const [shelterLocation, setShelterLocation] = useState("");
   const [shelterPeopleCount, setShelterPeopleCount] = useState("");
@@ -78,6 +100,8 @@ function Ayuda() {
     setError(null);
     const parsed = schema.safeParse({
       for_whom: forWhom ?? undefined,
+      profile: profile ?? undefined,
+      disability_type: profile === "discapacidad" ? (disabilityType ?? undefined) : undefined,
       shelter_name: forWhom === "albergue" ? shelterName : undefined,
       shelter_location: forWhom === "albergue" ? shelterLocation : undefined,
       shelter_people_count: forWhom === "albergue" ? shelterPeopleCount : undefined,
@@ -94,11 +118,12 @@ function Ayuda() {
     setStatus("sending");
     const { error: dbError } = await supabase.from("support_requests").insert({
       for_whom: parsed.data.for_whom,
-      signs: parsed.data.case_details,
-      urgency: "pronto",
-      contact_is: "persona",
-      consent: true,
+      case_details: parsed.data.case_details,
+      name: parsed.data.name?.length ? parsed.data.name : null,
       contact: parsed.data.contact,
+      profile: parsed.data.profile ?? null,
+      disability_type: parsed.data.profile === "discapacidad" ? (parsed.data.disability_type ?? null) : null,
+      consent: true,
       shelter_name: parsed.data.for_whom === "albergue" && parsed.data.shelter_name?.length ? parsed.data.shelter_name : null,
       shelter_location: parsed.data.for_whom === "albergue" && parsed.data.shelter_location?.length ? parsed.data.shelter_location : null,
       shelter_people_count: parsed.data.for_whom === "albergue" && parsed.data.shelter_people_count?.length ? parsed.data.shelter_people_count : null,
@@ -113,6 +138,8 @@ function Ayuda() {
     }
     setStatus("sent");
     setForWhom(null);
+    setProfile(null);
+    setDisabilityType(null);
     setShelterName("");
     setShelterLocation("");
     setShelterPeopleCount("");
@@ -167,7 +194,7 @@ function Ayuda() {
             ¿Para quién es el apoyo?
           </legend>
           <div className="mt-3 grid gap-2 sm:grid-cols-3">
-            {OPTIONS.map((opt) => {
+            {FOR_WHOM_OPTIONS.map((opt) => {
               const selected = forWhom === opt.value;
               return (
                 <button
@@ -187,6 +214,64 @@ function Ayuda() {
             })}
           </div>
         </fieldset>
+
+        <fieldset>
+          <legend className="text-sm font-medium text-foreground">
+            Perfil de la persona <span className="text-muted-foreground font-normal">(opcional)</span>
+          </legend>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {PROFILE_OPTIONS.map((opt) => {
+              const selected = profile === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => {
+                    const next = selected ? null : opt.value;
+                    setProfile(next);
+                    if (next !== "discapacidad") setDisabilityType(null);
+                  }}
+                  aria-pressed={selected}
+                  className={`rounded-xl border px-3.5 py-2.5 text-sm font-medium transition-colors text-left ${
+                    selected
+                      ? "border-primary bg-primary/10 text-foreground"
+                      : "border-border bg-card text-muted-foreground hover:border-primary/60"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        {profile === "discapacidad" && (
+          <fieldset className="rounded-2xl border border-border bg-secondary/20 p-4 sm:p-5 transition-all">
+            <legend className="text-sm font-medium text-foreground px-1">
+              ¿Qué tipo de discapacidad? <span className="text-muted-foreground font-normal">(para adaptar el canal)</span>
+            </legend>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              {DISABILITY_OPTIONS.map((opt) => {
+                const selected = disabilityType === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setDisabilityType(selected ? null : opt.value)}
+                    aria-pressed={selected}
+                    className={`rounded-xl border px-3 py-2 text-xs sm:text-sm font-medium transition-colors ${
+                      selected
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border bg-card text-muted-foreground hover:border-primary/60"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
+        )}
 
         {forWhom === "albergue" && (
           <div className="space-y-4 rounded-2xl border border-border bg-secondary/30 p-4 sm:p-5">
