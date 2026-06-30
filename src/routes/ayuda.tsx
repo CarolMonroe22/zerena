@@ -94,8 +94,10 @@ function Ayuda() {
     setStatus("sending");
     const { error: dbError } = await supabase.from("support_requests").insert({
       for_whom: parsed.data.for_whom,
-      case_details: parsed.data.case_details,
-      name: parsed.data.name?.length ? parsed.data.name : null,
+      signs: parsed.data.case_details,
+      urgency: "pronto",
+      contact_is: "persona",
+      consent: true,
       contact: parsed.data.contact,
       shelter_name: parsed.data.for_whom === "albergue" && parsed.data.shelter_name?.length ? parsed.data.shelter_name : null,
       shelter_location: parsed.data.for_whom === "albergue" && parsed.data.shelter_location?.length ? parsed.data.shelter_location : null,
