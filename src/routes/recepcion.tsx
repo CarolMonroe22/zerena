@@ -73,6 +73,8 @@ function RecepcionRoute() {
   const [authPassword, setAuthPassword] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
   const [authError, setAuthError] = useState("");
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
+  const [signupMsg, setSignupMsg] = useState("");
 
   const fetchRoles = useServerFn(getMyStaffRoles);
   const queryClient = useQueryClient();
@@ -99,10 +101,33 @@ function RecepcionRoute() {
     enabled: !!sessionUser?.id,
   });
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthLoading(true);
     setAuthError("");
+    setSignupMsg("");
+
+    if (authMode === "signup") {
+      const { data, error } = await supabase.auth.signUp({
+        email: authEmail.trim(),
+        password: authPassword,
+      });
+      if (error) {
+        setAuthError(error.message || "No se pudo crear la cuenta.");
+        setAuthLoading(false);
+        return;
+      }
+      // Sin sesión = requiere confirmar el correo antes de entrar
+      if (!data.session) {
+        setSignupMsg(
+          "Cuenta creada. Revisa tu correo para confirmarla y luego inicia sesión."
+        );
+        setAuthMode("login");
+        setAuthLoading(false);
+      }
+      // Con sesión, onAuthStateChange entra directo
+      return;
+    }
 
     const { error } = await supabase.auth.signInWithPassword({
       email: authEmail.trim(),
@@ -136,7 +161,9 @@ function RecepcionRoute() {
           Solo personal autorizado
         </p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Ingresa con tu correo de coordinación o voluntariado de Zerena.
+          {authMode === "login"
+            ? "Ingresa con tu correo de coordinación o voluntariado de Zerena."
+            : "Crea tu cuenta de equipo con tu correo de coordinación de Zerena."}
         </p>
 
         {sessionUser && (!staffRoles || staffRoles.length === 0) && (
@@ -156,7 +183,7 @@ function RecepcionRoute() {
           </div>
         )}
 
-        <form onSubmit={handleLogin} className="serena-card mt-8 space-y-4 p-6 text-left">
+        <form onSubmit={handleAuth} className="serena-card mt-8 space-y-4 p-6 text-left">
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Correo electrónico
@@ -191,12 +218,38 @@ function RecepcionRoute() {
             </div>
           )}
 
+          {signupMsg && (
+            <div className="rounded-xl bg-sage-deep/10 p-3 text-xs font-medium text-sage-deep">
+              {signupMsg}
+            </div>
+          )}
+
           <button
             type="submit"
             disabled={authLoading}
             className="w-full rounded-full bg-sage-deep py-3 text-base font-medium text-primary-foreground shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50"
           >
-            {authLoading ? "Entrando…" : "Entrar a Recepción"}
+            {authLoading
+              ? authMode === "signup"
+                ? "Creando cuenta…"
+                : "Entrando…"
+              : authMode === "signup"
+              ? "Crear mi cuenta"
+              : "Entrar a Recepción"}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setAuthMode(authMode === "login" ? "signup" : "login");
+              setAuthError("");
+              setSignupMsg("");
+            }}
+            className="w-full text-center text-xs font-semibold text-sage-deep underline underline-offset-2"
+          >
+            {authMode === "login"
+              ? "¿Primera vez? Crear mi cuenta de equipo"
+              : "¿Ya tienes cuenta? Iniciar sesión"}
           </button>
         </form>
 

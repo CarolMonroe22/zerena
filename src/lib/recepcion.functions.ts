@@ -1,6 +1,37 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import type { Database } from "@/integrations/supabase/types";
+
+// Defensa en profundidad: verifica en el servidor que el usuario sea staff y que
+// pueda acceder a este caso (coordinador ve todo; el resto solo lo asignado).
+// La RLS ya lo refuerza a nivel de base de datos; esto lo hace explícito.
+async function assertCaseAccess(
+  context: { supabase: SupabaseClient<Database>; userId: string },
+  caseId: string
+) {
+  const { data: roles } = await context.supabase
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", context.userId);
+
+  if (!roles || roles.length === 0) {
+    throw new Error("No tienes permisos de staff para esta acción.");
+  }
+
+  if (roles.some((r) => r.role === "coordinador")) return;
+
+  const { data: caseRow } = await context.supabase
+    .from("support_requests")
+    .select("assigned_to")
+    .eq("id", caseId)
+    .maybeSingle();
+
+  if (!caseRow || caseRow.assigned_to !== context.userId) {
+    throw new Error("No tienes acceso a este caso.");
+  }
+}
 
 export type StaffRole = "coordinador" | "profesional" | "voluntario";
 
@@ -182,6 +213,10 @@ export const getSessionNotes = createServerFn({ method: "GET" })
     z.object({ caseId: z.string().uuid() }).parse(data)
   )
   .handler(async ({ context, data }) => {
+    // Defensa en profundidad (además de RLS): solo staff, y solo el coordinador
+    // o quien tenga el caso asignado puede ver sus notas.
+    await assertCaseAccess(context, data.caseId);
+
     const { data: notes, error } = await context.supabase
       .from("session_notes")
       .select("*")
@@ -214,6 +249,10 @@ export const addSessionNote = createServerFn({ method: "POST" })
       .parse(data)
   )
   .handler(async ({ context, data }) => {
+    // Defensa en profundidad (además de RLS): solo el coordinador o quien tenga
+    // el caso asignado puede escribir notas en él.
+    await assertCaseAccess(context, data.case_id);
+
     const { error } = await context.supabase.from("session_notes").insert({
       case_id: data.case_id,
       author_id: context.userId,
