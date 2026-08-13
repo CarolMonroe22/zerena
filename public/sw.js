@@ -81,12 +81,19 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         const cached = await caches.match(req);
         if (cached) return cached;
-        const fresh = await fetch(req);
-        if (fresh.ok) {
-          const cache = await caches.open(RUNTIME_CACHE);
-          cache.put(req, fresh.clone());
+        try {
+          const fresh = await fetch(req);
+          if (fresh.ok) {
+            const cache = await caches.open(RUNTIME_CACHE);
+            cache.put(req, fresh.clone());
+          }
+          return fresh;
+        } catch {
+          return new Response(JSON.stringify({ error: "offline" }), {
+            status: 503,
+            headers: { "content-type": "application/json" },
+          });
         }
-        return fresh;
       })(),
     );
     return;
