@@ -13,6 +13,7 @@ import {
   Newspaper,
   MapPin,
   Waves,
+  Headphones,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { LightOfTheDay } from "@/components/LightOfTheDay";
@@ -39,6 +40,15 @@ function ParaMiHome() {
         <SmallCard to="/para-mi/presente" icon={<Anchor size={18} />} title="Volver al presente" />
         <SmallCard to="/para-mi/como-estas" icon={<Activity size={18} />} title="¿Cómo estás ahora?" />
       </div>
+      <div className="mt-3">
+        <WideCard
+          to="/sonidos"
+          icon={<Headphones size={18} />}
+          title="Sonidos y meditaciones"
+          desc="Prácticas guiadas para escuchar o leer."
+        />
+      </div>
+
       <Link
         to="/ayuda"
         className="serena-card-peach mt-3 flex items-center gap-4 p-5 transition-transform hover:-translate-y-px"

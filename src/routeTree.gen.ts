@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SonidosRouteImport } from './routes/sonidos'
 import { Route as RedRouteImport } from './routes/red'
 import { Route as RecepcionRouteImport } from './routes/recepcion'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
@@ -43,7 +44,13 @@ import { Route as ParaAyudarAdultoMayorRouteImport } from './routes/para-ayudar.
 import { Route as ParaAyudarADistanciaRouteImport } from './routes/para-ayudar.a-distancia'
 import { Route as ParaAyudarEntrenamientoIndexRouteImport } from './routes/para-ayudar.entrenamiento.index'
 import { Route as ParaAyudarEntrenamientoMidRouteImport } from './routes/para-ayudar.entrenamiento.$mid'
+import { Route as ApiPublicAudioIdRouteImport } from './routes/api/public/audio.$id'
 
+const SonidosRoute = SonidosRouteImport.update({
+  id: '/sonidos',
+  path: '/sonidos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RedRoute = RedRouteImport.update({
   id: '/red',
   path: '/red',
@@ -216,6 +223,11 @@ const ParaAyudarEntrenamientoMidRoute =
     path: '/$mid',
     getParentRoute: () => ParaAyudarEntrenamientoRoute,
   } as any)
+const ApiPublicAudioIdRoute = ApiPublicAudioIdRouteImport.update({
+  id: '/api/public/audio/$id',
+  path: '/api/public/audio/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -227,6 +239,7 @@ export interface FileRoutesByFullPath {
   '/privacidad': typeof PrivacidadRoute
   '/recepcion': typeof RecepcionRoute
   '/red': typeof RedRoute
+  '/sonidos': typeof SonidosRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
@@ -252,6 +265,7 @@ export interface FileRoutesByFullPath {
   '/para-mi/': typeof ParaMiIndexRoute
   '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
   '/para-ayudar/entrenamiento/': typeof ParaAyudarEntrenamientoIndexRoute
+  '/api/public/audio/$id': typeof ApiPublicAudioIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -261,6 +275,7 @@ export interface FileRoutesByTo {
   '/privacidad': typeof PrivacidadRoute
   '/recepcion': typeof RecepcionRoute
   '/red': typeof RedRoute
+  '/sonidos': typeof SonidosRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
@@ -285,6 +300,7 @@ export interface FileRoutesByTo {
   '/para-mi': typeof ParaMiIndexRoute
   '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
   '/para-ayudar/entrenamiento': typeof ParaAyudarEntrenamientoIndexRoute
+  '/api/public/audio/$id': typeof ApiPublicAudioIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -297,6 +313,7 @@ export interface FileRoutesById {
   '/privacidad': typeof PrivacidadRoute
   '/recepcion': typeof RecepcionRoute
   '/red': typeof RedRoute
+  '/sonidos': typeof SonidosRoute
   '/para-ayudar/a-distancia': typeof ParaAyudarADistanciaRoute
   '/para-ayudar/adulto-mayor': typeof ParaAyudarAdultoMayorRoute
   '/para-ayudar/ahora': typeof ParaAyudarAhoraRoute
@@ -322,6 +339,7 @@ export interface FileRoutesById {
   '/para-mi/': typeof ParaMiIndexRoute
   '/para-ayudar/entrenamiento/$mid': typeof ParaAyudarEntrenamientoMidRoute
   '/para-ayudar/entrenamiento/': typeof ParaAyudarEntrenamientoIndexRoute
+  '/api/public/audio/$id': typeof ApiPublicAudioIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -335,6 +353,7 @@ export interface FileRouteTypes {
     | '/privacidad'
     | '/recepcion'
     | '/red'
+    | '/sonidos'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
@@ -360,6 +379,7 @@ export interface FileRouteTypes {
     | '/para-mi/'
     | '/para-ayudar/entrenamiento/$mid'
     | '/para-ayudar/entrenamiento/'
+    | '/api/public/audio/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -369,6 +389,7 @@ export interface FileRouteTypes {
     | '/privacidad'
     | '/recepcion'
     | '/red'
+    | '/sonidos'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
@@ -393,6 +414,7 @@ export interface FileRouteTypes {
     | '/para-mi'
     | '/para-ayudar/entrenamiento/$mid'
     | '/para-ayudar/entrenamiento'
+    | '/api/public/audio/$id'
   id:
     | '__root__'
     | '/'
@@ -404,6 +426,7 @@ export interface FileRouteTypes {
     | '/privacidad'
     | '/recepcion'
     | '/red'
+    | '/sonidos'
     | '/para-ayudar/a-distancia'
     | '/para-ayudar/adulto-mayor'
     | '/para-ayudar/ahora'
@@ -429,6 +452,7 @@ export interface FileRouteTypes {
     | '/para-mi/'
     | '/para-ayudar/entrenamiento/$mid'
     | '/para-ayudar/entrenamiento/'
+    | '/api/public/audio/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -441,10 +465,19 @@ export interface RootRouteChildren {
   PrivacidadRoute: typeof PrivacidadRoute
   RecepcionRoute: typeof RecepcionRoute
   RedRoute: typeof RedRoute
+  SonidosRoute: typeof SonidosRoute
+  ApiPublicAudioIdRoute: typeof ApiPublicAudioIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sonidos': {
+      id: '/sonidos'
+      path: '/sonidos'
+      fullPath: '/sonidos'
+      preLoaderRoute: typeof SonidosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/red': {
       id: '/red'
       path: '/red'
@@ -683,6 +716,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParaAyudarEntrenamientoMidRouteImport
       parentRoute: typeof ParaAyudarEntrenamientoRoute
     }
+    '/api/public/audio/$id': {
+      id: '/api/public/audio/$id'
+      path: '/api/public/audio/$id'
+      fullPath: '/api/public/audio/$id'
+      preLoaderRoute: typeof ApiPublicAudioIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -777,6 +817,8 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacidadRoute: PrivacidadRoute,
   RecepcionRoute: RecepcionRoute,
   RedRoute: RedRoute,
+  SonidosRoute: SonidosRoute,
+  ApiPublicAudioIdRoute: ApiPublicAudioIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

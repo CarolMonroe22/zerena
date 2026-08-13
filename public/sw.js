@@ -1,5 +1,5 @@
 // Zerena service worker — offline-first calmado.
-const VERSION = "serena-v2";
+const VERSION = "serena-v3";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -75,8 +75,32 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Audios de prácticas guiadas: CacheFirst para que sigan disponibles sin conexión.
+  if (url.pathname.startsWith("/api/public/audio/")) {
+    event.respondWith(
+      (async () => {
+        const cached = await caches.match(req);
+        if (cached) return cached;
+        try {
+          const fresh = await fetch(req);
+          if (fresh.ok) {
+            const cache = await caches.open(RUNTIME_CACHE);
+            cache.put(req, fresh.clone());
+          }
+          return fresh;
+        } catch {
+          return new Response(JSON.stringify({ error: "offline" }), {
+            status: 503,
+            headers: { "content-type": "application/json" },
+          });
+        }
+      })(),
+    );
+    return;
+  }
+
   // Assets hasheados: CacheFirst.
-  if (/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico)$/i.test(url.pathname)) {
+  if (/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico|mp3)$/i.test(url.pathname)) {
     event.respondWith(
       (async () => {
         const cached = await caches.match(req);
