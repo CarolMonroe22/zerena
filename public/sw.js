@@ -75,8 +75,25 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Audios de prácticas guiadas: CacheFirst para que sigan disponibles sin conexión.
+  if (url.pathname.startsWith("/api/public/audio/")) {
+    event.respondWith(
+      (async () => {
+        const cached = await caches.match(req);
+        if (cached) return cached;
+        const fresh = await fetch(req);
+        if (fresh.ok) {
+          const cache = await caches.open(RUNTIME_CACHE);
+          cache.put(req, fresh.clone());
+        }
+        return fresh;
+      })(),
+    );
+    return;
+  }
+
   // Assets hasheados: CacheFirst.
-  if (/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico)$/i.test(url.pathname)) {
+  if (/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico|mp3)$/i.test(url.pathname)) {
     event.respondWith(
       (async () => {
         const cached = await caches.match(req);
