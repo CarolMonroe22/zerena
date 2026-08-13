@@ -1,5 +1,5 @@
 // Zerena service worker — offline-first calmado.
-const VERSION = "serena-v2";
+const VERSION = "serena-v3";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
