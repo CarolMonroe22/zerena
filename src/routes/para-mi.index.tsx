@@ -13,6 +13,7 @@ import {
   Newspaper,
   MapPin,
   Waves,
+  Headphones,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { LightOfTheDay } from "@/components/LightOfTheDay";
@@ -37,8 +38,26 @@ function ParaMiHome() {
       <div className="grid gap-3 sm:grid-cols-3">
         <SmallCard to="/para-mi/respira" icon={<Wind size={18} />} title="Respira conmigo" />
         <SmallCard to="/para-mi/presente" icon={<Anchor size={18} />} title="Volver al presente" />
-        <SmallCard to="/para-mi/como-estas" icon={<Activity size={18} />} title="¿Cómo estás ahora?" />
+        <SmallCard
+          to="/para-mi/como-estas"
+          icon={<Activity size={18} />}
+          title="¿Cómo estás ahora?"
+        />
       </div>
+      <Link
+        to="/sonidos"
+        className="serena-card mt-3 flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
+      >
+        <IconBubble>
+          <Headphones size={18} />
+        </IconBubble>
+        <div className="min-w-0">
+          <p className="font-serif text-lg text-foreground">Sonidos y meditaciones</p>
+          <p className="text-sm text-muted-foreground">
+            Escucha una práctica guiada o lee la transcripción.
+          </p>
+        </div>
+      </Link>
       <Link
         to="/ayuda"
         className="serena-card-peach mt-3 flex items-center gap-4 p-5 transition-transform hover:-translate-y-px"
@@ -54,13 +73,48 @@ function ParaMiHome() {
 
       <SectionTitle>Para momentos difíciles</SectionTitle>
       <div className="space-y-3">
-        <WideCard to="/para-mi/descansar" icon={<Moon size={18} />} title="Para descansar esta noche" desc="Cuando el cuerpo no quiere parar." />
-        <WideCard to="/para-mi/duelo" icon={<HeartCrack size={18} />} title="Si perdiste a alguien" desc="Un espacio para el duelo, a tu ritmo." />
-        <WideCard to="/para-mi/no-encontrado" icon={<Search size={18} />} title="No he encontrado a alguien" desc="Para esa espera que no termina." />
-        <WideCard to="/para-mi/perdiste-todo" icon={<CloudOff size={18} />} title="Si lo perdiste todo" desc="Cuando el dolor es demasiado grande." />
-        <WideCard to="/para-mi/noticias" icon={<Newspaper size={18} />} title="Si las noticias te hacen daño" desc="Cuidar lo que entra a tu mente." />
-        <WideCard to="/para-mi/lejos" icon={<MapPin size={18} />} title="Si estás lejos de los tuyos" desc="Acompañar desde la distancia." />
-        <WideCard to="/para-mi/replicas" icon={<Waves size={18} />} title="Cuando todo tiembla otra vez" desc="Réplicas: qué hacer y cómo calmarte." />
+        <WideCard
+          to="/para-mi/descansar"
+          icon={<Moon size={18} />}
+          title="Para descansar esta noche"
+          desc="Cuando el cuerpo no quiere parar."
+        />
+        <WideCard
+          to="/para-mi/duelo"
+          icon={<HeartCrack size={18} />}
+          title="Si perdiste a alguien"
+          desc="Un espacio para el duelo, a tu ritmo."
+        />
+        <WideCard
+          to="/para-mi/no-encontrado"
+          icon={<Search size={18} />}
+          title="No he encontrado a alguien"
+          desc="Para esa espera que no termina."
+        />
+        <WideCard
+          to="/para-mi/perdiste-todo"
+          icon={<CloudOff size={18} />}
+          title="Si lo perdiste todo"
+          desc="Cuando el dolor es demasiado grande."
+        />
+        <WideCard
+          to="/para-mi/noticias"
+          icon={<Newspaper size={18} />}
+          title="Si las noticias te hacen daño"
+          desc="Cuidar lo que entra a tu mente."
+        />
+        <WideCard
+          to="/para-mi/lejos"
+          icon={<MapPin size={18} />}
+          title="Si estás lejos de los tuyos"
+          desc="Acompañar desde la distancia."
+        />
+        <WideCard
+          to="/para-mi/replicas"
+          icon={<Waves size={18} />}
+          title="Cuando todo tiembla otra vez"
+          desc="Réplicas: qué hacer y cómo calmarte."
+        />
       </div>
 
       <SectionTitle>Cuando ya pasó lo peor</SectionTitle>
@@ -90,15 +144,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-function SmallCard({
-  to,
-  icon,
-  title,
-}: {
-  to: string;
-  icon: React.ReactNode;
-  title: string;
-}) {
+function SmallCard({ to, icon, title }: { to: string; icon: React.ReactNode; title: string }) {
   return (
     <Link
       to={to}
@@ -134,4 +180,3 @@ function WideCard({
     </Link>
   );
 }
-

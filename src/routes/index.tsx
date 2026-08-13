@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, HandHeart, Users, LifeBuoy } from "lucide-react";
+import { Heart, HandHeart, Users, LifeBuoy, Headphones } from "lucide-react";
 import { SerenaMark } from "@/components/SerenaMark";
 import { PageShell } from "@/components/PageShell";
 import { IconBubble } from "@/components/IconBubble";
 import { InstallButton } from "@/components/InstallButton";
+import { ColombiaNote } from "@/components/ColombiaNote";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,10 +26,13 @@ function Welcome() {
         <SerenaMark size={88} />
         <h1 className="mt-5 font-serif text-4xl text-foreground sm:text-5xl">Zerena</h1>
         <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-          Un espacio calmado para los primeros momentos.<br />
+          Un espacio calmado para los primeros momentos.
+          <br />
           Respira. No tienes que apurarte.
         </p>
       </section>
+
+      <ColombiaNote />
 
       <section className="mt-10 space-y-3">
         <PathCard
@@ -42,6 +46,12 @@ function Welcome() {
           icon={<HandHeart size={18} />}
           title="Quiero ayudar a alguien"
           desc="Acompañar a otra persona con cuidado."
+        />
+        <PathCard
+          to="/sonidos"
+          icon={<Headphones size={18} />}
+          title="Sonidos y meditaciones"
+          desc="Prácticas guiadas para respirar, volver al presente y descansar."
         />
         <PathCard
           to="/ayuda"

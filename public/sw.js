@@ -1,18 +1,16 @@
 // Zerena service worker — offline-first calmado.
-const VERSION = "serena-v2";
+const VERSION = "serena-v3";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
-const SHELL = [
-  "/",
-  "/manifest.webmanifest",
-  "/icon-192.png",
-  "/icon-512.png",
-];
+const SHELL = ["/", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(SHELL_CACHE).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting()),
+    caches
+      .open(SHELL_CACHE)
+      .then((cache) => cache.addAll(SHELL))
+      .then(() => self.skipWaiting()),
   );
 });
 
@@ -45,6 +43,28 @@ self.addEventListener("fetch", (event) => {
           const fresh = await fetch(req);
           const cache = await caches.open(RUNTIME_CACHE);
           cache.put(req, fresh.clone());
+          return fresh;
+        } catch {
+          return cached || Response.error();
+        }
+      })(),
+    );
+    return;
+  }
+
+  // Audio guiado (incluye el origen público de Storage): CacheFirst para
+  // reutilizarlo offline después de la primera escucha.
+  if (/\.(mp3|m4a|wav|ogg)$/i.test(url.pathname)) {
+    event.respondWith(
+      (async () => {
+        const cached = await caches.match(req);
+        if (cached) return cached;
+        try {
+          const fresh = await fetch(req);
+          if (fresh.ok || fresh.type === "opaque") {
+            const cache = await caches.open(RUNTIME_CACHE);
+            await cache.put(req, fresh.clone());
+          }
           return fresh;
         } catch {
           return cached || Response.error();
