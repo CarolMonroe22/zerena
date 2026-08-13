@@ -13,6 +13,7 @@ import {
   Newspaper,
   MapPin,
   Waves,
+  Headphones,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { LightOfTheDay } from "@/components/LightOfTheDay";
