@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, HandHeart, Users, LifeBuoy } from "lucide-react";
+import { Heart, HandHeart, Users, LifeBuoy, Headphones } from "lucide-react";
 import { SerenaMark } from "@/components/SerenaMark";
 import { PageShell } from "@/components/PageShell";
 import { IconBubble } from "@/components/IconBubble";
 import { InstallButton } from "@/components/InstallButton";
+import { ColombiaNote } from "@/components/ColombiaNote";
 
 export const Route = createFileRoute("/")({
   head: () => ({
