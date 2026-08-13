@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Play, Pause, RotateCcw, ChevronDown, Loader2, WifiOff } from "lucide-react";
 import type { Practice } from "@/lib/practices";
 import { practiceAudioUrl } from "@/lib/practices";
+import { createAmbientSound, type AmbientMode, type AmbientSound } from "@/lib/ambient-sound";
 
 type Status = "idle" | "loading" | "ready" | "error";
 
@@ -19,9 +20,18 @@ function formatTime(seconds: number) {
   return `${minutes}:${String(remainder).padStart(2, "0")}`;
 }
 
-export function PracticePlayer({ practice }: { practice: Practice }) {
+export function PracticePlayer({
+  practice,
+  ambientMode,
+  ambientVolume,
+}: {
+  practice: Practice;
+  ambientMode: AmbientMode;
+  ambientVolume: number;
+}) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const urlRef = useRef<string | null>(null);
+  const ambientRef = useRef<AmbientSound | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -29,12 +39,36 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   const [total, setTotal] = useState(0);
   const [showText, setShowText] = useState(false);
 
+  const playAmbient = useCallback(async () => {
+    if (ambientMode === "none") return;
+    if (!ambientRef.current || ambientRef.current.mode !== ambientMode) {
+      ambientRef.current?.destroy();
+      ambientRef.current = createAmbientSound(ambientMode);
+    }
+    await ambientRef.current.play(ambientVolume);
+  }, [ambientMode, ambientVolume]);
+
   useEffect(() => {
     return () => {
       if (urlRef.current) URL.revokeObjectURL(urlRef.current);
       audioRef.current?.pause();
+      ambientRef.current?.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    const ambient = ambientRef.current;
+    if (!ambient) return;
+
+    if (ambient.mode !== ambientMode || ambientMode === "none") {
+      ambient.destroy();
+      ambientRef.current = null;
+      if (playing && ambientMode !== "none") void playAmbient();
+      return;
+    }
+
+    if (playing) ambient.setVolume(ambientVolume);
+  }, [ambientMode, ambientVolume, playAmbient, playing]);
 
   async function ensureAudio(): Promise<HTMLAudioElement | null> {
     if (audioRef.current) return audioRef.current;
@@ -64,8 +98,14 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
       audio.preload = "auto";
       audio.addEventListener("timeupdate", () => setTime(audio.currentTime));
       audio.addEventListener("loadedmetadata", () => setTotal(audio.duration));
-      audio.addEventListener("ended", () => setPlaying(false));
-      audio.addEventListener("pause", () => setPlaying(false));
+      audio.addEventListener("ended", () => {
+        setPlaying(false);
+        ambientRef.current?.pause();
+      });
+      audio.addEventListener("pause", () => {
+        setPlaying(false);
+        ambientRef.current?.pause();
+      });
       audio.addEventListener("play", () => setPlaying(true));
       audioRef.current = audio;
       setStatus("ready");
@@ -91,9 +131,16 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
       } catch {
         setStatus("error");
         setError("No pudimos reproducir el audio en este dispositivo.");
+        return;
+      }
+      try {
+        await playAmbient();
+      } catch (ambientError) {
+        console.warn("[ambient] no se pudo iniciar el fondo", ambientError);
       }
     } else {
       audio.pause();
+      ambientRef.current?.pause();
     }
   }
 

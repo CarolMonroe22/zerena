@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Headphones } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { BasedOn } from "@/components/BasedOn";
 import { PracticePlayer } from "@/components/PracticePlayer";
+import { AmbientPicker } from "@/components/AmbientPicker";
 import { PRACTICES } from "@/lib/practices";
+import type { AmbientMode } from "@/lib/ambient-sound";
 
 const TITLE = "Sonidos y meditaciones — Zerena";
 const DESCRIPTION =
@@ -23,6 +26,9 @@ export const Route = createFileRoute("/sonidos")({
 });
 
 function Sounds() {
+  const [ambientMode, setAmbientMode] = useState<AmbientMode>("warm");
+  const [ambientVolume, setAmbientVolume] = useState(0.18);
+
   return (
     <PageShell>
       <BackLink to="/" label="Inicio" />
@@ -39,9 +45,21 @@ function Sounds() {
         </div>
       </div>
 
+      <AmbientPicker
+        mode={ambientMode}
+        volume={ambientVolume}
+        onModeChange={setAmbientMode}
+        onVolumeChange={setAmbientVolume}
+      />
+
       <div className="mt-8 space-y-4">
         {PRACTICES.map((practice) => (
-          <PracticePlayer key={practice.id} practice={practice} />
+          <PracticePlayer
+            key={practice.id}
+            practice={practice}
+            ambientMode={ambientMode}
+            ambientVolume={ambientVolume}
+          />
         ))}
       </div>
 
