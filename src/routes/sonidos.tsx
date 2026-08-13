@@ -1,41 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Headphones } from "lucide-react";
-import { BackLink } from "@/components/BackLink";
 import { PageShell } from "@/components/PageShell";
+import { BackLink } from "@/components/BackLink";
+import { BasedOn } from "@/components/BasedOn";
 import { PracticePlayer } from "@/components/PracticePlayer";
 import { PRACTICES } from "@/lib/practices";
+
+const TITLE = "Sonidos y meditaciones — Zerena";
+const DESCRIPTION =
+  "Prácticas guiadas breves con voz calmada: respiración 4-2-6, volver al presente y descansar sin forzarte.";
 
 export const Route = createFileRoute("/sonidos")({
   head: () => ({
     meta: [
-      { title: "Sonidos y meditaciones — Zerena" },
-      {
-        name: "description",
-        content:
-          "Prácticas guiadas y transcripciones para respirar, volver al presente y descansar.",
-      },
-      { property: "og:title", content: "Sonidos y meditaciones — Zerena" },
-      {
-        property: "og:description",
-        content: "Tres prácticas guiadas para acompañarte con calma, a tu ritmo.",
-      },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
     ],
   }),
-  component: SoundsPage,
+  component: Sounds,
 });
 
-function SoundsPage() {
+function Sounds() {
   return (
     <PageShell>
       <BackLink to="/" label="Inicio" />
-      <div className="mt-3 flex items-center gap-3">
+      <div className="mt-3 flex items-start gap-3">
         <span className="icon-bubble" aria-hidden>
           <Headphones size={20} />
         </span>
         <div>
           <h1 className="font-serif text-3xl text-foreground">Sonidos y meditaciones</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Escucha o lee. Puedes parar cuando quieras.
+          <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+            Escucha o lee. Puedes parar cuando quieras. Si prefieres el silencio, cada práctica
+            también está escrita.
           </p>
         </div>
       </div>
@@ -46,10 +45,7 @@ function SoundsPage() {
         ))}
       </div>
 
-      <p className="mt-8 rounded-2xl border border-border bg-card p-4 text-center text-sm leading-relaxed text-muted-foreground">
-        Estas prácticas acompañan, pero no reemplazan la atención profesional ni los servicios de
-        emergencia.
-      </p>
+      <BasedOn source="PAP (OMS/OPS)" />
     </PageShell>
   );
 }

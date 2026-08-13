@@ -44,20 +44,15 @@ function ParaMiHome() {
           title="¿Cómo estás ahora?"
         />
       </div>
-      <Link
-        to="/sonidos"
-        className="serena-card mt-3 flex items-center gap-4 p-5 transition-colors hover:bg-secondary"
-      >
-        <IconBubble>
-          <Headphones size={18} />
-        </IconBubble>
-        <div className="min-w-0">
-          <p className="font-serif text-lg text-foreground">Sonidos y meditaciones</p>
-          <p className="text-sm text-muted-foreground">
-            Escucha una práctica guiada o lee la transcripción.
-          </p>
-        </div>
-      </Link>
+      <div className="mt-3">
+        <WideCard
+          to="/sonidos"
+          icon={<Headphones size={18} />}
+          title="Sonidos y meditaciones"
+          desc="Prácticas guiadas para escuchar o leer."
+        />
+      </div>
+
       <Link
         to="/ayuda"
         className="serena-card-peach mt-3 flex items-center gap-4 p-5 transition-transform hover:-translate-y-px"

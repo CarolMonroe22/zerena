@@ -52,28 +52,6 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Audio guiado (incluye el origen público de Storage): CacheFirst para
-  // reutilizarlo offline después de la primera escucha.
-  if (/\.(mp3|m4a|wav|ogg)$/i.test(url.pathname)) {
-    event.respondWith(
-      (async () => {
-        const cached = await caches.match(req);
-        if (cached) return cached;
-        try {
-          const fresh = await fetch(req);
-          if (fresh.ok || fresh.type === "opaque") {
-            const cache = await caches.open(RUNTIME_CACHE);
-            await cache.put(req, fresh.clone());
-          }
-          return fresh;
-        } catch {
-          return cached || Response.error();
-        }
-      })(),
-    );
-    return;
-  }
-
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/~oauth")) return;
 
@@ -95,8 +73,32 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Audios de prácticas guiadas: CacheFirst para que sigan disponibles sin conexión.
+  if (url.pathname.startsWith("/api/public/audio/")) {
+    event.respondWith(
+      (async () => {
+        const cached = await caches.match(req);
+        if (cached) return cached;
+        try {
+          const fresh = await fetch(req);
+          if (fresh.ok) {
+            const cache = await caches.open(RUNTIME_CACHE);
+            cache.put(req, fresh.clone());
+          }
+          return fresh;
+        } catch {
+          return new Response(JSON.stringify({ error: "offline" }), {
+            status: 503,
+            headers: { "content-type": "application/json" },
+          });
+        }
+      })(),
+    );
+    return;
+  }
+
   // Assets hasheados: CacheFirst.
-  if (/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico)$/i.test(url.pathname)) {
+  if (/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico|mp3)$/i.test(url.pathname)) {
     event.respondWith(
       (async () => {
         const cached = await caches.match(req);

@@ -30,9 +30,8 @@ function Welcome() {
           <br />
           Respira. No tienes que apurarte.
         </p>
+        <ColombiaNote />
       </section>
-
-      <ColombiaNote />
 
       <section className="mt-10 space-y-3">
         <PathCard
@@ -42,16 +41,16 @@ function Welcome() {
           desc="Respirar, sentirte acompañado y encontrar ayuda."
         />
         <PathCard
+          to="/sonidos"
+          icon={<Headphones size={18} />}
+          title="Sonidos y meditaciones"
+          desc="Prácticas guiadas breves para escuchar o leer."
+        />
+        <PathCard
           to="/para-ayudar"
           icon={<HandHeart size={18} />}
           title="Quiero ayudar a alguien"
           desc="Acompañar a otra persona con cuidado."
-        />
-        <PathCard
-          to="/sonidos"
-          icon={<Headphones size={18} />}
-          title="Sonidos y meditaciones"
-          desc="Prácticas guiadas para respirar, volver al presente y descansar."
         />
         <PathCard
           to="/ayuda"

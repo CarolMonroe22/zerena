@@ -1,145 +1,78 @@
-export const PRACTICE_IDS = ["respiracion-426", "volver-al-presente", "descansar"] as const;
-
-export type PracticeId = (typeof PRACTICE_IDS)[number];
+// Guiones fijos derivados del contenido que ya existe en Zerena.
+// Lovable AI solo sintetiza la voz; no genera ni personaliza consejo.
 
 export type Practice = {
-  id: PracticeId;
+  id: string;
   title: string;
   duration: string;
-  description: string;
-  transcript: string;
+  summary: string;
   silentPath: "/para-mi/respira" | "/para-mi/presente" | "/para-mi/descansar";
   silentLabel: string;
+  script: string[];
 };
 
-export const PRACTICES: Practice[] = [
+export const PRACTICES: readonly Practice[] = [
   {
-    id: "respiracion-426",
+    id: "respiracion-4-2-6",
     title: "Respiración 4-2-6",
-    duration: "3 min",
-    description: "Una respiración guiada, lenta y sin prisa.",
+    duration: "3 min aprox.",
+    summary: "Inhalar en cuatro, sostener en dos, exhalar en seis. Vamos despacio.",
     silentPath: "/para-mi/respira",
-    silentLabel: "Hacer la respiración en silencio",
-    transcript: `Siéntate o recuéstate si puedes. Vamos despacio.
-
-Si necesitas parar antes, está bien.
-
-Empezamos.
-
-Inhala durante cuatro segundos. Uno, dos, tres, cuatro.
-Sostén con suavidad. Uno, dos.
-Exhala despacio durante seis. Uno, dos, tres, cuatro, cinco, seis.
-
-Inhala. Uno, dos, tres, cuatro.
-Sostén. Uno, dos.
-Exhala. Uno, dos, tres, cuatro, cinco, seis.
-
-Seguimos a tu ritmo.
-
-Inhala. Uno, dos, tres, cuatro.
-Sostén. Uno, dos.
-Exhala. Uno, dos, tres, cuatro, cinco, seis.
-
-Inhala. Uno, dos, tres, cuatro.
-Sostén. Uno, dos.
-Exhala. Uno, dos, tres, cuatro, cinco, seis.
-
-Si necesitas respirar de otra manera, hazlo. No tienes que forzar nada.
-
-Inhala. Uno, dos, tres, cuatro.
-Sostén. Uno, dos.
-Exhala. Uno, dos, tres, cuatro, cinco, seis.
-
-Inhala. Uno, dos, tres, cuatro.
-Sostén. Uno, dos.
-Exhala. Uno, dos, tres, cuatro, cinco, seis.
-
-Una vez más.
-
-Inhala. Uno, dos, tres, cuatro.
-Sostén. Uno, dos.
-Exhala. Uno, dos, tres, cuatro, cinco, seis.
-
-Deja que tu respiración vuelva a su ritmo natural. Puedes quedarte aquí un momento.`,
+    silentLabel: "Hacer la respiración con el círculo",
+    script: [
+      "Respira conmigo.",
+      "Siéntate o recuéstate si puedes. Vamos despacio.",
+      "Si necesitas parar antes, está bien.",
+      "Inhala. Uno. Dos. Tres. Cuatro. Sostén. Uno. Dos. Exhala. Uno. Dos. Tres. Cuatro. Cinco. Seis.",
+      "Otra vez. Inhala. Uno. Dos. Tres. Cuatro. Sostén. Uno. Dos. Exhala. Uno. Dos. Tres. Cuatro. Cinco. Seis.",
+      "Seguimos a tu ritmo. Inhala. Uno. Dos. Tres. Cuatro. Sostén. Uno. Dos. Exhala. Uno. Dos. Tres. Cuatro. Cinco. Seis.",
+      "Inhala. Uno. Dos. Tres. Cuatro. Sostén. Uno. Dos. Exhala. Uno. Dos. Tres. Cuatro. Cinco. Seis.",
+      "Si necesitas respirar de otra manera, hazlo. No tienes que forzar nada.",
+      "Inhala. Uno. Dos. Tres. Cuatro. Sostén. Uno. Dos. Exhala. Uno. Dos. Tres. Cuatro. Cinco. Seis.",
+      "Una vez más. Inhala. Uno. Dos. Tres. Cuatro. Sostén. Uno. Dos. Exhala. Uno. Dos. Tres. Cuatro. Cinco. Seis.",
+      "Deja que tu respiración vuelva a su ritmo natural.",
+    ],
   },
   {
     id: "volver-al-presente",
     title: "Volver al presente",
-    duration: "4 min",
-    description: "Cuatro anclas suaves para llevar la atención al cuerpo.",
+    duration: "4 min aprox.",
+    summary: "Cuatro anclas suaves para llevar la atención al cuerpo.",
     silentPath: "/para-mi/presente",
-    silentLabel: "Ver las cuatro anclas",
-    transcript: `No necesitas mirar a tu alrededor si no quieres.
-
-Vamos a llevar la atención al cuerpo, con anclas suaves. Haz solo las que sientas bien.
-
-Primero, siente los pies.
-
-Si están apoyados, nota el peso. Si tienes zapatos, siente la tela o el cuero. No tienes que mover nada.
-
-Quédate aquí un momento. Solo nota lo que ya está.
-
-Ahora, aprieta y suelta las manos.
-
-Cierra los puños con suavidad mientras cuentas hasta tres. Uno, dos, tres. Luego suelta.
-
-Puedes repetir si quieres. Uno, dos, tres. Y suelta.
-
-Ahora escucha tu respiración.
-
-No la cambies. Solo escucha cómo el aire entra y sale. Está pasando ahora mismo, en ti.
-
-Tómate un momento para escucharla.
-
-Por último, toca algo cerca.
-
-Puede ser una tela, tu propia mano o el borde de algo. Nota si es liso, áspero, tibio o fresco.
-
-No tienes que encontrar una sensación especial. Solo nota lo que está ahí.
-
-Si te cuesta, no es falla tuya. Puedes volver cuando quieras.`,
+    silentLabel: "Leer las anclas en silencio",
+    script: [
+      "Volver al presente.",
+      "No necesitas mirar a tu alrededor si no quieres. Vamos a llevar la atención al cuerpo, con anclas suaves. Haz solo las que sientas bien.",
+      "Primero: siente los pies. Si están apoyados, nota el peso. Si tienes zapatos, siente la tela o el cuero. No tienes que mover nada.",
+      "Segundo: aprieta y suelta las manos. Cierra los puños con suavidad mientras cuentas hasta tres. Luego suelta. Repite si quieres.",
+      "Tercero: escucha tu respiración. No la cambies. Solo escucha cómo el aire entra y sale. Está pasando ahora mismo, en ti.",
+      "Cuarto: toca algo cerca. Una tela, tu propia mano, el borde de algo. Nota si es liso, áspero, tibio o fresco.",
+      "Si te cuesta, no es falla tuya. Vuelve cuando quieras.",
+    ],
   },
   {
-    id: "descansar",
+    id: "descansar-sin-forzarte",
     title: "Descansar sin forzarte",
-    duration: "5 min",
-    description: "Una práctica para aflojar un poco, aunque el sueño no llegue.",
+    duration: "5 min aprox.",
+    summary: "No tienes que dormir. Solo descansar. Si el sueño llega, llega.",
     silentPath: "/para-mi/descansar",
-    silentLabel: "Leer la práctica para descansar",
-    transcript: `No tienes que dormir. Solo descansar. Si el sueño llega, llega.
-
-Baja la luz si puedes.
-
-Una luz suave, o cerrar los ojos un rato. El cuerpo entiende que es momento de aflojar.
-
-No tienes que cambiar nada más ahora. Quédate un momento como estás.
-
-Encuentra una postura cómoda.
-
-Sentado o acostado, como esté tu cuerpo más sostenido. Una manta encima ayuda si tienes.
-
-Tómate tu tiempo para acomodarte. No hay prisa.
-
-Ahora respira más largo al exhalar.
-
-Inhala normal. Exhala despacio. No fuerces.
-
-Otra vez. Inhala normal. Exhala despacio.
-
-Sigue a tu propio ritmo.
-
-Si la mente vuelve a lo que pasó, no la pelees.
-
-Solo nota que está pensando y vuelve a la respiración. Una y otra vez. Eso también es descansar.
-
-Inhala normal. Exhala despacio.
-
-No tienes que dormir. Solo descansar.
-
-Puedes quedarte aquí, respirando a tu ritmo, el tiempo que necesites.`,
+    silentLabel: "Leer los pasos en silencio",
+    script: [
+      "Para descansar esta noche.",
+      "No tienes que dormir. Solo descansar. Si el sueño llega, llega.",
+      "Uno: baja la luz si puedes. Una luz suave, o cerrar los ojos un rato. El cuerpo entiende que es momento de aflojar.",
+      "Dos: encuentra una postura cómoda. Sentado o acostado, como esté tu cuerpo más sostenido. Una manta encima ayuda si tienes.",
+      "Tres: respira más largo al exhalar. Inhala normal, exhala despacio. No fuerces. La exhalación larga le dice al cuerpo: estás a salvo por ahora.",
+      "Cuatro: si la mente vuelve a lo que pasó, no la pelees. Solo nota que está pensando y vuelve a la respiración. Una y otra vez. Eso también es descansar.",
+      "No tienes que dormir. Solo descansar. Si el sueño llega, llega.",
+    ],
   },
-];
+] as const;
 
-export function getPractice(id: PracticeId) {
+export function getPractice(id: string): Practice | undefined {
   return PRACTICES.find((practice) => practice.id === id);
+}
+
+export function practiceAudioUrl(id: string): string {
+  return `/api/public/audio/${id}`;
 }
