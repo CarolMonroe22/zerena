@@ -11,7 +11,7 @@ import type { AmbientMode } from "@/lib/ambient-sound";
 
 const TITLE = "Sonidos y meditaciones — Zerena";
 const DESCRIPTION =
-  "Prácticas guiadas breves con voz calmada: respiración 4-2-6, volver al presente y descansar sin forzarte.";
+  "Prácticas guiadas breves con voz calmada para respirar, volver al presente, descansar y confiar.";
 
 export const Route = createFileRoute("/sonidos")({
   head: () => ({

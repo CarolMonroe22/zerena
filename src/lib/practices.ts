@@ -65,6 +65,26 @@ export const PRACTICES: readonly Practice[] = [
       "Quédate aquí el tiempo que quieras. No tienes que apurarte.",
     ],
   },
+  {
+    id: "descansar-y-confiar",
+    title: "Descansar y confiar",
+    duration: "4 min aprox.",
+    summary: "Soltar por un momento lo que no puedes resolver ahora.",
+    silentPath: "/para-mi/descansar",
+    silentLabel: "Leer la práctica de descanso en silencio",
+    script: [
+      "Descansar y confiar.",
+      "Busca una postura en la que tu cuerpo se sienta un poco más sostenido. No tiene que ser perfecta.",
+      "Mientras escuchas, no necesitas resolver nada. Lo que importa puede esperar unos minutos.",
+      "Siente el peso de tu cuerpo donde está apoyado. Deja que la superficie debajo de ti sostenga lo que pueda sostener.",
+      "Inhala a tu ritmo. Al exhalar, afloja un poco la frente, la mandíbula y los hombros. Sin forzar.",
+      "Otra vez. Inhala como venga. Exhala despacio. Puedes soltar solo un poco. Eso es suficiente por ahora.",
+      "Confiar no significa saber qué va a pasar. En este momento puede significar permitirte descansar sin tener todas las respuestas.",
+      "Si aparece una preocupación, puedes reconocerla y decir: esto importa, y puedo volver a ello después.",
+      "Por ahora, vuelve al peso de tu cuerpo y al aire que entra y sale.",
+      "No tienes que hacer nada más en este momento. Quédate aquí el tiempo que necesites.",
+    ],
+  },
 ] as const;
 
 export function getPractice(id: string): Practice | undefined {
